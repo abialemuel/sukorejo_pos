@@ -15,9 +15,6 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
             $table->string('warehouse_code');
             $table->string('needle_code');
             $table->string('tiam');
@@ -25,6 +22,7 @@ class CreateSalesTable extends Migration
             $table->double('netto');
             $table->double('price');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

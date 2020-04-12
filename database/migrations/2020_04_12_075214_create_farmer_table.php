@@ -15,14 +15,12 @@ class CreateFarmerTable extends Migration
     {
         Schema::create('farmer', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
             $table->string('farmer_code');
             $table->string('name');
             $table->string('area');
             $table->string('address');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
