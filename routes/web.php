@@ -17,4 +17,6 @@ Route::get('/', 'HomeController@index')->name('home')->middleware(['auth','admin
 Auth::routes(['verify'=>true]);
 
 
-
+Route::prefix('sales')->group(function () {
+    Route::get('/', 'SalesController@index')->name('sales.index');
+});
