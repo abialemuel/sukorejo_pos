@@ -55,7 +55,7 @@
         </a>
         <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Laporan Penjualan</a>
+            <a class="collapse-item" href="{{ route('sales.index') }}">Laporan Penjualan</a>
             <div class="dropdown-divider"></div>
             <a class="collapse-item" href="404.html">Laporan Pembelian</a>
           </div>

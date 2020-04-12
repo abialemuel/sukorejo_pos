@@ -44,6 +44,7 @@
                     <th>Bruto</th>
                     <th>Netto</th>
                     <th>Price</th>
+                    <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
