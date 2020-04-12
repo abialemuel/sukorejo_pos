@@ -21,6 +21,8 @@ class CreateFarmerTable extends Migration
             $table->string('address');
             $table->softDeletes();
             $table->timestamps();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
         });
     }
 

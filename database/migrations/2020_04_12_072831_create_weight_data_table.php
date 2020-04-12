@@ -19,6 +19,8 @@ class CreateWeightDataTable extends Migration
             $table->double('bruto');
             $table->double('netto');
             $table->softDeletes();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
         });
     }
 

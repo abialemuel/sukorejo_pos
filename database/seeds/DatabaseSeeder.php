@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             'bruto' => 10000,
             'netto' => 10000,
             'price' => 10000,
+            'created_by' => 1,
+            'updated_by' => 1,
         ]);
     }
 }

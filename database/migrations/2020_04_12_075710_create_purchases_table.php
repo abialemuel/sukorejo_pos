@@ -23,6 +23,8 @@ class CreatePurchasesTable extends Migration
             $table->double('price');
             $table->softDeletes();
             $table->timestamps();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
         });
     }
 
