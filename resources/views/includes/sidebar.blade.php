@@ -57,7 +57,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('sales.index') }}">Laporan Penjualan</a>
             <div class="dropdown-divider"></div>
-            <a class="collapse-item" href="404.html">Laporan Pembelian</a>
+            <a class="collapse-item" href="{{ route('purchases.index') }}">Laporan Pembelian</a>
           </div>
         </div>
       </li>

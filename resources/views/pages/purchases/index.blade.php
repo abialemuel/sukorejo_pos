@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Laporan Penjualan
+    Laporan Pembelian
 @endsection
 
 
@@ -26,7 +26,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Laporan Penjualan</h1>
+            <h1 class="h3 mb-2 text-gray-800">Laporan Pembelian</h1>
         </div>
             
 
@@ -38,8 +38,8 @@
                 <thead>
                     <tr>
                     <th>ID</th>
-                    <th>Kode Gudang</th>
-                    <th>Kode Needle</th>
+                    <th>Kode AC</th>
+                    <th>Kode Petani</th>
                     <th>Tiam</th>
                     <th>Bruto</th>
                     <th>Netto</th>
@@ -48,22 +48,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sales as $sale)
+                    @foreach ($purchases as $purchase)
                         <tr>
-                          <td>{{ $sale->id }}</td>
-                          <td>{{ $sale->warehouse_code }}</td>
-                          <td>{{ $sale->needle_code }}</td>
-                          <td>{{ $sale->tiam }}</td>
-                          <td>{{ $sale->bruto }}</td>
-                          <td>{{ $sale->netto }}</td>
-                          <td>{{ $sale->price }}</td>
+                          <td>{{ $purchase->id }}</td>
+                          <td>{{ $purchase->ac_code }}</td>
+                          <td>{{ $purchase->farmer_code }}</td>
+                          <td>{{ $purchase->tiam }}</td>
+                          <td>{{ $purchase->bruto }}</td>
+                          <td>{{ $purchase->netto }}</td>
+                          <td>{{ $purchase->price }}</td>
                           <td>
-                            <a href="dokter/{{$sale->id}}/edit">
+                            <a href="dokter/{{$purchase->id}}/edit">
                               <button class="btn btn-primary btn-sm">
                                 <i class="fa fa-edit">Edit</i>
                               </button>
                             </a>
-                            <a href="dokter/{{$sale->id}}/hapus">
+                            <a href="dokter/{{$purchase->id}}/hapus">
                               <button class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash">Hapus</i>
                               </button>

@@ -22,5 +22,16 @@ class DatabaseSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
+
+        DB::table('purchases')->insert([
+            'ac_code' => Str::random(10),
+            'farmer_code' => Str::random(10),
+            'tiam' => Str::random(10),
+            'bruto' => 10000,
+            'netto' => 10000,
+            'price' => 10000,
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
     }
 }

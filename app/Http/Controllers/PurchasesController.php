@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Purchase;
 
 class PurchasesController extends Controller
 {
@@ -14,6 +15,8 @@ class PurchasesController extends Controller
     public function index()
     {
         //
+        $purchases = Purchase::all();
+        return view('pages.purchases.index', compact('purchases'));
     }
 
     /**
