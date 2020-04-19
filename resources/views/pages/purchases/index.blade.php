@@ -49,51 +49,52 @@
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
-                            <td>a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                            
-                            <td>
-                                <center> 
-                                    <button type="button" name="add" class="btn btn-warning btn-sm">
-                                        <i class="fa fa-print" aria-hidden="true"></i>
-                                    </button>
-                                </center>
-                            </td>
-
-                            <td>
-                                <center> 
-                                    <button type="button" name="add" class="btn btn-success btn-sm">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </center>
-                            </td>
-
-                            <td>
-                                <center>
-                                    <a href="#" class="btn btn-info btn-sm">
-                                        <i class="fa fa-pencil-alt"></i>
-                                    </a>
-                                </center>  
-                            </td>
-                            <td>
-                                <center>
-                                    <form action="" method="POST" class="d-inline">
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </center>
-                            </td>
-                            
+                            @foreach ($purchases as $purchase)
+                                <tr>
+                                    <td>{{ $purchase->id }}</td>
+                                    <td>{{ $purchase->ac_code }}</td>
+                                    <td>{{ $purchase->farmer_code }}</td>
+                                    <td>TO DO</td>
+                                    <td>{{ $purchase->tiam }}</td>
+                                    <td>{{ $purchase->bruto }}</td>
+                                    <td>{{ $purchase->netto }}</td>
+                                    <td>{{ $purchase->price }}</td>
+                                    <td>TO DO</td>
+                                    <td>
+                                        <center> 
+                                            <button type="button" name="add" class="btn btn-warning btn-sm">
+                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                            </button>
+                                        </center>
+                                    </td>
+        
+                                    <td>
+                                        <center> 
+                                            <button type="button" name="add" class="btn btn-success btn-sm">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                        </center>
+                                    </td>
+        
+                                    <td>
+                                        <center>
+                                            <a href="#" class="btn btn-info btn-sm">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        </center>  
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <form action="" method="POST" class="d-inline">
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </center>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -101,51 +102,4 @@
         </div>
 
     </div>
-    <!-- /.container-fluid -->
-
-    <!-- <div class="card-body">
-            <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Kode AC</th>
-                    <th>Kode Petani</th>
-                    <th>Tiam</th>
-                    <th>Bruto</th>
-                    <th>Netto</th>
-                    <th>Price</th>
-                    <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($purchases as $purchase)
-                        <tr>
-                          <td>{{ $purchase->id }}</td>
-                          <td>{{ $purchase->ac_code }}</td>
-                          <td>{{ $purchase->farmer_code }}</td>
-                          <td>{{ $purchase->tiam }}</td>
-                          <td>{{ $purchase->bruto }}</td>
-                          <td>{{ $purchase->netto }}</td>
-                          <td>{{ $purchase->price }}</td>
-                          <td>
-                            <a href="dokter/{{$purchase->id}}/edit">
-                              <button class="btn btn-primary btn-sm">
-                                <i class="fa fa-edit">Edit</i>
-                              </button>
-                            </a>
-                            <a href="dokter/{{$purchase->id}}/hapus">
-                              <button class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash">Hapus</i>
-                              </button>
-                            </a>
-                          </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            </div>
-        </div>
-        </div> -->
-
 @endsection
