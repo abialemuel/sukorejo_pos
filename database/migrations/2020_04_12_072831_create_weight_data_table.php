@@ -16,11 +16,11 @@ class CreateWeightDataTable extends Migration
         Schema::create('weight_data', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
             $table->double('bruto');
             $table->double('netto');
             $table->softDeletes();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
         });
     }
 

@@ -38,4 +38,10 @@ Route::prefix('/')
 Auth::routes(['verify'=>true]);
 
 
+Route::prefix('sales')->group(function () {
+    Route::get('/', 'SalesController@index')->name('sales.index');
+});
 
+Route::prefix('purchases')->group(function () {
+    Route::get('/', 'PurchasesController@index')->name('purchases.index');
+});

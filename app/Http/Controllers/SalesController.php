@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sale;
 
 class SalesController extends Controller
 {
@@ -14,7 +15,8 @@ class SalesController extends Controller
     public function index()
     {
         //
-        return view('pages.sales.index');
+        $sales = Sale::all();
+        return view('pages.sales.index', compact('sales'));
     }
 
     /**

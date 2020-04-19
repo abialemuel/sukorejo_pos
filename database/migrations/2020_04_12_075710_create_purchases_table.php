@@ -15,9 +15,6 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->integer('created_by');
-            $table->integer('updated_by');
             $table->string('ac_code');
             $table->string('farmer_code');
             $table->string('tiam');
@@ -25,6 +22,9 @@ class CreatePurchasesTable extends Migration
             $table->double('netto');
             $table->double('price');
             $table->softDeletes();
+            $table->timestamps();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
         });
     }
 

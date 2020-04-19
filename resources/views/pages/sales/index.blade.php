@@ -99,7 +99,50 @@
         </div>
 
     </div>
-    <!-- /.container-fluid -->
-
+    <!-- /.container-fluid
+    <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Kode Gudang</th>
+                    <th>Kode Needle</th>
+                    <th>Tiam</th>
+                    <th>Bruto</th>
+                    <th>Netto</th>
+                    <th>Price</th>
+                    <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sales as $sale)
+                        <tr>
+                          <td>{{ $sale->id }}</td>
+                          <td>{{ $sale->warehouse_code }}</td>
+                          <td>{{ $sale->needle_code }}</td>
+                          <td>{{ $sale->tiam }}</td>
+                          <td>{{ $sale->bruto }}</td>
+                          <td>{{ $sale->netto }}</td>
+                          <td>{{ $sale->price }}</td>
+                          <td>
+                            <a href="dokter/{{$sale->id}}/edit">
+                              <button class="btn btn-primary btn-sm">
+                                <i class="fa fa-edit">Edit</i>
+                              </button>
+                            </a>
+                            <a href="dokter/{{$sale->id}}/hapus">
+                              <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash">Hapus</i>
+                              </button>
+                            </a>
+                          </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div> -->
 
 @endsection
