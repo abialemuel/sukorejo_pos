@@ -53,8 +53,8 @@
                                 <tr>
                                     <td>{{ $purchase->id }}</td>
                                     <td>{{ $purchase->ac_code }}</td>
-                                    <td>{{ $purchase->farmer_code }}</td>
-                                    <td>TO DO</td>
+                                    <td>{{ $purchase->farmer->farmer_code }}</td>
+                                    <td>{{ $purchase->farmer->name }}</td>
                                     <td>{{ $purchase->tiam }}</td>
                                     <td>{{ $purchase->bruto }}</td>
                                     <td>{{ $purchase->netto }}</td>

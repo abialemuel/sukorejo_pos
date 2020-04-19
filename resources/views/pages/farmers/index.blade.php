@@ -51,43 +51,45 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <center> 
-                            <button type="button" name="add" class="btn btn-success btn-sm btnadd">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                        </center>
-                    </td>
-                    <td>
-                        <center> 
-                            <a href="#" class="btn btn-info">
-                                <i class="fa fa-pencil-alt"></i>
-                            </a>
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            <form action="" method="POST" class="d-inline">
-                                @csrf
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
+                    @foreach ($farmers as $farmer)
+                    <tr>
+                        <td>{{ $farmer->id }}</td>
+                        <td>{{ $farmer->created_at }}</td>
+                        <td>{{ $farmer->created_by }}</td>
+                        <td>{{ $farmer->updated_at }}</td>
+                        <td>{{ $farmer->updated_by }}</td>
+                        <td>{{ $farmer->ac_code }}</td>
+                        <td>{{ $farmer->farmer_code }}</td>
+                        <td>{{ $farmer->tiam }}</td>
+                        <td>{{ $farmer->bruto }}</td>
+                        <td>{{ $farmer->netto }}</td>
+                        <td>{{ $farmer->price }}</td>
+                        <td>
+                            <center> 
+                                <button type="button" name="add" class="btn btn-success btn-sm btnadd">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button>
-                            </form>
-                        </center>
-                    </td>
-
-
+                            </center>
+                        </td>
+                        <td>
+                            <center> 
+                                <a href="#" class="btn btn-info">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                            </center>
+                        </td>
+                        <td>
+                            <center>
+                                <form action="" method="POST" class="d-inline">
+                                    @csrf
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </center>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
             </div>

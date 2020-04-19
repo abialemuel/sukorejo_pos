@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Farmer;
 
 class FarmerController extends Controller
 {
@@ -14,8 +15,8 @@ class FarmerController extends Controller
     public function index()
     {
         //
-        return view('pages.farmers.index');
-        
+        $farmers = Farmer::all();
+        return view('pages.farmers.index', compact('farmers'));
     }
 
     /**

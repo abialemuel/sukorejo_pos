@@ -8,4 +8,9 @@ class Purchase extends Model
 {
     //
     protected $guarded = [ ];
+
+    public function farmer()
+    {
+        return $this->belongsTo('App\Farmer');
+    }
 }
