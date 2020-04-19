@@ -13,7 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home')->middleware(['auth','admin']);
+// Route::get('/', 'HomeController@index')
+//      ->name('home')
+//      ->middleware(['auth','admin']);
+
+Route::prefix('/')
+    ->middleware(['auth','admin'])
+    ->group(function() {
+        
+        Route::resource('', 'HomeController');
+        Route::resource('sales', 'SalesController');
+        Route::resource('purchases', 'PurchasesController');
+        Route::resource('farmers', 'FarmerController');
+        Route::resource('users', 'UserController');
+        Route::resource('weightdata', 'WeightController');
+        Route::resource('reports', 'ReportController');
+
+
+
+    });
+
+
+
 Auth::routes(['verify'=>true]);
 
 

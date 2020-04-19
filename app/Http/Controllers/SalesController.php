@@ -14,6 +14,7 @@ class SalesController extends Controller
     public function index()
     {
         //
+        return view('pages.sales.index');
     }
 
     /**
@@ -24,6 +25,8 @@ class SalesController extends Controller
     public function create()
     {
         //
+        return view('pages.sales.create');
+
     }
 
     /**

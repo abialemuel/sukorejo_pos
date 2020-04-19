@@ -67,7 +67,11 @@
   </div>
 
   @include('includes.script')
+  @stack('add-item')
+
   @stack('additional-script')
+  @stack('chart-script')
+
 
 </body>
 
