@@ -58,7 +58,7 @@
                         <table class="table table-bordered" width="100%" cellspacing="0" id="weightdatatable">
                             <thead class="text-lg" style="text-align: center;">
                                 <tr>
-                                    <th>Brutto</th>
+                                    <th>Bruto</th>
                                     <th>Netto</th>
                                     <th>
                                         <button type="button" class="btn btn-success btn-sm btnadd" name="add">
@@ -111,7 +111,7 @@
             var html='';
                 html+='<tr>';
                         
-                html+='<td><input type="number" min="1" class="form-control qty" name="brutto" ></td>'
+                html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
                 html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>';
                 html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
                         

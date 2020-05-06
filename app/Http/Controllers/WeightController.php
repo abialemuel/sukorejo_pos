@@ -39,6 +39,10 @@ class WeightController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+
+        Weight::create($data);
+        return redirect()->route('weightdata.index');
     }
 
     /**
@@ -61,6 +65,11 @@ class WeightController extends Controller
     public function edit($id)
     {
         //
+        $item = Weight::findOrFail($id);
+
+        return view('pages.weightdata.gallery.edit',[
+            'item' => $item, 
+        ]);
     }
 
     /**
@@ -73,6 +82,12 @@ class WeightController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $data = $request->all();
+
+        // $item = Transaction::findOrFail($id);
+
+        // $item->update($data);
+
     }
 
     /**

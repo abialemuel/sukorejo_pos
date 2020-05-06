@@ -46,7 +46,7 @@
                             @foreach ($weight_data as $weight)
                                 <tr>
                                 <td>{{ $weight->created_at }}</td>
-                                <td>{{ $weight->brutto }}</td>
+                                <td>{{ $weight->bruto }}</td>
                                 <td>{{ $weight->netto }}</td>
 
                             
