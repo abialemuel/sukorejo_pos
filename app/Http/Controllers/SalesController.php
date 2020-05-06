@@ -16,6 +16,7 @@ class SalesController extends Controller
     {
         //
         $sales = Sale::all();
+        // $sales->total = $sales->price * $sales->netto;
         return view('pages.sales.index', compact('sales'));
     }
 

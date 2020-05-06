@@ -87,9 +87,9 @@
         </a>
         <div id="farmerscollapsePages" class="collapse {{ Request::is('farmers') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {{ Request::is('farmers/create') ? 'active' : '' }}" href="login.html">Daftarkan Petani Baru</a>
+            <a class="collapse-item {{ Request::is('farmers/create') ? 'active' : '' }}" href="{{ route('farmers.create') }}">Daftarkan Petani Baru</a>
             <div class="dropdown-divider"></div>
-            <a class="collapse-item {{ Request::is('farmers') ? 'active' : '' }}" href="{{ url('farmers') }}">Data Petani</a>
+            <a class="collapse-item {{ Request::is('farmers') ? 'active' : '' }}" href="{{ route('farmers.index') }}">Data Petani</a>
           </div>
         </div>
       </li>

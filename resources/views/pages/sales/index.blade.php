@@ -49,48 +49,52 @@
                             </tr>
                         </thead>
                         <tbody style="font-size: 12px;">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            @foreach ($sales as $sale)
+                                <tr>
+                                <td>{{ $sale->id }}</td>
+                                <td>{{ $sale->warehouse_code }}</td>
+                                <td>{{ $sale->needle_code }}</td>
+                                <td>{{ $sale->tiam }}</td>
+                                <td>{{ $sale->bruto }}</td>
+                                <td>{{ $sale->netto }}</td>
+                                <td>{{ $sale->price }}</td>
+                                <td>{{ $sale->price }}</td>
 
-                            <td>
-                                <center> 
-                                    <button type="button" name="add" class="btn btn-warning btn-sm">
-                                        <i class="fa fa-print" aria-hidden="true"></i>
-                                    </button>
-                                </center>
-                            </td>
 
-                            <td>
-                                <center> 
-                                    <button type="button" name="add" class="btn btn-success btn-sm">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </button>
-                                </center>
-                            </td>
-
-                            <td>
-                                <center>
-                                    <a href="#" class="btn btn-info btn-sm">
-                                        <i class="fa fa-pencil-alt"></i>
-                                    </a>
-                                </center>  
-                            </td>
-                            <td>
-                                <center>
-                                    <form action="" method="POST" class="d-inline">
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i>
+                                <td>
+                                    <center> 
+                                        <button type="button" name="add" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
-                                    </form>
-                                </center>
-                            </td>
+                                    </center>
+                                </td>
+
+                                <td>
+                                    <center> 
+                                        <button type="button" name="add" class="btn btn-success btn-sm">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </center>
+                                </td>
+
+                                <td>
+                                    <center>
+                                        <a href="#" class="btn btn-info btn-sm">
+                                            <i class="fa fa-pencil-alt"></i>
+                                        </a>
+                                    </center>  
+                                </td>
+                                <td>
+                                    <center>
+                                        <form action="" method="POST" class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </center>
+                                </td>
+                            @endforeach
 
                         </tbody>
                     </table>

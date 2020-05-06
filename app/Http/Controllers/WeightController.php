@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Weight;
 
 class WeightController extends Controller
 {
@@ -14,7 +15,8 @@ class WeightController extends Controller
     public function index()
     {
         //
-        return view('pages.weightdata.index');
+        $weight_data = Weight::all();
+        return view('pages.weightdata.index', compact('weight_data'));
     }
 
     /**

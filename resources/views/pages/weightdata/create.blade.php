@@ -77,7 +77,7 @@
 
                     <hr class="sidebar-divider d-none d-md-block">
                     <div align="center">
-                        <button class="btn btn-primary btn-block" type="submit">Simpan</button>
+                        <button class="btn btn-info" type="submit">Simpan Data Timbangan</button>
                     </div>
                 </form>
 

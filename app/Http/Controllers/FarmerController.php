@@ -26,6 +26,8 @@ class FarmerController extends Controller
     public function create()
     {
         //
+        return view('pages.farmers.create');
+
     }
 
     /**
