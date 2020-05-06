@@ -16,7 +16,7 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ac_code');
-            $table->foreignId('farmer_id')->constrained();
+            $table->string('farmer_code');
             $table->string('tiam');
             $table->double('bruto');
             $table->double('netto');

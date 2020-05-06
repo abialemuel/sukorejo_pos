@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('purchases')->insert([
             'ac_code' => Str::random(10),
-            'farmer_id' => $farmer->id,
+            'farmer_code' => $farmer->farmer_code,
             'tiam' => Str::random(10),
             'bruto' => 10000,
             'netto' => 10000,
