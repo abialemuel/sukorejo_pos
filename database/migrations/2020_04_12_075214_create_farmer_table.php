@@ -13,9 +13,9 @@ class CreateFarmerTable extends Migration
      */
     public function up()
     {
-        Schema::create('farmer', function (Blueprint $table) {
+        Schema::create('farmers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('farmer_code');
+            $table->string('farmer_code')->unique();
             $table->string('name');
             $table->string('area');
             $table->string('address');
@@ -33,6 +33,6 @@ class CreateFarmerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farmer');
+        Schema::dropIfExists('farmers');
     }
 }
