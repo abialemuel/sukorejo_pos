@@ -53,13 +53,13 @@
                                 <tr>
                                     <td>{{ $purchase->id }}</td>
                                     <td>{{ $purchase->ac_code }}</td>
-                                    <td>{{ $purchase->farmer->farmer_code }}</td>
-                                    <td>{{ $purchase->farmer->name }}</td>
-                                    <td>{{ $purchase->tiam }}</td>
+                                    <td>{{ $purchase->farmer_code }}</td>
+                                    <td>{{ $purchase->farmer->area }}</td>
+                                    <td>{{ $purchase->area }}</td>
                                     <td>{{ $purchase->bruto }}</td>
                                     <td>{{ $purchase->netto }}</td>
                                     <td>{{ $purchase->price }}</td>
-                                    <td>TO DO</td>
+                                    <td>Something</td>
                                     <td>
                                         <center> 
                                             <button type="button" name="add" class="btn btn-warning btn-sm">

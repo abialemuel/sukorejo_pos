@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\User;
+
 
 class UserController extends Controller
 {
@@ -14,7 +18,13 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('pages.users.profile');
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+        
+
+        return view('pages.users.profile',[
+            'user' => $user
+        ]);
 
     }
 
@@ -71,6 +81,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+
+        $user = User::findOrFail($id);
+
+        $user->update($data);
+        return redirect('/');
     }
 
     /**

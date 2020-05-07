@@ -3,18 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\Blameable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Farmer extends Model
 {
 
-    // public function details(){
-    //     return $this->hasMany( TransactionDetail::class, 'transactions_id', 'id' );
-    // }
+    use Blameable;
+    use SoftDeletes;    
 
-
-    // public function user(){
-    //     return $this->belongsTo( Purchase::class, 'users_id', 'id' );
-    // }
+    protected $fillable = [
+        'farmer_code', 'name', 'area', 'address', 'created_by', 'updated_by',
+    ];
 
     protected $guarded = [ ];
 
@@ -23,4 +24,10 @@ class Farmer extends Model
     //     return $this->hasMany('App\Purchase');
 
     // }
+    
+    public function user()
+    {
+        return $this->belongsTo(Farmer::class, 'farmer_code', 'farmer_code');
+    }
+    
 }

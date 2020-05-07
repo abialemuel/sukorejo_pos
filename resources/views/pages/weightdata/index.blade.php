@@ -68,21 +68,23 @@
 
                                 <td>
                                     <center>
-                                        <a href="#" class="btn btn-info btn-sm">
+                                        <a href="{{ route('weightdata.edit', $weight->id) }}" class="btn btn-info btn-sm">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
                                     </center>  
                                 </td>
                                 <td>
                                     <center>
-                                        <form action="" method="POST" class="d-inline">
+                                        <form action="{{ route('weightdata.destroy', $weight->id) }}" method="POST" class="d-inline">
                                             @csrf
+                                            @method('delete')
                                             <button class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
                                     </center>
                                 </td>
+                            
                             @endforeach
 
                         </tbody>

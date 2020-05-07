@@ -25,18 +25,20 @@
         </div>
             
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="{{ route('users.update', $user->id) }}" method="POST" name="">
+            @csrf
+            @method('put')
             <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="inputName" placeholder="Nama">
+                    <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->name }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
                 <div class="col-sm-12">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <input type="email" class="form-control" id="inputEmail" name="email" value="{{ $user->email }}">
                 </div>
             </div>
 

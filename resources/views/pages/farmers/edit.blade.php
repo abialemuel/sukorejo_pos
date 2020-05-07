@@ -35,8 +35,9 @@
         @endif
             
 
-        <form class="form-horizontal" action="{{ route('farmers.store') }}" method="POST" name="">
+        <form class="form-horizontal" action="{{ route('farmers.update', $farmers->id) }}" method="POST" name="">
             @csrf
+            @method('put')
 
             <div class="form-group">
                 <label for="inputKodePetani" class="col-sm-2 control-label">Kode Petani</label>
@@ -45,7 +46,7 @@
                             class="form-control" 
                             id="inputKodePetani" 
                             name="farmer_code"
-                            placeholder="Kode Petani">
+                            value="{{ $farmers->farmer_code }}">
                 </div>
             </div>
             <div class="form-group">
@@ -55,7 +56,7 @@
                             class="form-control" 
                             id="inputNamaPetani" 
                             name="name"
-                            placeholder="Nama Petani">
+                            value="{{ $farmers->name }}">
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +66,7 @@
                             class="form-control" 
                             id="inputArea" 
                             name="area"
-                            placeholder="Area / Desa Petani">
+                            value="{{ $farmers->area }}">
                 </div>
             </div>
             <div class="form-group">
@@ -73,14 +74,14 @@
                 <div class="col-sm-12">
                     <textarea class="form-control" 
                             id="inputAddress" 
-                            name="address"
-                            placeholder="Alamat Lengkap Petani">
+                            name="address">
+                        {{ $farmers->address }}
                     </textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div align="center">
-                    <button type="submit" class="btn btn-info">Simpan Data Petani</button>
+                    <button type="submit" class="btn btn-info">Perbaharui Data Petani</button>
                 </div>
             </div>
         </form>

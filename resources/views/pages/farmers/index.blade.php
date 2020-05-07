@@ -48,35 +48,36 @@
                 <tbody>
                     @foreach ($farmers as $farmer)
                     <tr>
-                        <td>{{ $farmer->id }}</td>
-                        <td>{{ $farmer->created_at }}</td>
-                        <td>{{ $farmer->created_by }}</td>
-                        <td>{{ $farmer->updated_at }}</td>
-                        <td>{{ $farmer->updated_by }}</td>
-                        <td>{{ $farmer->ac_code }}</td>
                         <td>{{ $farmer->farmer_code }}</td>
-                        <td>{{ $farmer->tiam }}</td>
-                        <td>{{ $farmer->bruto }}</td>
-                        <td>{{ $farmer->netto }}</td>
-                        <td>{{ $farmer->price }}</td>
+                        <td>{{ $farmer->name }}</td>
+                        <td>{{ $farmer->area }}</td>
+                        <td>{{ $farmer->address }}</td>
                         <td>
                             <center> 
-                                <button type="button" name="add" class="btn btn-success btn-sm btnadd">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                <button type="button" name="add" class="btn btn-warning btn-sm">
+                                    <i class="fa fa-print" aria-hidden="true"></i>
                                 </button>
                             </center>
                         </td>
                         <td>
                             <center> 
-                                <a href="#" class="btn btn-info">
+                                <button type="button" name="add" class="btn btn-success btn-sm">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </center>
+                        </td>
+                        <td>
+                            <center> 
+                                <a href="{{ route('farmers.edit', $farmer->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
                             </center>
                         </td>
                         <td>
                             <center>
-                                <form action="" method="POST" class="d-inline">
+                                <form action="{{ route('farmers.destroy', $farmer->id) }}" method="POST" class="d-inline">
                                     @csrf
+                                    @method('delete')
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>

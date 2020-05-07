@@ -65,10 +65,10 @@ class WeightController extends Controller
     public function edit($id)
     {
         //
-        $item = Weight::findOrFail($id);
+        $weight_data = Weight::findOrFail($id);
 
-        return view('pages.weightdata.gallery.edit',[
-            'item' => $item, 
+        return view('pages.weightdata.edit',[
+            'weight_data' => $weight_data
         ]);
     }
 
@@ -82,11 +82,13 @@ class WeightController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // $data = $request->all();
+        $data = $request->all();
 
-        // $item = Transaction::findOrFail($id);
+        $item = Weight::findOrFail($id);
 
-        // $item->update($data);
+        $item->update($data);
+        return redirect()->route('weightdata.index');
+
 
     }
 
@@ -99,5 +101,9 @@ class WeightController extends Controller
     public function destroy($id)
     {
         //
+        $item = Weight::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('weightdata.index');
     }
 }

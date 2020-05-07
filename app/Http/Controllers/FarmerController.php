@@ -40,6 +40,10 @@ class FarmerController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+
+        Farmer::create($data);
+        return redirect()->route('farmers.index');
     }
 
     /**
@@ -62,6 +66,11 @@ class FarmerController extends Controller
     public function edit($id)
     {
         //
+        $farmers = Farmer::findOrFail($id);
+
+        return view('pages.farmers.edit',[
+            'farmers' => $farmers
+        ]);
     }
 
     /**
@@ -74,6 +83,11 @@ class FarmerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+
+        $item = Farmer::findOrFail($id);
+        $item->update($data);
+        return redirect()->route('farmers.index');
     }
 
     /**
@@ -85,5 +99,9 @@ class FarmerController extends Controller
     public function destroy($id)
     {
         //
+        $item = Farmer::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('farmers.index');
     }
 }
