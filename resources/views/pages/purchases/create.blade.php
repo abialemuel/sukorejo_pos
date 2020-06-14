@@ -41,20 +41,13 @@
                             <label for="inputFarmerCode" class="col-sm-6 control-label">Kode Petani</label>
 
                             <div class="col-sm-12">
-                                <select class="form-control productid select2-hidden-accessible" name="productid[]" style="tabindex="-1" aria-hidden="true">
+                                <select class="form-control productid select2-hidden-accessible" name="productid[]" style="tabindex="-1" aria-hidden="true" data-live-search="true">
                                     <option value="">Select Option</option>
-                                    <option value="8">Apple iPad Air</option>
-                                    <option value="7">Apple iPad Pro</option>
-                                    <option value="6">Apple MacBook Pro</option>
-                                    <option value="3">Hard disk</option>
-                                    <option value="10">Lenovo Miix 630 Laptop</option>
-                                    <option value="11">Lenovo ThinkPad Helix</option>
-                                    <option value="12">Nokia 2 - Android - 8GB</option>
-                                    <option value="4">Nokia Mobile Lumia</option>
-                                    <option value="5">Redmi 5A</option>
-                                    <option value="2">samsung</option>
-                                    <option value="9">Samsung Galaxy Tab</option>
+                                    @foreach ($farmers as $farmer)
+                                        <option value="{{ $farmer->farmer_id }}">{{ $farmer->name }}</option>
+                                    @endforeach
                                 </select>
+                                  
                                 <!-- <span class="select2 select2-container select2-container--default select2-container--below select2-container--open" dir="ltr" style="width: 250px;">
                                     <span class="selection">
                                         <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-labelledby="select2-productid-qj-container" aria-owns="select2-productid-qj-results" aria-activedescendant="select2-productid-qj-result-x6j9-11"><span class="select2-selection__rendered" id="select2-productid-qj-container" title="Select Option">Select Option</span>

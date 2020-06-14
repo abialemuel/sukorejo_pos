@@ -30,7 +30,9 @@ class PurchasesController extends Controller
     public function create()
     {
         //
-        return view('pages.purchases.create');
+        $farmers = Farmer::all();
+
+        return view('pages.purchases.create',compact('farmers'));
     }
 
     /**
