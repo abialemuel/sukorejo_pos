@@ -221,6 +221,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'farmer_code' => '`Kode Petani`',
+    ],
 
 ];
