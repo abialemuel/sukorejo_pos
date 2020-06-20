@@ -41,7 +41,7 @@
                             <label for="inputFarmerCode" class="col-sm-6 control-label">Kode Petani</label>
 
                             <div class="col-sm-12">
-                                <select class="form-control productid select2-hidden-accessible" name="productid[]" style="tabindex="-1" aria-hidden="true" data-live-search="true">
+                                <select class="selectpicker form-control" name="productid[]" style="tabindex="-1" aria-hidden="true" data-live-search="true">
                                     <option value="">Select Option</option>
                                     @foreach ($farmers as $farmer)
                                         <option value="{{ $farmer->farmer_id }}">{{ $farmer->name }}</option>

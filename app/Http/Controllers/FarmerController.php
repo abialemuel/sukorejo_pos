@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Farmer;
+use Validator;
 
 class FarmerController extends Controller
 {
@@ -41,6 +42,16 @@ class FarmerController extends Controller
     {
         //
         $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'farmer_code' => 'required|unique:farmers|max:30',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('farmers.create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         Farmer::create($data);
         return redirect()->route('farmers.index');

@@ -74,8 +74,7 @@
                     <textarea class="form-control" 
                             id="inputAddress" 
                             name="address"
-                            placeholder="Alamat Lengkap Petani">
-                    </textarea>
+                            placeholder="Alamat Lengkap Petani"></textarea>
                 </div>
             </div>
             <div class="form-group">
