@@ -4,15 +4,18 @@
     Pembelian - POS
 @endsection
 
-
 @push('additional-style')
-    <!-- Custom styles for this page -->
     <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ url('startbootstrap/vendor/select2/select2.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url('startbootstrap/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
 @endpush
 
 @push('additional-script')
     @include('includes.table-script')
-    <!-- <script src="{{ url('additionaljs/bower_components/select2/dist/js/select2.full.min.js') }}"></script>        -->
+    <script src="{{ url('additionaljs/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>       
+
 @endpush
 
 @section('content')
@@ -41,24 +44,12 @@
                             <label for="inputFarmerCode" class="col-sm-6 control-label">Kode Petani</label>
 
                             <div class="col-sm-12">
-                                <select class="selectpicker form-control" name="productid[]" style="tabindex="-1" aria-hidden="true" data-live-search="true">
-                                    <option value="">Select Option</option>
+                            
+                                <select class="kode-petani form-control">
                                     @foreach ($farmers as $farmer)
                                         <option value="{{ $farmer->farmer_id }}">{{ $farmer->name }}</option>
                                     @endforeach
-                                </select>
-                                  
-                                <!-- <span class="select2 select2-container select2-container--default select2-container--below select2-container--open" dir="ltr" style="width: 250px;">
-                                    <span class="selection">
-                                        <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-labelledby="select2-productid-qj-container" aria-owns="select2-productid-qj-results" aria-activedescendant="select2-productid-qj-result-x6j9-11"><span class="select2-selection__rendered" id="select2-productid-qj-container" title="Select Option">Select Option</span>
-                                            <span class="select2-selection__arrow" role="presentation">
-                                                <b role="presentation"></b>
-                                            </span>
-                                        </span>
-                                    </span>
-                                    <span class="dropdown-wrapper" aria-hidden="true">
-                                    </span>
-                                </span> -->
+                                </select>    
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -78,9 +69,12 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="inputName" class="col-sm-2 control-label">Tanggal</label>
+                            <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="inputName" placeholder="Name">
+                                <div class="input-group date">
+                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="tanggal">
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -138,53 +132,55 @@
 
 @push('add-item')
 <script>
-    // //Date picker
-    // $('#datepicker').datepicker({
-    //     autoclose: true
-    // });
+    //Date picker
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
 
     $(document).ready(function(){
-            
+        $('.kode-petani').select2();
+
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
-                html+='<tr>';
-                        
-                html+='<td><input type="text" min="1" class="form-control qty" name="seriAc" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="brutto" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="harga" ></td>';
-                html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
-                        
-                $('#purchasetable').append(html);
-                        
+            html+='<tr>';
                     
-                    //Initialize Select2 Elements
-                    // $('.productid').select2()
+            html+='<td><input type="text" min="1" class="form-control qty" name="seriAc" ></td>'
+            html+='<td><input type="number" min="1" class="form-control qty" name="brutto" ></td>'
+            html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>'
+            html+='<td><input type="number" min="1" class="form-control qty" name="harga" ></td>';
+            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
+            $('#purchasetable').append(html);
                         
-                    // $(".productid").on('change' , function(e){
+                
+            // $(".productid").on('change' , function(e){
+                
+            //     var productid = this.value;
+            //     var tr=$(this).parent().parent();  
+            //     $=ajax({
+                    
+            //         url:"getproduct.php",
+            //         method:"get",
+            //         data:{id:productid},
+            //         success:function(data){
                         
-                    //     var productid = this.value;
-                    //     var tr=$(this).parent().parent();  
-                    //     $=ajax({
-                            
-                    //         url:"getproduct.php",
-                    //         method:"get",
-                    //         data:{id:productid},
-                    //         success:function(data){
-                                
-                    //         //console.log(data); 
-                    //         tr.find(".pname").val(data["pname"]);
-                    //         tr.find(".stock").val(data["pstock"]);
-                    //         tr.find(".price").val(data["saleprice"]); 
-                    //         tr.find(".qty").val(1);
-                    //         tr.find(".total").val( tr.find(".qty").val() *  tr.find(".price").val()); 
-                    //         calculate(0,0); 
-                    //         }   
-                    //     })   
-                    // })           
-        }) // btnadd end here 
+            //         //console.log(data); 
+            //         tr.find(".pname").val(data["pname"]);
+            //         tr.find(".stock").val(data["pstock"]);
+            //         tr.find(".price").val(data["saleprice"]); 
+            //         tr.find(".qty").val(1);
+            //         tr.find(".total").val( tr.find(".qty").val() *  tr.find(".price").val()); 
+            //         calculate(0,0); 
+            //         }   
+            //     })   
+            // })           
+        }); // btnadd end here 
+        
 
         //Button Remove
         $(document).on('click','.btnremove',function(){

@@ -74,8 +74,7 @@
                 <div class="col-sm-12">
                     <textarea class="form-control" 
                             id="inputAddress" 
-                            name="address">
-                        {{ $farmers->address }}
+                            name="address">{{ $farmers->address }}
                     </textarea>
                 </div>
             </div>

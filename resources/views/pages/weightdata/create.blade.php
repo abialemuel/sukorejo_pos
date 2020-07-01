@@ -8,10 +8,13 @@
 @push('additional-style')
     <!-- Custom styles for this page -->
     <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ url('startbootstrap/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
 @endpush
 
 @push('additional-script')
     @include('includes.table-script')
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>       
 @endpush
 
 @section('content')
@@ -47,7 +50,9 @@
                         <div class="col-sm-6">
                             <label for="inputDate" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="inputName" placeholder="Name">
+                                <div class="input-group date">
+                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="tanggal">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,10 +103,14 @@
 
 @push('add-item')
 <script>
-    // //Date picker
-    // $('#datepicker').datepicker({
-    //     autoclose: true
-    // });
+    //Date picker
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
 
     $(document).ready(function(){
             
@@ -109,48 +118,19 @@
         $(document).on('click','.btnadd',function(){
             
             var html='';
-                html+='<tr>';
-                        
-                html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>';
-                html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
-                        
-                $('#weightdatatable').append(html);
-                        
+            html+='<tr>';
                     
-                    //Initialize Select2 Elements
-                    // $('.productid').select2()
-                        
-                    // $(".productid").on('change' , function(e){
-                        
-                    //     var productid = this.value;
-                    //     var tr=$(this).parent().parent();  
-                    //     $=ajax({
-                            
-                    //         url:"getproduct.php",
-                    //         method:"get",
-                    //         data:{id:productid},
-                    //         success:function(data){
-                                
-                    //         //console.log(data); 
-                    //         tr.find(".pname").val(data["pname"]);
-                    //         tr.find(".stock").val(data["pstock"]);
-                    //         tr.find(".price").val(data["saleprice"]); 
-                    //         tr.find(".qty").val(1);
-                    //         tr.find(".total").val( tr.find(".qty").val() *  tr.find(".price").val()); 
-                    //         calculate(0,0); 
-                    //         }   
-                    //     })   
-                    // })           
+            html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
+            html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>';
+            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
+                    
+            $('#weightdatatable').append(html);        
         }) // btnadd end here 
 
         //Button Remove
         $(document).on('click','.btnremove',function(){
          
-            $(this).closest('tr').remove(); 
-            calculate(0,0);
-            $("#txtpaid").val(0);
-            
+            $(this).closest('tr').remove();             
         }) // btnremove end here  
     });
 </script>

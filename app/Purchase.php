@@ -20,7 +20,7 @@ class Purchase extends Model
 
     public function farmer()
     {
-        return $this->belongsTo(Fermer::class);
+        return $this->belongsTo(Farmer::class, 'farmer_code', 'farmer_code' );
     }
 
 
