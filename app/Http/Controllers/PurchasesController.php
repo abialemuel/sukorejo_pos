@@ -44,6 +44,9 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        Purchase::create($data);
+        return redirect()->route('purchases.index');
     }
 
     /**

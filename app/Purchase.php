@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\Blameable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Purchase extends Model
 {
     //
-    use SoftDeletes;
+    use Blameable;
+    use SoftDeletes;   
 
     protected $guarded = [ ];
 

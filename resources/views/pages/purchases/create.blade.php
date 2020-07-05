@@ -32,7 +32,7 @@
 
         <!-- form start -->
         <form  action="{{ route('purchases.store') }}" method="POST" name="">
-
+            @csrf
 
             <!-- DataTales Example -->
             <div class="card shadow">
@@ -45,9 +45,9 @@
 
                             <div class="col-sm-12">
                             
-                                <select class="kode-petani form-control">
+                                <select class="kode-petani form-control" name="farmer_id">
                                     @foreach ($farmers as $farmer)
-                                        <option value="{{ $farmer->farmer_id }}">{{ $farmer->name }}</option>
+                                        <option value="{{ $farmer->id }}">{{ $farmer->name }}</option>
                                     @endforeach
                                 </select>    
                             </div>
@@ -59,7 +59,7 @@
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
                                 <div class="input-group date">
-                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="tanggal">
+                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="purchased_at">
                                 </div>
                             </div>
                         </div>
@@ -70,6 +70,7 @@
                             <thead class="text-lg" style="text-align: center;">
                                 <tr>
                                     <th>Seri AC</th>
+                                    <th>Tiam</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
@@ -90,18 +91,16 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" name="btnsaveorder" value="Simpan & Cetak" class="btn btn-success">
+                                <input type="submit" value="Simpan & Cetak" class="btn btn-success">
 
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" name="btnsaveorder" value="Simpan Data Pembelian" class="btn btn-info">
+                                <input type="submit" value="Simpan Data Pembelian" class="btn btn-info">
                             </div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
 
@@ -136,10 +135,11 @@
             var html='';
             html+='<tr>';
                     
-            html+='<td><input type="text" min="1" class="form-control qty" name="seriAc" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="brutto" ></td>'
+            html+='<td><input type="text" min="1" class="form-control qty" name="ac_code" ></td>'
+            html+='<td><input type="text" min="1" class="form-control qty" name="tiam" ></td>'
+            html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
             html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="harga" ></td>';
+            html+='<td><input type="number" min="1" class="form-control qty" name="price" ></td>';
             html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
             $('#purchasetable').append(html);
                         

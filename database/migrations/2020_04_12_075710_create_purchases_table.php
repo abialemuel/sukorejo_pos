@@ -21,6 +21,7 @@ class CreatePurchasesTable extends Migration
             $table->double('bruto');
             $table->double('netto');
             $table->double('price');
+            $table->timestamp("purchased_at");
             $table->softDeletes();
             $table->timestamps();
             $table->integer('created_by');	
