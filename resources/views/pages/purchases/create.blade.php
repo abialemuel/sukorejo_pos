@@ -41,7 +41,7 @@
 
                     <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
-                            <label for="inputFarmerCode" class="col-sm-6 control-label">Kode Petani</label>
+                            <label for="inputFarmerCode" class="col-sm-6 control-label">Nama Petani</label>
 
                             <div class="col-sm-12">
                             
@@ -52,29 +52,15 @@
                                 </select>    
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="inputName" class="col-sm-4 control-label">Nama Petani</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="inputName" placeholder="Nama Petani">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row mt-4 mb-5">
-                        <div class="col-sm-6">
-                            <label for="inputArea" class="col-sm-6 control-label">Area</label>
-
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="inputArea" placeholder="Area">
-                            </div>
-                        </div>
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="tanggal">
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
