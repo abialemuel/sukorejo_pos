@@ -129,18 +129,20 @@
     $(document).ready(function(){
         $('.kode-petani').select2();
 
+        var i = 0;
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
-            html+='<tr>';
-                    
-            html+='<td><input type="text" min="1" class="form-control qty" name="ac_code" ></td>'
-            html+='<td><input type="text" min="1" class="form-control qty" name="tiam" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="price" ></td>';
-            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
+            html+=`<tr>`;
+            html+=`<td><input type='text' min='1' class='form-control qty' name='purchases[${i}][ac_code]' ></td>`
+            html+=`<td><input type="text" min="1" class="form-control qty" name="purchases[${i}][tiam]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][bruto]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][netto]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`;
+            html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
+
+            i+=1
             $('#purchasetable').append(html);
                         
                 

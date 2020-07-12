@@ -40,7 +40,7 @@
                                 <th>Brutto</th>
                                 <th>Netto</th>
                                 <th>Harga</th>
-                                <th>Keterangan</th>
+                                <th>Tiam</th>
 
                                 <th>Print</th>
                                 <th>Detail</th>
@@ -59,7 +59,7 @@
                                     <td>{{ $purchase->bruto }}</td>
                                     <td>{{ $purchase->netto }}</td>
                                     <td>{{ $purchase->price }}</td>
-                                    <td>Something</td>
+                                    <td>{{ $purchase->tiam }}</td>
                                     <td>
                                         <center> 
                                             <button type="button" name="add" class="btn btn-warning btn-sm">

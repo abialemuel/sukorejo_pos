@@ -44,8 +44,11 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all();
-        Purchase::create($data);
+        $farmer_data = $request->except('purchases');
+        $purchases = $request->input('purchases');
+
+        foreach ($purchases as $purchase)
+            Purchase::create($farmer_data + $purchase);
         return redirect()->route('purchases.index');
     }
 
