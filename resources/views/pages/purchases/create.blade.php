@@ -57,10 +57,8 @@
                     <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
-                            <div class="col-sm-12">
-                                <div class="input-group date">
-                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="purchased_at">
-                                </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" id="inputName" name="purchased_at">
                             </div>
                         </div>
                     </div>

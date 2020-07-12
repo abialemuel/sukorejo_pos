@@ -27,8 +27,8 @@
 
 
         <!-- form start -->
-        <form action="" method="post" name="">
-
+        <form  action="{{ route('sales.store') }}" method="POST" name="">
+            @csrf
 
             <!-- DataTales Example -->
             <div class="card shadow">
@@ -37,8 +37,8 @@
                     <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
-                            <div class="col-sm-12">
-                                <input type="date" class="form-control" id="inputName" placeholder="Tanggal">
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" id="inputName" name="sold_at">
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,18 @@
                     
 
                     <hr class="sidebar-divider d-none d-md-block">
-                    <div align="center">
-                        <input type="submit" name="btnsaveorder" value="Simpan Data Penjualan" class="btn btn-info">
+                    <div class="row col-sm-6 col-lg-6">
+                        <div class="col-sm-6 col-lg-6">
+                            <div align="center">
+                                <input type="submit" value="Simpan & Cetak" class="btn btn-success">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6">
+                            <div align="center">
+                                <input type="submit" value="Simpan Data Penjualan" class="btn btn-info">
+                            </div>
+                        </div>
                     </div>
 
 
@@ -111,36 +121,12 @@
                 html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][tiam]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][bruto]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][netto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][harga]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][price]" ></td>`
                 html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
                         
+                i+=1
                 $('#saletable').append(html);
                         
-                    
-                    //Initialize Select2 Elements
-                    // $('.productid').select2()
-                        
-                    // $(".productid").on('change' , function(e){
-                        
-                    //     var productid = this.value;
-                    //     var tr=$(this).parent().parent();  
-                    //     $=ajax({
-                            
-                    //         url:"getproduct.php",
-                    //         method:"get",
-                    //         data:{id:productid},
-                    //         success:function(data){
-                                
-                    //         //console.log(data); 
-                    //         tr.find(".pname").val(data["pname"]);
-                    //         tr.find(".stock").val(data["pstock"]);
-                    //         tr.find(".price").val(data["saleprice"]); 
-                    //         tr.find(".qty").val(1);
-                    //         tr.find(".total").val( tr.find(".qty").val() *  tr.find(".price").val()); 
-                    //         calculate(0,0); 
-                    //         }   
-                    //     })   
-                    // })           
         }) // btnadd end here 
 
         //Button Remove

@@ -41,10 +41,11 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         //
+        $sold_at = $request->except('sales');
         $sales = $request->input('sales');
 
         foreach ($sales as $sale)
-            Sale::create($sale);
+            Sale::create($sold_at + $sale);
         return redirect()->route('sales.index');
     }
 
