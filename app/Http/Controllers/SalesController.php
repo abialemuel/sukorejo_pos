@@ -41,6 +41,11 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         //
+        $sales = $request->input('sales');
+
+        foreach ($sales as $sale)
+            Sale::create($sale);
+        return redirect()->route('sales.index');
     }
 
     /**

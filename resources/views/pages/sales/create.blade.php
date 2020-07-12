@@ -99,20 +99,20 @@
 
     $(document).ready(function(){
             
+        var i = 0;
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
                 html+='<tr>';
                         
-                html+='<td><input type="text" min="1" class="form-control qty" name="seriGudang" ></td>'
-                html+='<td><input type="text" min="1" class="form-control qty" name="seriJarum" ></td>'
-                html+='<td><input type="text" min="1" class="form-control qty" name="tiam" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="brutto" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="harga" ></td>'
-                html+='<td><input type="number" min="1" class="form-control qty" name="total" ></td>';
-                html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
+                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][warehouse_code]" ></td>`
+                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][needle_code]" ></td>`
+                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][tiam]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][bruto]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][netto]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][harga]" ></td>`
+                html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
                         
                 $('#saletable').append(html);
                         
