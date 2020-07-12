@@ -85,9 +85,10 @@
                                     </td>
                                     <td>
                                         <center>
-                                            <form action="" method="POST" class="d-inline">
+                                            <form action="{{ route('purchases.destroy', $purchase->id) }}" method="POST" class="d-inline">
                                                 @csrf
-                                                <button class="btn btn-danger btn-sm">
+                                                @method('delete')
+                                                <button class="btn btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>

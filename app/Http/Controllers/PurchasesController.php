@@ -97,5 +97,9 @@ class PurchasesController extends Controller
     public function destroy($id)
     {
         //
+        $item = Purchase::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('purchases.index');
     }
 }
