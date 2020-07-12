@@ -77,11 +77,11 @@
                                     </td>
         
                                     <td>
-                                        <center>
-                                            <a href="#" class="btn btn-info btn-sm">
+                                        <center> 
+                                            <a href="{{ route('purchases.edit', $purchase->id) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        </center>  
+                                        </center>
                                     </td>
                                     <td>
                                         <center>

@@ -72,8 +72,9 @@ class PurchasesController extends Controller
     public function edit($id)
     {
         //
-        return view('pages.purchases.edit');
+        $purchase = Purchase::findOrFail($id);
 
+        return view('pages.purchases.edit', compact('purchase'));
     }
 
     /**
