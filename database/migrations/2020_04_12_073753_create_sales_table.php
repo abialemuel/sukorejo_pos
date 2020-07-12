@@ -21,6 +21,7 @@ class CreateSalesTable extends Migration
             $table->double('bruto');
             $table->double('netto');
             $table->double('price');
+            $table->timestamp("sold_at");
             $table->softDeletes();
             $table->timestamps();
             $table->integer('created_by');	
