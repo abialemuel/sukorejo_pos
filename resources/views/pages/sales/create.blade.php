@@ -8,10 +8,12 @@
 @push('additional-style')
     <!-- Custom styles for this page -->
     <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ url('startbootstrap/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('additional-script')
     @include('includes.table-script')
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>       
 @endpush
 
 @section('content')
@@ -33,19 +35,21 @@
             <!-- DataTales Example -->
             <div class="card shadow">
                 <div class="card-body">
-
                     <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
-                            <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
-                            <div class="col-sm-4">
-                                <input type="date" class="form-control" id="inputName" name="sold_at">
+                        <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
+                            <div class="col-sm-12">
+                                <div class="input-group date">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
 
-                    <div class="table-responsive col-sm-12">
+                    <div class="table-responsive col-sm-12 mb-5">
                         <table class="table table-bordered" width="100%" cellspacing="0" id="saletable">
                             <thead>
                                 <tr style="font-size: 11px; text-align: center;">
@@ -68,9 +72,78 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>SubTotal</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="txtsubtotal" id="txtsubtotal" required readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tax (5%)</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+
+                                    <input type="text" class="form-control" name="txttax" id="txttax" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Discount</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="txtdiscount" id="txtdiscount" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Total</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="text" class="form-control" name="txttotal" id="txttotal" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Paid</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Due</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="txtdue" id="txtdue" required readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- tax dis. etc -->
                     
 
-                    <hr class="sidebar-divider d-none d-md-block">
+                    <hr class="sidebar-divider d-none d-md-block mt-5">
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
@@ -102,10 +175,14 @@
 
 @push('add-item')
 <script>
-    // //Date picker
-    // $('#datepicker').datepicker({
-    //     autoclose: true
-    // });
+    //Date picker
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
 
     $(document).ready(function(){
             
@@ -122,6 +199,7 @@
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][bruto]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][netto]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][price]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][total]" ></td>`
                 html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
                         
                 i+=1
@@ -133,8 +211,8 @@
         $(document).on('click','.btnremove',function(){
          
             $(this).closest('tr').remove(); 
-            calculate(0,0);
-            $("#txtpaid").val(0);
+            // calculate(0,0);
+            // $("#txtpaid").val(0);
             
         }) // btnremove end here  
     });

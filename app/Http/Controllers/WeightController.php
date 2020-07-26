@@ -54,6 +54,11 @@ class WeightController extends Controller
     public function show($id)
     {
         //
+        $weight_data = Weight::findOrFail($id);
+
+        return view('pages.weightdata.detail',[
+            'weight_data' => $weight_data
+        ]);
     }
 
     /**
@@ -67,6 +72,7 @@ class WeightController extends Controller
         //
         $weight_data = Weight::findOrFail($id);
 
+        
         return view('pages.weightdata.edit',[
             'weight_data' => $weight_data
         ]);
@@ -105,5 +111,16 @@ class WeightController extends Controller
         $item->delete();
 
         return redirect()->route('weightdata.index');
+    }
+
+    public function print($id)
+    {
+        //
+
+        $weight_data = Weight::findOrFail($id);
+
+        return view('pages.weightdata.print',[
+            'weight_data' => $weight_data
+        ]);
     }
 }

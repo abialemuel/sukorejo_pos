@@ -14,7 +14,7 @@
 
 @push('additional-script')
     @include('includes.table-script')
-    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>       
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 @endpush
 
 @section('content')
@@ -51,13 +51,12 @@
                             <label for="inputDate" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
                                 <div class="input-group date">
-                                    <input placeholder="Masukkan Tanggal Input Timbangan" class="form-control datepicker" name="tanggal">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
 
                     <div class="table-responsive col-sm-12">
                         <table class="table table-bordered" width="100%" cellspacing="0" id="weightdatatable">
@@ -106,7 +105,7 @@
     //Date picker
     $(function(){
         $(".datepicker").datepicker({
-            format: 'dd-mm-yyyy',
+            format: 'yyyy-mm-dd',
             autoclose: true,
             todayHighlight: true,
         });

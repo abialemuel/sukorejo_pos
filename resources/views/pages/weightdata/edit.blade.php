@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
 @section('title')
-    Pembelian - POS
+    Ubah Timbangan - POS
 @endsection
 
 
 @push('additional-style')
     <!-- Custom styles for this page -->
     <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ url('startbootstrap/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('additional-script')
     @include('includes.table-script')
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 @endpush
 
 @section('content')
@@ -48,7 +50,10 @@
                         <div class="col-sm-6">
                             <label for="inputDate" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" id="inputName" placeholder="Name">
+                                <div class="input-group date">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" value="{{ date('d-m-Y', strtotime($weight_data->created_at)) }}" data-date-format="yyyy-mm-dd" >
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,5 +100,17 @@
     </div>
     <!-- /.container-fluid -->
 
-
 @endsection
+@push('add-item')
+<script>
+    //Date picker
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
+
+</script>
+@endpush

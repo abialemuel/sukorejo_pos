@@ -70,9 +70,9 @@
         
                                     <td>
                                         <center> 
-                                            <button type="button" name="add" class="btn btn-success btn-sm">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </button>
+                                            <a href="{{ route('purchases.show', $purchase->id) }}" class="btn btn-success btn-sm">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
                                         </center>
                                     </td>
         

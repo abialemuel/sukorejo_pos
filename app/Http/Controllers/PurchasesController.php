@@ -61,6 +61,11 @@ class PurchasesController extends Controller
     public function show($id)
     {
         //
+        $purchase = Purchase::findOrFail($id);
+
+        return view('pages.purchases.detail',[
+            'purchase' => $purchase
+        ]);
     }
 
     /**

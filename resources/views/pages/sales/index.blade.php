@@ -69,27 +69,28 @@
                                         </button>
                                     </center>
                                 </td>
-
+    
                                 <td>
                                     <center> 
-                                        <button type="button" name="add" class="btn btn-success btn-sm">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
+                                        <a href="{{ route('sales.show', $sale->id) }}" class="btn btn-success btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                     </center>
                                 </td>
-
+    
                                 <td>
-                                    <center>
-                                        <a href="#" class="btn btn-info btn-sm">
+                                    <center> 
+                                        <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                    </center>  
+                                    </center>
                                 </td>
                                 <td>
                                     <center>
-                                        <form action="" method="POST" class="d-inline">
+                                        <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            <button class="btn btn-danger btn-sm">
+                                            @method('delete')
+                                            <button class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

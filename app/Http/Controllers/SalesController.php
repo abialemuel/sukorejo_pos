@@ -58,6 +58,11 @@ class SalesController extends Controller
     public function show($id)
     {
         //
+        $sale = Sale::findOrFail($id);
+        return view('pages.sales.detail',[
+            'sale' => $sale
+        ]);
+        
     }
 
     /**
@@ -69,6 +74,9 @@ class SalesController extends Controller
     public function edit($id)
     {
         //
+        $sale = Sale::findOrFail($id);
+
+        return view('pages.sales.edit', compact('sale'));        
     }
 
     /**
@@ -92,5 +100,9 @@ class SalesController extends Controller
     public function destroy($id)
     {
         //
+        $item = Sale::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('sales.index');
     }
 }

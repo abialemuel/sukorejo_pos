@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Users Profile - POS
+    Data Timbangan - POS
 @endsection
 
 
@@ -52,17 +52,17 @@
                             
                                 <td>
                                     <center> 
-                                        <button type="button" name="add" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-print" aria-hidden="true"></i>
-                                        </button>
+                                        <a href="" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </center>
                                 </td>
 
                                 <td>
                                     <center> 
-                                        <button type="button" name="add" class="btn btn-success btn-sm">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
+                                        <a href="{{ route('weightdata.show', $weight->id) }}" class="btn btn-success btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                     </center>
                                 </td>
 

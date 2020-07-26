@@ -43,7 +43,7 @@
                         <div class="col-sm-6">
                             <label for="inputFarmerCode" class="col-sm-6 control-label">Nama Petani</label>
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-8">
                             
                                 <select class="kode-petani form-control" name="farmer_id">
                                     @foreach ($farmers as $farmer)
@@ -52,16 +52,18 @@
                                 </select>    
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
-                            <div class="col-sm-4">
-                                <input type="date" class="form-control" id="inputName" name="purchased_at">
+                            <div class="col-sm-12">
+                                <div class="input-group date">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="table-responsive col-sm-12">
                         <table class="table table-bordered" width="100%" cellspacing="0" id="purchasetable">

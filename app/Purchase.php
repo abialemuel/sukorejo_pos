@@ -25,6 +25,10 @@ class Purchase extends Model
         return $this->belongsTo(Farmer::class);
     }
 
+    public function user(){
+        return $this->belongsTo( User::class, 'created_by', 'id' );
+    }
+
 
 }
 
