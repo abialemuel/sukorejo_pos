@@ -41,7 +41,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,6 @@
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga</th>
-                                    <th>Total</th>
                                     <th>
                                         <button type="button" class="btn btn-success btn-sm btnadd" name="add">
                                             <i class="fa fa-plus"></i>
@@ -75,39 +74,6 @@
                     <div class="row mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>SubTotal</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="txtsubtotal" id="txtsubtotal" required readonly>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Tax (5%)</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-
-
-                                    <input type="text" class="form-control" name="txttax" id="txttax" required readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Discount</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="txtdiscount" id="txtdiscount" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
                                 <label>Total</label>
 
                                 <div class="input-group">
@@ -118,8 +84,12 @@
                                     <input type="text" class="form-control" name="txttotal" id="txttotal" required readonly>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            
                             <div class="form-group">
-                                <label>Paid</label>
+                                <label>Terbayar</label>
 
                                 <div class="input-group">
                                     <div class="input-group-addon">
@@ -131,7 +101,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Due</label>
+                                <label>Sisa / Kembalian</label>
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-usd"></i>
@@ -199,7 +169,6 @@
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][bruto]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][netto]" ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][price]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][total]" ></td>`
                 html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
                         
                 i+=1

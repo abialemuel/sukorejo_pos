@@ -61,14 +61,14 @@
                         </td>
                         <td>
                             <center> 
-                                <button type="button" name="add" class="btn btn-success btn-sm">
+                                <a href="{{ route('farmers.show', $farmer->id) }}" class="btn btn-success btn-sm">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
-                                </button>
+                                </a>
                             </center>
                         </td>
                         <td>
                             <center> 
-                                <a href="{{ route('farmers.edit', $farmer->id) }}" class="btn btn-info">
+                                <a href="{{ route('farmers.edit', $farmer->id) }}" class="btn btn-info btn-sm">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
                             </center>
