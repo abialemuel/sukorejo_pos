@@ -4,6 +4,13 @@
     </IfModule>
 
     RewriteEngine On
+    
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-SSL} !on
+    RewriteCond %{HTTP_HOST} ^sukorejo\.abialemuel\.com$ [OR]
+    RewriteCond %{HTTP_HOST} ^www\.sukorejo\.abialemuel\.com$
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -18,4 +25,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    
+    
 </IfModule>
+
+
+
