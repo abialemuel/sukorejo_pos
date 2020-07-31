@@ -58,7 +58,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                    <input type="text" class="form-control datepicker" id="purchased_at" name="purchased_at" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>

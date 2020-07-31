@@ -80,12 +80,12 @@
 
       <hr class="sidebar-divider d-none d-md-block">
 
-      <li class="nav-item {{ Request::is('farmers') ? 'active' : '' }}">
+      <li class="nav-item {{ Request::is('farmers') || Request::is('farmers/create') ? 'active' : '' }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#farmerscollapsePages" aria-expanded="true" aria-controls="farmerscollapsePages">
           <i class="fas fa-address-card"></i>
           <span>Petani</span>
         </a>
-        <div id="farmerscollapsePages" class="collapse {{ Request::is('farmers') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+        <div id="farmerscollapsePages" class="collapse {{ Request::is('farmers') || Request::is('farmers/create') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ Request::is('farmers/create') ? 'active' : '' }}" href="{{ route('farmers.create') }}">Daftarkan Petani Baru</a>
             <div class="dropdown-divider"></div>

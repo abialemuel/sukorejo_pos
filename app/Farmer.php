@@ -25,9 +25,8 @@ class Farmer extends Model
 
     // }
     
-    public function user()
-    {
-        return $this->belongsTo(Farmer::class, 'farmer_code', 'farmer_code');
+    public function user(){
+        return $this->belongsTo( User::class, 'created_by', 'id' );
     }
     
 }

@@ -66,6 +66,11 @@ class FarmerController extends Controller
     public function show($id)
     {
         //
+        $farmers = Farmer::findOrFail($id);
+
+        return view('pages.farmers.detail',[
+            'farmers' => $farmers
+        ]);
     }
 
     /**
