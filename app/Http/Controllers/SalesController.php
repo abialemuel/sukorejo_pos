@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use PDF;
 
 class SalesController extends Controller
 {
@@ -104,5 +105,12 @@ class SalesController extends Controller
         $item->delete();
 
         return redirect()->route('sales.index');
+    }
+
+    public function print_pdf($id)
+    {
+        //
+    	$pdf = PDF::loadview('pages.pdf.test');
+    	return $pdf->download('test-pdf');
     }
 }

@@ -22,14 +22,15 @@ Route::prefix('/')
     ->group(function() {
         
         Route::resource('', 'HomeController');
+
         Route::resource('sales', 'SalesController');
+        Route::get('/sales/print-pdf/{id}', 'SalesController@print_pdf');
+
         Route::resource('purchases', 'PurchasesController');
         Route::resource('farmers', 'FarmerController');
         Route::resource('users', 'UserController');
         Route::resource('weightdata', 'WeightController');
         Route::resource('reports', 'ReportController');
-
-
 
     });
 
