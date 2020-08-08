@@ -31,7 +31,7 @@
 
 
         <!-- form start -->
-        <form  action="{{ route('purchases.store') }}" method="POST" name="">
+        <form  action="{{ route('purchases.store') }}" method="POST">
             @csrf
 
             <!-- DataTales Example -->
@@ -80,6 +80,18 @@
                                         </button>
                                     </th>
                                 </tr>
+                                <tr>
+                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' ></td>
+                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]"></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" ></td>
+                                    <td>
+                                        <center>
+                                            <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
+                                        </center>
+                                    </td>
+                                </tr>
                             </thead>
                             <tbody class="text-sm" style="font-size: 11px; text-align: center;">
                                 
@@ -91,13 +103,13 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" value="Simpan & Cetak" class="btn btn-success">
+                                <input type="submit" value="Simpan & Cetak" class="btn btn-success" name="saveprint" formtarget="_blank">
 
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" value="Simpan Data Pembelian" class="btn btn-info">
+                                <input type="submit" value="Simpan Data Pembelian" name="save" class="btn btn-info">
                             </div>
                         </div>
                     </div>
@@ -116,6 +128,9 @@
 @endsection
 
 @push('add-item')
+
+
+
 <script>
     //Date picker
     $(function(){
@@ -125,48 +140,28 @@
             todayHighlight: true,
         });
     });
+    
 
     $(document).ready(function(){
+
         $('.kode-petani').select2();
 
-        var i = 0;
+        var i = 1;
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
             html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control qty' name='purchases[${i}][ac_code]' ></td>`
-            html+=`<td><input type="text" min="1" class="form-control qty" name="purchases[${i}][tiam]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][bruto]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][netto]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`;
-            html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
+            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' ></td>`
+            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]"></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`
+            html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1
-            $('#purchasetable').append(html);
-                        
-                
-            // $(".productid").on('change' , function(e){
-                
-            //     var productid = this.value;
-            //     var tr=$(this).parent().parent();  
-            //     $=ajax({
-                    
-            //         url:"getproduct.php",
-            //         method:"get",
-            //         data:{id:productid},
-            //         success:function(data){
-                        
-            //         //console.log(data); 
-            //         tr.find(".pname").val(data["pname"]);
-            //         tr.find(".stock").val(data["pstock"]);
-            //         tr.find(".price").val(data["saleprice"]); 
-            //         tr.find(".qty").val(1);
-            //         tr.find(".total").val( tr.find(".qty").val() *  tr.find(".price").val()); 
-            //         calculate(0,0); 
-            //         }   
-            //     })   
-            // })           
+            $('#purchasetable').append(html);                
+            
         }); // btnadd end here 
         
 
@@ -174,10 +169,36 @@
         $(document).on('click','.btnremove',function(){
          
             $(this).closest('tr').remove(); 
-            calculate(0,0);
-            $("#txtpaid").val(0);
+            // calculate(0,0);
+            // $("#txtpaid").val(0);
             
         }) // btnremove end here  
+
+        $(document).on('change','.bruto',function(){
+         
+            var bruto = $(this).val();
+            console.log(bruto);
+            var url = '{{ route("getNetto", ":bruto") }}';
+            url = url.replace(':bruto', bruto); 
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    if(response != null){
+                        $('.netto').val(response.netto);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });  
+            
+        }) 
+
     });
+
+    
 </script>
 @endpush

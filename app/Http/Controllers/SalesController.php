@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use App\Weight;
 use PDF;
 
 class SalesController extends Controller
@@ -111,6 +112,12 @@ class SalesController extends Controller
     {
         //
     	$pdf = PDF::loadview('pages.pdf.test');
-    	return $pdf->download('test-pdf');
+    	return $pdf->stream('test-pdf');
+    }
+
+    public function getNetto($bruto)
+    {
+        $data = Weight::where('bruto', $bruto)->first();
+        return response()->json($data);
     }
 }

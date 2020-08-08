@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Purchase;
 use App\Farmer;
+use App\Weight;
+use PDF;
 
 
 class PurchasesController extends Controller
@@ -107,5 +109,19 @@ class PurchasesController extends Controller
         $item->delete();
 
         return redirect()->route('purchases.index');
+    }
+
+
+    public function getNetto($bruto)
+    {
+        $data = Weight::where('bruto', $bruto)->first();
+        return response()->json($data);
+    }
+
+    public function print_pdf($id)
+    {
+        //
+    	$pdf = PDF::loadview('pages.pdf.test');
+    	return $pdf->stream('test-pdf');
     }
 }

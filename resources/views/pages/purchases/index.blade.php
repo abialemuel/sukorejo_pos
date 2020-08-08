@@ -62,16 +62,16 @@
                                     <td>{{ $purchase->tiam }}</td>
                                     <td>
                                         <center> 
-                                            <button type="button" name="add" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('print', $purchase->id) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
-                                            </button>
+                                            </a>
                                         </center>
                                     </td>
         
                                     <td>
                                         <center> 
                                             <a href="{{ route('purchases.show', $purchase->id) }}" class="btn btn-success btn-sm">
-                                                <i class="fa fa-eye"></i>
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </center>
                                     </td>
@@ -89,7 +89,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </form>
                                         </center>

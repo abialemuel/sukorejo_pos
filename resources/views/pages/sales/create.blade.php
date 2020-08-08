@@ -65,6 +65,17 @@
                                         </button>
                                     </th>
                                 </tr>
+                                <tr>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>
+                                    <td>
+                                        <center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></center>
+                                    </td>
+                                </tr>
                             </thead>
                             <tbody style="font-size: 11px; text-align: center;">
                                
@@ -81,7 +92,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control" name="txttotal" id="txttotal" required readonly>
+                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
                                 </div>
                             </div>
                         </div>
@@ -156,20 +167,20 @@
 
     $(document).ready(function(){
             
-        var i = 0;
+        var i = 1;
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
                 html+='<tr>';
                         
-                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][warehouse_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][needle_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control qty" name="sales[${i}][tiam]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][bruto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][netto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty" name="sales[${i}][price]" ></td>`
-                html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>`; 
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>`
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>`
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>`
+                html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
                         
                 i+=1
                 $('#saletable').append(html);
@@ -184,6 +195,47 @@
             // $("#txtpaid").val(0);
             
         }) // btnremove end here  
+
+
+
+        $(document).on('change','.bruto',function(){
+         
+            var bruto = $(this).val();
+            console.log(bruto);
+            var url = '{{ route("getNetto", ":bruto") }}';
+            url = url.replace(':bruto', bruto); 
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    if(response != null){
+                        $('.netto').val(response.netto);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });  
+        }) //netto ends here
+
+        $(document).delegate(".price","keyup change" ,function(){
+            calculate();
+            
+        }) //total bayar ends here
+
+        function calculate(){  
+            var price=0;
+            var bruto=0;
+            var netto=0;
+            var total=0;         
+            $(".price").each(function(){
+                total = total+($(this).val()*1);     
+            })
+            $(".total").val(total.toFixed(2)); 
+        }// function calculate end here 
+
     });
 </script>
 @endpush

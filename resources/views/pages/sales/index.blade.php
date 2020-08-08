@@ -64,9 +64,9 @@
 
                                 <td>
                                     <center> 
-                                        <button type="button" name="add" class="btn btn-warning btn-sm">
+                                        <a href="{{  route('print', $sale->id) }}" target="_blank" class="btn btn-warning btn-sm">
                                             <i class="fa fa-print" aria-hidden="true"></i>
-                                        </button>
+                                        </a>
                                     </center>
                                 </td>
     

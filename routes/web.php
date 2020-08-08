@@ -24,9 +24,13 @@ Route::prefix('/')
         Route::resource('', 'HomeController');
 
         Route::resource('sales', 'SalesController');
-        Route::get('/sales/print-pdf/{id}', 'SalesController@print_pdf');
+        Route::get('/sales/print-pdf/{id}', 'SalesController@print_pdf')->name('print');
+
 
         Route::resource('purchases', 'PurchasesController');
+        Route::get('/purchases/getNetto/{id}', 'PurchasesController@getNetto')->name('getNetto');
+        Route::get('/purchases/print-pdf/{id}', 'PurchasesController@print_pdf')->name('print');
+
         Route::resource('farmers', 'FarmerController');
         Route::resource('users', 'UserController');
         Route::resource('weightdata', 'WeightController');
