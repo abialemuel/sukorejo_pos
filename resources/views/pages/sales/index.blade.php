@@ -96,6 +96,7 @@
                                         </form>
                                     </center>
                                 </td>
+                                </tr>
                             @endforeach
 
                         </tbody>

@@ -1,3 +1,9 @@
+    <?php $role = Auth::user()->roles; ?>
+    @if($role == "USER")
+        <li>Insert Listsssssss Here</li>
+    @else 
+        <li>Krian Bayu</li>
+    @endif 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 

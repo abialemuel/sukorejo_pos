@@ -34,7 +34,10 @@ Route::prefix('/')
         Route::resource('farmers', 'FarmerController');
         Route::resource('users', 'UserController');
         Route::resource('weightdata', 'WeightController');
+
         Route::resource('reports', 'ReportController');
+        Route::get('/reports/print-pdf/{id}', 'ReportController@print_pdf')->name('print');
+
 
     });
 

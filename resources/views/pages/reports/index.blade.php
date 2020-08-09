@@ -21,7 +21,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Penjualan</h1>
+            <h1 class="h3 mb-2 text-gray-800">Laba Rugi</h1>
         </div>
             
 
@@ -40,28 +40,30 @@
                                 <th>Netto</th>
                                 <th>Harga</th>
                                 <th>Total</th>
-
                                 <th>Print</th>
                             </tr>
                         </thead>
                         <tbody style="font-size: 12px;">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                            <td>
-                                <center> 
-                                    <button type="button" name="add" class="btn btn-warning btn-sm">
-                                        <i class="fa fa-print" aria-hidden="true"></i>
-                                    </button>
-                                </center>
-                            </td>
-
+                            @foreach ($reports as $report)
+                                <tr>
+                                    <td>{{ $report->created_at }}</td>
+                                    <td>{{ $report->warehouse_code }}</td>
+                                    <td>{{ $report->needle_code }}</td>
+                                    <td>{{ $report->tiam }}</td>
+                                    <td>{{ $report->bruto }}</td>
+                                    <td>{{ $report->netto }}</td>
+                                    <td>{{ $report->total_sales }}</td>
+                                    <td>{{ $report->total_sales }}</td>
+                                    <td>
+                                    <!-- Dummy Report Laba / Rugi -->
+                                        <center> 
+                                            <a href="{{  route('print', $report->tiam) }}" target="_blank" class="btn btn-warning btn-sm">
+                                                <i class="fa fa-print" aria-hidden="true"></i>
+                                            </a>
+                                        </center>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
