@@ -31,7 +31,7 @@
 
 
         <!-- form start -->
-        <form  action="{{ route('purchases.store') }}" method="POST">
+        <form  id="purchase_form" action="{{ route('purchases.store') }}" method="POST">
             @csrf
 
             <!-- DataTales Example -->
@@ -103,12 +103,12 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                            <input type="submit" name="submit_value" value="simpan_cetak" class="btn btn-success" formtarget="_blank">
+                            <input type="submit" id= "simpan_cetak" name="submit_value" value="Simpan & Cetak" class="btn btn-success" formtarget="_blank">
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" name="submit_value" value="simpan" class="btn btn-info">
+                                <input type="submit" name="submit_value" value="Simpan Data Pembelian" class="btn btn-info">
                             </div>
                         </div>
                     </div>
@@ -196,27 +196,40 @@
             
         }) 
 
-        // refresh after print pdf  
+        // refresh after print pdf
+        $('#simpan_cetak').click(function(e){
+        e.preventDefault();
+        /*Ajax Request Header setup*/
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-        // $(document).on('click','.bruto',function(){
+        $('#simpan_cetak').html('Sending..');
+        
+        /* Submit form data using ajax*/
+        $.ajax({
+            url: "{{ url('jquery-ajax-form-submit')}}",
+            method: 'post',
+            data: $('#purchase_form').serialize(),
+            success: function(response){
+                //------------------------
+                    $('#simpan_cetak').html('Submit');
+                    $('#res_message').show();
+                    $('#res_message').html(response.msg);
+                    $('#msg_div').removeClass('d-none');
 
-        //  var url = '{{ route("getNetto", ":bruto") }}';
-        //  url = url.replace(':bruto', bruto); 
+                    document.getElementById("purchase_form").reset(); 
+                    setTimeout(function(){
+                    $('#res_message').hide();
+                    $('#msg_div').hide();
+                    },10000);
+                //--------------------------
+            }});
+        });
+        });
 
-        //  $.ajax({
-        //      url: url,
-        //      type: 'get',
-        //      dataType: 'json',
-        //      success: function(response){
-        //          if(response != null){
-        //              $('.netto').val(response.netto);
-        //          }
-        //      },
-        //      error: function (error) {
-        //          console.log(error);
-        //      }
-        //  });  
-         
      }) 
 
     });

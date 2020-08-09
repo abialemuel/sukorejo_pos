@@ -54,7 +54,7 @@ class PurchasesController extends Controller
             Purchase::create($farmer_data + $purchase);
         
         # additional action for print
-        if ($submit_value == 'simpan_cetak') {
+        if ($submit_value == 'Simpan & Cetak') {
             $pdf = PDF::loadview('pages.pdf.test');
             return $pdf->stream('test-pdf');
         }
