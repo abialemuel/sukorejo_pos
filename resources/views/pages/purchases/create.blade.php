@@ -197,43 +197,39 @@
         }) 
 
         // refresh after print pdf
-        $('#simpan_cetak').click(function(e){
-        e.preventDefault();
-        /*Ajax Request Header setup*/
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        // $('#simpan_cetak').click(function(e){
+        // e.preventDefault();
+        // /*Ajax Request Header setup*/
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
 
-        $('#simpan_cetak').html('Sending..');
+        // $('#simpan_cetak').html('Sending..');
         
-        /* Submit form data using ajax*/
-        $.ajax({
-            url: "{{ url('jquery-ajax-form-submit')}}",
-            method: 'post',
-            data: $('#purchase_form').serialize(),
-            success: function(response){
-                //------------------------
-                    $('#simpan_cetak').html('Submit');
-                    $('#res_message').show();
-                    $('#res_message').html(response.msg);
-                    $('#msg_div').removeClass('d-none');
+        // /* Submit form data using ajax*/
+        // $.ajax({
+        //     url: "{{ route('purchases.store') }}",
+        //     method: 'post',
+        //     data: $('#purchase_form').serialize(),
+        //     success: function(response){
+        //         //------------------------
+        //             $('#simpan_cetak').html('Submit');
+        //             $('#res_message').show();
+        //             $('#res_message').html(response.msg);
+        //             $('#msg_div').removeClass('d-none');
 
-                    document.getElementById("purchase_form").reset(); 
-                    setTimeout(function(){
-                    $('#res_message').hide();
-                    $('#msg_div').hide();
-                    },10000);
-                //--------------------------
-            }});
-        });
-        });
+        //             // document.getElementById("purchase_form").reset(); 
+        //             // setTimeout(function(){
+        //             // $('#res_message').hide();
+        //             // $('#msg_div').hide();
+        //             // },10000);
+        //         //--------------------------
+        //     }});
+        // });
 
      }) 
 
-    });
-
-    
 </script>
 @endpush
