@@ -103,13 +103,12 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" value="Simpan & Cetak" class="btn btn-success" name="saveprint" formtarget="_blank">
-
+                            <input type="submit" name="submit_value" value="simpan_cetak" class="btn btn-success" formtarget="_blank">
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" value="Simpan Data Pembelian" name="save" class="btn btn-info">
+                                <input type="submit" name="submit_value" value="simpan" class="btn btn-info">
                             </div>
                         </div>
                     </div>
@@ -196,6 +195,29 @@
             });  
             
         }) 
+
+        // refresh after print pdf  
+
+        // $(document).on('click','.bruto',function(){
+
+        //  var url = '{{ route("getNetto", ":bruto") }}';
+        //  url = url.replace(':bruto', bruto); 
+
+        //  $.ajax({
+        //      url: url,
+        //      type: 'get',
+        //      dataType: 'json',
+        //      success: function(response){
+        //          if(response != null){
+        //              $('.netto').val(response.netto);
+        //          }
+        //      },
+        //      error: function (error) {
+        //          console.log(error);
+        //      }
+        //  });  
+         
+     }) 
 
     });
 

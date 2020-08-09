@@ -46,11 +46,19 @@ class PurchasesController extends Controller
     public function store(Request $request)
     {
         //
-        $farmer_data = $request->except('purchases');
+        $submit_value = $request->input('submit_value');
+        $farmer_data = $request->except('purchases', 'submit_value');
         $purchases = $request->input('purchases');
 
         foreach ($purchases as $purchase)
             Purchase::create($farmer_data + $purchase);
+        
+        # additional action for print
+        if ($submit_value == 'simpan_cetak') {
+            $pdf = PDF::loadview('pages.pdf.test');
+            return $pdf->stream('test-pdf');
+        }
+
         return redirect()->route('purchases.index');
     }
 
