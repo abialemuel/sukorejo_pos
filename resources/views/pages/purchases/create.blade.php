@@ -175,10 +175,11 @@
 
         $(document).on('change','.bruto',function(){
          
-            var bruto = $(this).val();
-            console.log(bruto);
+            var bruto = $(this).closest('.bruto').val();
+            
             var url = '{{ route("getNetto", ":bruto") }}';
             url = url.replace(':bruto', bruto); 
+            var tr=$(this).parent().parent();
 
             $.ajax({
                 url: url,
@@ -186,7 +187,8 @@
                 dataType: 'json',
                 success: function(response){
                     if(response != null){
-                        $('.netto').val(response.netto);
+                        // $('.netto').closest('.netto').val(response.netto);
+                        tr.find(".netto").val(response["netto"]);
                     }
                 },
                 error: function (error) {

@@ -1,9 +1,5 @@
     <?php $role = Auth::user()->roles; ?>
-    @if($role == "USER")
-        <li>Insert Listsssssss Here</li>
-    @else 
-        <li>Krian Bayu</li>
-    @endif 
+    
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -14,7 +10,6 @@
         </div>
         <div class="sidebar-brand-text mx-3">Sukorejo</div>
       </a>
-
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -26,13 +21,15 @@
         Main Page
       </div>
 
-      
+      @if($role == "USER")
+        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Dashboard</span></a>
+        </li>
+      @endif 
       <!-- Nav Item - Photo on Page -->
-      <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/') }}">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Dashboard</span></a>
-      </li>
+      
 
       <li class="nav-item {{ Request::is('purchases') || Request::is('purchases/create')  ? 'active' : '' }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#purchasescollapsePages" aria-expanded="true" aria-controls="purchasescollapsePages">
@@ -42,17 +39,19 @@
         <div id="purchasescollapsePages" class="collapse {{ Request::is('purchases') || Request::is('purchases/create')  ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ Request::is('purchases/create') ? 'active' : '' }}" href="{{ route('purchases.create') }}">Input Data Pembelian</a>
-            <div class="dropdown-divider"></div>
-            <a class="collapse-item {{ Request::is('purchases') ? 'active' : '' }}" href="{{ route('purchases.index') }}">Data Pembelian</a>
+            @if($role == "USER")
+              <div class="dropdown-divider"></div>
+              <a class="collapse-item {{ Request::is('purchases') ? 'active' : '' }}" href="{{ route('purchases.index') }}">Data Pembelian</a>
+            @endif
           </div>
         </div>
       </li>
 
-      <li class="nav-item {{ Request::is('support_purchases') ? 'active' : '' }}">
+      <!-- <li class="nav-item {{ Request::is('support_purchases') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('support_purchases') }}">
           <i class="fas fa-cart-plus"></i>
           <span>Pembelian - Support</span></a>
-      </li>
+      </li> -->
 
 
       <li class="nav-item {{ Request::is('sales') || Request::is('sales/create') ? 'active' : '' }}">
@@ -63,8 +62,10 @@
         <div id="salescollapsePages" class="collapse {{ Request::is('sales') || Request::is('sales/create') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ Request::is('sales/create') ? 'active' : '' }}" href="{{ route('sales.create') }}">Input Data Penjualan</a>
-            <div class="dropdown-divider"></div>
-            <a class="collapse-item {{ Request::is('sales') ? 'active' : '' }}" href="{{ route('sales.index') }}">Data Penjualan</a>
+            @if($role == "USER")
+              <div class="dropdown-divider"></div>
+              <a class="collapse-item {{ Request::is('sales') ? 'active' : '' }}" href="{{ route('sales.index') }}">Data Penjualan</a>
+            @endif
           </div>
         </div>
       </li>
@@ -77,8 +78,10 @@
         <div id="weightdatacollapsePages" class="collapse {{ Request::is('weightdata/create') || Request::is('weightdata') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ Request::is('weightdata/create') ? 'active' : '' }}" href="{{ route('weightdata.create') }}">Input Data Timbangan</a>
+            @if($role == "USER")
             <div class="dropdown-divider"></div>
             <a class="collapse-item {{ Request::is('weightdata') ? 'active' : '' }}" href="{{ route('weightdata.index') }}">Data Timbangan</a>
+            @endif
           </div>
         </div>
       </li>
@@ -101,19 +104,21 @@
       </li>
       
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      @if($role == "USER")
+        <hr class="sidebar-divider d-none d-md-block">
 
-      <li class="nav-item {{ Request::is('reports') ? 'active' : '' }}">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#reportcollapsePages" aria-expanded="true" aria-controls="reportcollapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Laporan</span>
-        </a>
-        <div id="reportcollapsePages" class="collapse {{ Request::is('reports') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {{ Request::is('reports') ? 'active' : '' }}" href="{{ route('reports.index') }}">Laporan Laba / Rugi</a>
+        <li class="nav-item {{ Request::is('reports') ? 'active' : '' }}">
+          <a class="nav-link" href="#" data-toggle="collapse" data-target="#reportcollapsePages" aria-expanded="true" aria-controls="reportcollapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Laporan</span>
+          </a>
+          <div id="reportcollapsePages" class="collapse {{ Request::is('reports') ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item {{ Request::is('reports') ? 'active' : '' }}" href="{{ route('reports.index') }}">Laporan Laba / Rugi</a>
+            </div>
           </div>
-        </div>
-      </li>
+        </li>
+      @endif
 
       <hr class="sidebar-divider d-none d-md-block">
 

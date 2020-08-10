@@ -23,11 +23,13 @@
             
 
         <!-- Content Row - Stats Card-->
-        
+        <?php $role = Auth::user()->roles; ?>
+        @if($role == "USER")
         <iframe width="1170" height="645" 
             src="https://datastudio.google.com/embed/reporting/df9e1d87-8438-44ce-90df-7d8679e3eef3/page/pbIbB" 
             frameborder="0" style="border:0">
         </iframe>
+        @endif
 
     </div>
     <!-- /.container-fluid -->
