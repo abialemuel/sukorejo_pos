@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <title>Title</title>
-    <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> -->
     
     
   </head>

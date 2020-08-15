@@ -65,7 +65,7 @@
                     </div>
 
 
-                    <div class="table-responsive col-sm-12">
+                    <div class="table-responsive col-sm-12 mb-5">
                         <table class="table table-bordered" width="100%" cellspacing="0" id="purchasetable">
                             <thead class="text-lg" style="text-align: center;">
                                 <tr>
@@ -97,7 +97,47 @@
                                 
                             </tbody>
                         </table>
-                    </div>                    
+                    </div>      
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            
+                            <div class="form-group">
+                                <label>Terbayar</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sisa / Kembalian</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="txtdue" id="txtdue" required readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- tax dis. etc -->              
 
                     <hr class="sidebar-divider d-none d-md-block">
                     <div class="row col-sm-6 col-lg-6">
