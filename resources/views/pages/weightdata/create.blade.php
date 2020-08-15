@@ -72,8 +72,18 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm" style="text-align: center;">
-
-                                
+                                <tr>
+                        
+                                    <td><input type="number" min="1" class="form-control qty" name="bruto" ></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="netto" ></td>
+                                    <td>
+                                        <center>
+                                            <button type="button" name="remove" class="btn btn-danger btn-sm btnremove">
+                                                <i class="fa fa-trash"></i></button>
+                                        </center>
+                                    </td>
+                                </tr> 
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -121,7 +131,7 @@
                     
             html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
             html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>';
-            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button><center></td></center></tr>'; 
+            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>'; 
                     
             $('#weightdatatable').append(html);        
         }) // btnadd end here 

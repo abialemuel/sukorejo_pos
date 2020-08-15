@@ -35,8 +35,7 @@
                             <th>Dibuat Pada</th>
                             <th>Brutto</th>
                             <th>Netto</th>
-
-                            <th>Print</th>
+                            
                             <th>Detail</th>
                             <th>Ubah</th>
                             <th>Hapus</th>
@@ -49,14 +48,6 @@
                                 <td>{{ $weight->bruto }}</td>
                                 <td>{{ $weight->netto }}</td>
 
-                            
-                                <td>
-                                    <center> 
-                                        <a href="" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </center>
-                                </td>
 
                                 <td>
                                     <center> 

@@ -38,7 +38,7 @@
                     <th>Area</th>
                     <th>Address</th>
                     
-                    <th>Print</th>
+                    <!-- <th>Print</th> -->
                     <th>Detail</th>
                     <th>Ubah</th>
                     <th>Hapus</th>
@@ -52,13 +52,16 @@
                         <td>{{ $farmer->name }}</td>
                         <td>{{ $farmer->area }}</td>
                         <td>{{ $farmer->address }}</td>
-                        <td>
+                        
+                        
+                        <!-- <td>
                             <center> 
                                 <button type="button" name="add" class="btn btn-warning btn-sm">
                                     <i class="fa fa-print" aria-hidden="true"></i>
                                 </button>
                             </center>
-                        </td>
+                        </td> -->
+                        
                         <td>
                             <center> 
                                 <a href="{{ route('farmers.show', $farmer->id) }}" class="btn btn-success btn-sm">

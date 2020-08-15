@@ -43,7 +43,7 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         //
-        $sold_at = $request->except('sales');
+        $sold_at = $request->except('sales','txttotal','txtpaid','txtdue');
         $sales = $request->input('sales');
 
         foreach ($sales as $sale)
