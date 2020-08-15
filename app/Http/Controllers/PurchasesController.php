@@ -7,6 +7,7 @@ use App\Purchase;
 use App\Farmer;
 use App\Weight;
 use PDF;
+use Debugbar;
 
 
 class PurchasesController extends Controller
@@ -51,12 +52,11 @@ class PurchasesController extends Controller
         $purchases = $request->input('purchases');
 
         foreach ($purchases as $purchase)
-            Purchase::create($farmer_data + $purchase);
+            $created_data = Purchase::create($farmer_data + $purchase);
         
         # additional action for print
-        if ($submit_value == 'Simpan & Cetak') {
-            $pdf = PDF::loadview('pages.pdf.test');
-            return $pdf->stream('test-pdf');
+        if ($submit_value == 'simpan_cetak') {
+            return response()->json($created_data);
         }
 
         return redirect()->route('purchases.index');
@@ -138,7 +138,7 @@ class PurchasesController extends Controller
         return response()->json($data);
     }
 
-    public function print_pdf($id)
+    public function printPdf($id)
     {
         //
     	$pdf = PDF::loadview('pages.pdf.test');

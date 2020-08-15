@@ -28,8 +28,8 @@ Route::prefix('/')
 
 
         Route::resource('purchases', 'PurchasesController');
-        Route::get('/purchases/getNetto/{id}', 'PurchasesController@getNetto')->name('getNetto');
-        Route::get('/purchases/print-pdf/{id}', 'PurchasesController@print_pdf')->name('print');
+        Route::get('/purchases/getNetto/{id}', 'PurchasesController@getNetto')->name('purchases.getNetto');
+        Route::get('/purchases/print-pdf/{id}', 'PurchasesController@printPdf')->name('purchases.printPdf');
 
         Route::resource('farmers', 'FarmerController');
         Route::resource('users', 'UserController');

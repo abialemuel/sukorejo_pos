@@ -103,7 +103,7 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                            <input type="submit" id= "simpan_cetak" name="submit_value" value="Simpan & Cetak" class="btn btn-success" formtarget="_blank">
+                            <input type="submit" id= "simpan_cetak" name="submit_value" value="Simpan & Cetak" class="btn btn-success">
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6">
@@ -139,7 +139,6 @@
             todayHighlight: true,
         });
     });
-    
 
     $(document).ready(function(){
 
@@ -177,7 +176,7 @@
          
             var bruto = $(this).closest('.bruto').val();
             
-            var url = '{{ route("getNetto", ":bruto") }}';
+            var url = '{{ route("purchases.getNetto", ":bruto") }}';
             url = url.replace(':bruto', bruto); 
             var tr=$(this).parent().parent();
 
@@ -198,40 +197,31 @@
             
         }) 
 
-        // refresh after print pdf
-        // $('#simpan_cetak').click(function(e){
-        // e.preventDefault();
-        // /*Ajax Request Header setup*/
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+        $("#simpan_cetak").click(function(e){
+            e.preventDefault();
+            const form = document.getElementById('purchase_form');
 
-        // $('#simpan_cetak').html('Sending..');
-        
-        // /* Submit form data using ajax*/
-        // $.ajax({
-        //     url: "{{ route('purchases.store') }}",
-        //     method: 'post',
-        //     data: $('#purchase_form').serialize(),
-        //     success: function(response){
-        //         //------------------------
-        //             $('#simpan_cetak').html('Submit');
-        //             $('#res_message').show();
-        //             $('#res_message').html(response.msg);
-        //             $('#msg_div').removeClass('d-none');
+            var params = $('#purchase_form').serialize() + "&submit_value=simpan_cetak";
+            
+            var createdData;
 
-        //             // document.getElementById("purchase_form").reset(); 
-        //             // setTimeout(function(){
-        //             // $('#res_message').hide();
-        //             // $('#msg_div').hide();
-        //             // },10000);
-        //         //--------------------------
-        //     }});
-        // });
+            $.ajax({
+                url: "{{ route('purchases.store') }}",
+                method: 'post',
+                data: params,
+                async: false,
+                success: function(response){
+                    //------------------------
+                    createdData = response;
+                    //--------------------------
+            }});
 
-     }) 
-
+            var id = createdData['id'];
+            var new_pdf_url = '{{ route("purchases.printPdf", ":id") }}';
+            new_pdf_url = new_pdf_url.replace(':id', id); 
+            window.open(new_pdf_url);
+            window.location.reload();
+        });
+    });
 </script>
 @endpush
