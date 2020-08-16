@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Purchase;
+use App\PurchaseOrder;
 use App\Farmer;
 use App\Weight;
 use PDF;
@@ -48,11 +49,19 @@ class PurchasesController extends Controller
     {
         //
         $submit_value = $request->input('submit_value');
-        $farmer_data = $request->except('purchases', 'submit_value');
+        $farmer_id = $request->input('farmer_id');
         $purchases = $request->input('purchases');
+        $purchased_at = $request->input('purchased_at');
 
+        # create purchase_order
+        $purchase_order = PurchaseOrder::create([
+            'farmer_id' => $farmer_id,
+            'purchased_at' => $purchased_at,
+        ]);
+
+        # create purchase items
         foreach ($purchases as $purchase)
-            $created_data = Purchase::create($farmer_data + $purchase);
+            $created_data = Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
         
         # additional action for print
         if ($submit_value == 'simpan_cetak') {
