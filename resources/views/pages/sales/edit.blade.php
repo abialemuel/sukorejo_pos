@@ -23,14 +23,15 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Penjualan</h1>
+            <h1 class="h3 mb-2 text-gray-800">Edit Penjualan</h1>
         </div>
             
 
 
         <!-- form start -->
-        <form  action="{{ route('sales.store') }}" method="POST" name="">
+        <form  action="{{ route('sales.update', $sale->id) }}" method="POST" name="">
             @csrf
+            @method('PUT')
 
             <!-- DataTales Example -->
             <div class="card shadow">
@@ -41,7 +42,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('d-m-Y', strtotime($sale->created_at)) }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>
@@ -66,14 +67,16 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" value="{{ $sale->warehouse_code }}"></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" value="{{ $sale->needle_code }}"></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" value="{{ $sale->tiam }}"></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" value="{{ $sale->bruto }}"></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" value="{{ $sale->netto }}"></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" value="{{ $sale->price }}"></td>
                                     <td>
-                                        <center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></center>
+                                        <center>
+                                            <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
+                                        </center>
                                     </td>
                                 </tr>
                             </thead>
@@ -92,7 +95,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly value="{{ $sale->price }}">
                                 </div>
                             </div>
                         </div>
@@ -202,7 +205,7 @@
          
             var bruto = $(this).closest('.bruto').val();
             
-            var url = '{{ route("sales.getNetto", ":bruto") }}';
+            var url = '{{ route("getNetto", ":bruto") }}';
             url = url.replace(':bruto', bruto); 
             var tr=$(this).parent().parent();
 

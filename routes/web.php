@@ -24,7 +24,8 @@ Route::prefix('/')
         Route::resource('', 'HomeController');
 
         Route::resource('sales', 'SalesController');
-        Route::get('/sales/print-pdf/{id}', 'SalesController@print_pdf')->name('print');
+        Route::get('/sales/getNetto/{id}', 'SalesController@getNetto')->name('sales.getNetto');
+        Route::get('/sales/print-pdf/{id}', 'SalesController@printPdf')->name('sales.printPdf');
 
 
         Route::resource('purchases', 'PurchasesController');

@@ -87,9 +87,10 @@ class PurchasesController extends Controller
     public function edit($id)
     {
         //
-        $purchase = Purchase::findOrFail($id);
+        $purchases = Purchase::findOrFail($id);
+        $farmers = Farmer::all();
 
-        return view('pages.purchases.edit', compact('purchase'));
+        return view('pages.purchases.edit', compact('purchases','farmers'));
     }
 
     /**
@@ -102,6 +103,17 @@ class PurchasesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $submit_value = $request->input('submit_value');
+        $farmer_data = $request->except('purchases', 'submit_value');
+        $purchases = $request->input('purchases');
+
+        // foreach ($purchases as $purchase)
+        //     Purchase::update($farmer_data + $purchase);
+        
+        // $item = Purchase::findOrFail($id);
+
+        $item->update($data);
+        return redirect()->route('purchases.index');
     }
 
     /**

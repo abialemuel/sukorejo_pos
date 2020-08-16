@@ -34,31 +34,67 @@
                             <div class="col-sm-2">
                                 <p>Created At: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <p>{{ $sale->created_at }}</p>
                             </div>
-                        </div>
 
-                        <div class="row mb-4 mt-4">
                             <div class="col-sm-2">
                                 <p>Updated At: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <p>{{ $sale->updated_at }}</p>
                             </div>
                         </div>
-                        
 
-                        <div class="row mb-4 mt-4">
+
+
+                        <div class="row mb-5 mt-4">
                             <div class="col-sm-2">
-                                <p>Created By: </p>
+                                <p>Sold At: </p>
                             </div>
+                            <div class="col-sm-3">
+                                <p>{{ $sale->sold_at }}</p>
+                            </div>
+
                             <div class="col-sm-2">
+                                <p><strong>Created By: </strong></p>
+                            </div>
+                            <div class="col-sm-3">
                                 <p>{{ $sale->user["email"] }}</p>
                             </div>
                         </div>
-                    
-                    
+
+
+                        <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
+                            <thead style=" font-size: 12px; text-align: center;">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Kode AC</th>
+                                    <th>Kode Petani</th>
+                                    <th>Nama Petani</th>
+                                    <th>Desa</th>
+                                    <th>Brutto</th>
+                                    <th>Netto</th>
+                                    <th>Harga</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody style=" font-size: 12px;">
+                                    <tr>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        <td>e.g</td>
+                                        
+                                    </tr>
+
+                            </tbody>
+                        </table>
+
                 </div>
             </div>
         </div>
