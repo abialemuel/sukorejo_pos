@@ -138,8 +138,6 @@ class PurchasesController extends Controller
         
         // delete purchase items
         $item->purchases->each->delete();
-        // if ( $$item->purchases->count() != 0 ) {
-        // }
 
         // delete purchase order
         $item->delete();
