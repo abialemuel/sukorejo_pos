@@ -21,7 +21,6 @@ class PurchasesController extends Controller
     public function index()
     {
         //
-        // $purchases = Purchase::with(['farmer'])->get();
         $purchase_orders = PurchaseOrder::all();
 
         return view('pages.purchases.index',compact('purchase_orders'));

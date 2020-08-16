@@ -85,7 +85,7 @@
                                     <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" ></td>
                                     <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]"></td>
                                     <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" ></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -108,7 +108,8 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary">
                                 </div>
                             </div>
                         </div>
@@ -194,7 +195,7 @@
             html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" ></td>`
             html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]"></td>`
             html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" ></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1
@@ -237,6 +238,7 @@
             
         }) 
 
+        // open new tab for print pdf & reload page
         $("#simpan_cetak").click(function(e){
             e.preventDefault();
             const form = document.getElementById('purchase_form');
@@ -261,7 +263,23 @@
             new_pdf_url = new_pdf_url.replace(':id', id); 
             window.open(new_pdf_url);
             window.location.reload();
-        });
+        })
+
+        // count total amount
+        $("#hitung_total").click(function(e){
+         
+        //  var netto = $(this).closest('.netto').val();
+        //  var price = $(this).closest('.price').val();
+        //  dcs = document.getElementsByName('purchases').length
+        //  var amount = 1000;
+        //  console.log(dcs);
+         document.getElementById('txttotal').value = amount
+         
+     }) 
+
+
+
+        
     });
 </script>
 @endpush
