@@ -17,6 +17,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('farmer_id');
             $table->timestamp("purchased_at");
+            $table->integer("amount");
             $table->softDeletes();
             $table->timestamps();
             $table->integer('created_by');	

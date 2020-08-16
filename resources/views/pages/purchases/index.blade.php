@@ -33,14 +33,9 @@
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
                                 <th>ID</th>
-                                <th>Kode AC</th>
                                 <th>Kode Petani</th>
                                 <th>Nama Petani</th>
                                 <th>Desa</th>
-                                <th>Brutto</th>
-                                <th>Netto</th>
-                                <th>Harga</th>
-                                <th>Tiam</th>
 
                                 <th>Print</th>
                                 <th>Detail</th>
@@ -49,20 +44,15 @@
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
-                            @foreach ($purchases as $purchase)
+                            @foreach ($purchase_orders as $purchase_order)
                                 <tr>
-                                    <td>{{ $purchase->id }}</td>
-                                    <td>{{ $purchase->ac_code }}</td>
-                                    <td>{{ $purchase->farmer["farmer_code"] }}</td>
-                                    <td>{{ $purchase->farmer["name"] }}</td>
-                                    <td>{{ $purchase->farmer["area"] }}</td>
-                                    <td>{{ $purchase->bruto }}</td>
-                                    <td>{{ $purchase->netto }}</td>
-                                    <td>{{ $purchase->price }}</td>
-                                    <td>{{ $purchase->tiam }}</td>
+                                    <td>{{ $purchase_order->id }}</td>
+                                    <td>{{ $purchase_order->farmer["farmer_code"] }}</td>
+                                    <td>{{ $purchase_order->farmer["name"] }}</td>
+                                    <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>
                                         <center> 
-                                            <a href="{{  route('print', $purchase->id) }}" target="_blank" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('print', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
                                             </a>
                                         </center>
@@ -70,7 +60,7 @@
         
                                     <td>
                                         <center> 
-                                            <a href="{{ route('purchases.show', $purchase->id) }}" class="btn btn-success btn-sm">
+                                            <a href="{{ route('purchases.show', $purchase_order->id) }}" class="btn btn-success btn-sm">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </center>
@@ -78,14 +68,14 @@
         
                                     <td>
                                         <center> 
-                                            <a href="{{ route('purchases.edit', $purchase->id) }}" class="btn btn-info">
+                                            <a href="{{ route('purchases.edit', $purchase_order->id) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </center>
                                     </td>
                                     <td>
                                         <center>
-                                            <form action="{{ route('purchases.destroy', $purchase->id) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('purchases.destroy', $purchase_order->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger">
