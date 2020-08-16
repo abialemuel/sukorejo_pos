@@ -15,6 +15,7 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('purchase_order_id');
             $table->string('ac_code');
             $table->string('tiam');
             $table->double('bruto');
