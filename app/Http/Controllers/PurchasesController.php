@@ -134,9 +134,16 @@ class PurchasesController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $item = Purchase::findorFail($id);
+        $item = PurchaseOrder::findorFail($id);
+        
+        // delete purchase items
+        $item->purchases->each->delete();
+        // if ( $$item->purchases->count() != 0 ) {
+        // }
+
+        // delete purchase order
         $item->delete();
+
 
         return redirect()->route('purchases.index');
     }
