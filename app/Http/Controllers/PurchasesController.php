@@ -50,6 +50,7 @@ class PurchasesController extends Controller
         //
         $submit_value = $request->input('submit_value');
         $farmer_id = $request->input('farmer_id');
+        $amount = $request->input('txttotal');
         $purchases = $request->input('purchases');
         $purchased_at = $request->input('purchased_at');
 
@@ -57,6 +58,7 @@ class PurchasesController extends Controller
         $purchase_order = PurchaseOrder::create([
             'farmer_id' => $farmer_id,
             'purchased_at' => $purchased_at,
+            'amount' => $amount,
         ]);
 
         # create purchase items
