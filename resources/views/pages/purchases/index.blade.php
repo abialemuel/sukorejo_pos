@@ -37,6 +37,7 @@
                                 <th>Nama Petani</th>
                                 <th>Desa</th>
                                 <th>Total</th>
+                                <th>Tgl</th>
 
                                 <th>Print</th>
                                 <th>Detail</th>
@@ -52,6 +53,7 @@
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
+                                    <td>{{ $purchase_order->purchased_at }}</td>
                                     <td>
                                         <center> 
                                             <a href="{{  route('print', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
