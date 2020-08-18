@@ -37,6 +37,7 @@
                                 <th>Nama Petani</th>
                                 <th>Desa</th>
                                 <th>Total</th>
+                                <th>Pembayaran</th>
                                 <th>Tgl</th>
 
                                 <th>Print</th>
@@ -53,6 +54,7 @@
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
+                                    <td>{{ $purchase_order->payment_logs->sum('amount') }}</td>
                                     <td>{{ $purchase_order->purchased_at }}</td>
                                     <td>
                                         <center> 

@@ -18,6 +18,9 @@ class CreatePaymentLogsTable extends Migration
             $table->double("amount");
             $table->string("paymentable_type");
             $table->integer("paymentable_id");
+            $table->softDeletes();
+            $table->integer('created_by');	
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Purchase;
 use App\PurchaseOrder;
+use App\PaymentLog;
 use App\Farmer;
 use App\Weight;
 use PDF;
@@ -66,7 +67,7 @@ class PurchasesController extends Controller
         $paymnet_log = new PaymentLog([
             'amount' => $paid_amount,
         ]);
-        $purchase_order->paymnet_logs()->save($paymnet_log);
+        $purchase_order->payment_logs()->save($paymnet_log);
 
         # create purchase items
         foreach ($purchases as $purchase)
