@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Penjualan - POS
+    Laporan Laba / Rugi - POS
 @endsection
 
 
@@ -33,13 +33,10 @@
                         <thead style="font-size: 12px; text-align: center;">
                             <tr> 
                                 <th>Date</th>                                
-                                <th>Seri Gudang</th>
-                                <th>Seri Jarum</th>
-                                <th>Tiam</th>
-                                <th>Brutto</th>
-                                <th>Netto</th>
-                                <th>Harga</th>
-                                <th>Total</th>
+                                <th>Total Penjualan</th>
+                                <th>Total Pembelian</th>
+                                <th>Laba Rugi</th>
+                               
                                 <th>Print</th>
                             </tr>
                         </thead>
@@ -47,13 +44,10 @@
                             @foreach ($reports as $report)
                                 <tr>
                                     <td>{{ $report->created_at }}</td>
-                                    <td>{{ $report->warehouse_code }}</td>
-                                    <td>{{ $report->needle_code }}</td>
-                                    <td>{{ $report->tiam }}</td>
-                                    <td>{{ $report->bruto }}</td>
-                                    <td>{{ $report->netto }}</td>
                                     <td>{{ $report->total_sales }}</td>
-                                    <td>{{ $report->total_sales }}</td>
+                                    <td>{{ $report->total_purchases }}</td>
+                                    <td>{{ $report->total_laba_rugi }}</td>
+
                                     <td>
                                     <!-- Dummy Report Laba / Rugi -->
                                         <center> 

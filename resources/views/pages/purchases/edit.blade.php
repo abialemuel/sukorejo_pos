@@ -187,7 +187,7 @@
          
             var bruto = $(this).closest('.bruto').val();
             
-            var url = '{{ route("getNetto", ":bruto") }}';
+            var url = '{{ route("purchases.getNetto", ":bruto") }}';
             url = url.replace(':bruto', bruto); 
             var tr=$(this).parent().parent();
 

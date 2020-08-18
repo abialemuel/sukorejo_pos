@@ -42,7 +42,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('d-m-Y', strtotime($sale->created_at)) }}" data-date-format="yyyy-mm-dd" >
+                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d', strtotime($sale->created_at)) }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
          
             var bruto = $(this).closest('.bruto').val();
             
-            var url = '{{ route("getNetto", ":bruto") }}';
+            var url = '{{ route("sales.getNetto", ":bruto") }}';
             url = url.replace(':bruto', bruto); 
             var tr=$(this).parent().parent();
 
