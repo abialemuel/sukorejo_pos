@@ -81,11 +81,11 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' ></td>
-                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]"></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" ></td>
+                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' id='purchases[0][ac_code]' ></td>
+                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" id="purchases[0][tiam]" ></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]"></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]"></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" ></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -108,7 +108,8 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary">
                                 </div>
                             </div>
                         </div>
@@ -190,11 +191,11 @@
             
             var html='';
             html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' ></td>`
-            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]"></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`
+            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]'></td>`
+            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" id='purchases[${i}][tiam]'></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]"></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]"></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]"></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1
@@ -237,6 +238,7 @@
             
         }) 
 
+        // open new tab for print pdf & reload page
         $("#simpan_cetak").click(function(e){
             e.preventDefault();
             const form = document.getElementById('purchase_form');
@@ -261,7 +263,31 @@
             new_pdf_url = new_pdf_url.replace(':id', id); 
             window.open(new_pdf_url);
             window.location.reload();
-        });
+        })
+
+        // count total amount
+        $("#hitung_total").click(function(e){
+            var stillExist = true;
+            var i = 0;
+            var sumTotal = 0
+            while (stillExist) {
+                netto = document.getElementById(`purchases[${i}][netto]`);
+                price = document.getElementById(`purchases[${i}][price]`);
+                if  (netto != null && price != null) {
+                    sumRow = netto.value * price.value;
+                    sumTotal += sumRow;
+                } else {
+                    stillExist = false;
+                }
+
+                i += 1;
+            }
+            document.getElementById('txttotal').value = sumTotal;
+     }) 
+
+
+
+        
     });
 </script>
 @endpush

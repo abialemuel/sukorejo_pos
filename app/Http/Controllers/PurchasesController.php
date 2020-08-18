@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Purchase;
+use App\PurchaseOrder;
 use App\Farmer;
 use App\Weight;
 use PDF;
@@ -20,9 +21,9 @@ class PurchasesController extends Controller
     public function index()
     {
         //
-        $purchases = Purchase::with(['farmer'])->get();
+        $purchase_orders = PurchaseOrder::all();
 
-        return view('pages.purchases.index',compact('purchases'));
+        return view('pages.purchases.index',compact('purchase_orders'));
     }
 
     /**
@@ -48,11 +49,21 @@ class PurchasesController extends Controller
     {
         //
         $submit_value = $request->input('submit_value');
-        $farmer_data = $request->except('purchases', 'submit_value');
+        $farmer_id = $request->input('farmer_id');
+        $amount = $request->input('txttotal');
         $purchases = $request->input('purchases');
+        $purchased_at = $request->input('purchased_at');
 
+        # create purchase_order
+        $purchase_order = PurchaseOrder::create([
+            'farmer_id' => $farmer_id,
+            'purchased_at' => $purchased_at,
+            'amount' => $amount,
+        ]);
+
+        # create purchase items
         foreach ($purchases as $purchase)
-            $created_data = Purchase::create($farmer_data + $purchase);
+            $created_data = Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
         
         # additional action for print
         if ($submit_value == 'simpan_cetak') {
@@ -124,9 +135,14 @@ class PurchasesController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $item = Purchase::findorFail($id);
+        $item = PurchaseOrder::findorFail($id);
+        
+        // delete purchase items
+        $item->purchases->each->delete();
+
+        // delete purchase order
         $item->delete();
+
 
         return redirect()->route('purchases.index');
     }
