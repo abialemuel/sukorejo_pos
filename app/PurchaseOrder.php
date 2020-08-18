@@ -33,7 +33,9 @@ class PurchaseOrder extends Model
         return $this->hasMany(Purchase::class);
     }
 
-
+    public function payment_logs(){
+        return $this->morphMany(PaymentLog::class, 'paymentable');
+    }
 
 }
 

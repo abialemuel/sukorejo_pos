@@ -51,6 +51,7 @@ class PurchasesController extends Controller
         $submit_value = $request->input('submit_value');
         $farmer_id = $request->input('farmer_id');
         $amount = $request->input('txttotal');
+        $paid_amount = $request->input('txtpaid');
         $purchases = $request->input('purchases');
         $purchased_at = $request->input('purchased_at');
 
@@ -60,6 +61,12 @@ class PurchasesController extends Controller
             'purchased_at' => $purchased_at,
             'amount' => $amount,
         ]);
+
+        # create payment logs
+        $paymnet_log = new PaymentLog([
+            'amount' => $paid_amount,
+        ]);
+        $purchase_order->paymnet_logs()->save($paymnet_log);
 
         # create purchase items
         foreach ($purchases as $purchase)
