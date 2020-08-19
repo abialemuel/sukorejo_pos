@@ -124,17 +124,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Sisa / Kembalian</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="txtdue" id="txtdue" required readonly>
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value=0 required>
                                 </div>
                             </div>
                         </div>
