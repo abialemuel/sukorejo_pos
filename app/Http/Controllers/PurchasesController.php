@@ -166,7 +166,7 @@ class PurchasesController extends Controller
     {
         //
         $purchases = Purchase::findOrFail($id);
-    	$pdf = PDF::loadview('pages.pdf.test', compact('purchases'));
+    	$pdf = PDF::loadview('pages.pdf.purchases_report', compact('purchases'));
     	return $pdf->stream();
     }
 }

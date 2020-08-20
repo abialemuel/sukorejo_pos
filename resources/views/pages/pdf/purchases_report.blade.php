@@ -1,89 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laporan Pembelian</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        @page { size: 10,5cm 14,8cm landscape; }
+        body{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color:#333;
+            text-align:left;
+            font-size:18px;
+            margin:0;
+        }
+        .container{
+            margin:0 auto;
+            margin-top:35px;
+            width:auto;
+            height:auto;
+            background-color:#fff;
+        }
+        caption{
+            font-size:28px;
+            margin-bottom:15px;
+        }
+        table{
+            border:1px solid #000;
+            border-collapse:collapse;
+            margin:0 auto;
+            width:740px;
+        }
 
-    <meta charset="utf-8">
-    <title>Title</title>
-    <!-- <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> -->
-    
-    
-  </head>
-  <body>
-    <header class="clearfix">
-      
-      <h1>Nota Penjualan</h1>
-      <div id="company" class="clearfix">
-        <div>Sukorejo Jaya</div>
-        <div>Sukorejo, Tanggal</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
-
-        <div>Nomor Nota</div>
-
-      </div>
-      
-    </header>
-    <br/>
-    <br/>
-    <main>
-      <table>
-        <thead>
-          <tr>
-            <th class="service">SERVICE</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="service">Design</td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">26</td>
-            <td class="total">$1,040.00</td>
-          </tr>
-          <tr>
-            <td class="service">Development</td>
-            <td class="desc">Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
-          </tr>
-          <tr>
-            <td class="service">SEO</td>
-            <td class="desc">Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
-          </tr>
-          <tr>
-            <td class="service">Training</td>
-            <td class="desc">Initial training sessions for staff responsible for uploading web content</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">4</td>
-            <td class="total">$160.00</td>
-          </tr>
-          <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="4">TAX 25%</td>
-            <td class="total">$1,300.00</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
-          </tr>
-        </tbody>
-      </table>
-      
-    </main>
-    <footer>
-      
-    </footer>
+        td, tr, th{
+            padding:10px;
+            border:1px solid #000;
+            width:125px;
+        }
+        th{
+            background-color: #f3f3f3;
+        }
+        h4, p{
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table style="position: absolute; left: -215px; width: 200px; ">
+            <caption style="text-align: left; margin-left:8%; display: block;">
+                Nota Penjualan
+            </caption>
+            <thead>
+                <tr>
+                    <th>Kode Petani</th>
+                    <th>Nama Petani</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr>
+                    <td>Produk</td>
+                    <td>Harga</td>
+                </tr>               
+            </tbody>
+        </table>
+        <p style="text-align: right">Sukorejo, Tanggal</p>
 
 
-  </body>
+
+        <table style="position: absolute; top: 200px; left: -10px; width: 200px; ">
+            <thead>
+                <tr>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+
+            
+            <tbody>
+                <tr>
+                    <td>Produk</td>
+                    <td>Harga</td>
+                    <td>Qty</td>
+                    <td>Subtotal</td>
+                </tr>
+                
+                
+            </tbody>
+        </table>
+
+    </div>
+</body>
 </html>
