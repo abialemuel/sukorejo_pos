@@ -33,13 +33,10 @@
                         <thead style="font-size: 12px; text-align: center;">
                             <tr> 
 
-                                <th>ID</th>
+                                <th>ID Nota Penjualan</th>
                                 <th>Tanggal Penjualan</th>
                                 <th>Seri Gudang</th>
-                                <th>Seri Jarum</th>
-                                <th>Tiam</th>
-                                <th>Brutto</th>
-                                <th>Netto</th>
+                                
                                 <th>Harga</th>
                                 <th>Total</th>
 
@@ -56,10 +53,7 @@
                                     <td>{{ $sale->id }}</td>
                                     <td>{{ $sale->created_at }}</td>
                                     <td>{{ $sale->warehouse_code }}</td>
-                                    <td>{{ $sale->needle_code }}</td>
-                                    <td>{{ $sale->tiam }}</td>
-                                    <td>{{ $sale->bruto }}</td>
-                                    <td>{{ $sale->netto }}</td>
+                                    
                                     <td>{{ $sale->price }}</td>
                                     <td>{{ $sale->price }}</td>
 
