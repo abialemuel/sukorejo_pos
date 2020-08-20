@@ -111,15 +111,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label>Sisa / Kembalian</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="txtdue" id="txtdue" required readonly>
-                                </div>
-                            </div>
                         </div>
                     </div><!-- tax dis. etc -->
                     

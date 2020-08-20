@@ -108,11 +108,12 @@ class SalesController extends Controller
         return redirect()->route('sales.index');
     }
 
-    public function print_pdf($id)
+    public function printPdf($id)
     {
         //
-    	$pdf = PDF::loadview('pages.pdf.test');
-    	return $pdf->stream('test-pdf');
+        $sales = Sale::findOrFail($id);
+    	$pdf = PDF::loadview('pages.pdf.sales_report', compact('sales'));
+    	return $pdf->stream();
     }
 
     public function getNetto($bruto)
