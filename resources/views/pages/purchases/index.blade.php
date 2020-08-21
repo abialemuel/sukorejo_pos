@@ -58,7 +58,7 @@
                                     <td>{{ $purchase_order->purchased_at }}</td>
                                     <td>
                                         <center> 
-                                            <a href="{{  route('print', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('purchases.printPdf', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
                                             </a>
                                         </center>

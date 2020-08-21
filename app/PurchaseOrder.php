@@ -37,5 +37,12 @@ class PurchaseOrder extends Model
         return $this->morphMany(PaymentLog::class, 'paymentable');
     }
 
+    public function getPOId() {
+        $dateformat = str_replace('-','/', substr($this->purchased_at,0,8));
+        $farmer_code = $this->farmer['farmer_code'];
+
+        return $dateformat . $farmer_code . '/' . $this['id'];
+    }
+
 }
 

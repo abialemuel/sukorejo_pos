@@ -14,7 +14,7 @@
       <h1>Nota Penjualan</h1>
       <div id="company" class="clearfix">
         <div>Sukorejo Jaya</div>
-        <div>Sukorejo, Tanggal</div>
+        <div>Sukorejo, {{ $purchase_order->getPOId() }}</div>
         <div><a href="mailto:company@example.com">company@example.com</a></div>
 
         <div>Nomor Nota</div>
