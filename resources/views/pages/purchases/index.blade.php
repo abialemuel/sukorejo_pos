@@ -50,7 +50,7 @@
                             @foreach ($purchase_orders as $purchase_order)
                                 <tr>
                                     <td>{{ $purchase_order->id }}</td>
-                                    <td>{{ $purchase_order->purchased_at }}</td>
+                                    <td>{{ $purchase_order->getStringDate() }}</td>
                                     <td>{{ $purchase_order->farmer["farmer_code"] }}</td>
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
