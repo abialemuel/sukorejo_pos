@@ -33,12 +33,12 @@
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
                                 <th>ID</th>
+                                <th>Tanggal Pembayaran</th>
                                 <th>Kode Petani</th>
                                 <th>Nama Petani</th>
                                 <th>Desa</th>
                                 <th>Total</th>
-                                <th>Pembayaran</th>
-                                <th>Tgl</th>
+                                <th>Status</th>
 
                                 <th>Print</th>
                                 <th>Detail</th>
@@ -50,12 +50,12 @@
                             @foreach ($purchase_orders as $purchase_order)
                                 <tr>
                                     <td>{{ $purchase_order->id }}</td>
+                                    <td>{{ $purchase_order->purchased_at }}</td>
                                     <td>{{ $purchase_order->farmer["farmer_code"] }}</td>
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
                                     <td>{{ $purchase_order->payment_logs->sum('amount') }}</td>
-                                    <td>{{ $purchase_order->purchased_at }}</td>
                                     <td>
                                         <center> 
                                             <a href="{{  route('purchases.printPdf', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">

@@ -43,6 +43,5 @@ class PurchaseOrder extends Model
 
         return $dateformat . $farmer_code . '/' . $this['id'];
     }
-
 }
 

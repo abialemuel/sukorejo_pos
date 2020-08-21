@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Detail Data Timbangan - POS
+    Detail Data Penjualan - Anugerah Cahaya
 @endsection
 
 
@@ -21,7 +21,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Data Timbangan</h1>
+            <h1 class="h3 mb-2 text-gray-800">Data Penjualan</h1>
         </div>
             
 
@@ -69,19 +69,16 @@
                             <thead style=" font-size: 12px; text-align: center;">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Kode AC</th>
-                                    <th>Kode Petani</th>
-                                    <th>Nama Petani</th>
-                                    <th>Desa</th>
+                                    <th>Seri Gudang</th>
+                                    <th>Seri Jarum</th>
+                                    <th>Tiam</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody style=" font-size: 12px;">
                                     <tr>
-                                        <td>e.g</td>
                                         <td>e.g</td>
                                         <td>e.g</td>
                                         <td>e.g</td>
