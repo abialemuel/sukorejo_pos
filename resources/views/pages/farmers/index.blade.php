@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Petani - POS
+    Daftar Petani - Anugerah Cahaya
 @endsection
 
 

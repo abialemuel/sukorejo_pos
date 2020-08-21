@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Penjualan - POS
+    Input Data Penjualan - Anugerah Cahaya
 @endsection
 
 
@@ -66,12 +66,12 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" required></td>
                                     <td>
                                         <center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></center>
                                     </td>

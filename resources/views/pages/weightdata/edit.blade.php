@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Ubah Timbangan - POS
+    Ubah Data Timbangan - Anugerah Cahaya
 @endsection
 
 
@@ -71,10 +71,10 @@
                             <tbody class="text-sm" style="text-align: center;">
                                 <tr>
                                     <td>
-                                        <input type="number" min="1" class="form-control qty" name="bruto" value="{{ $weight_data->bruto }}" >
+                                        <input type="number" min="1" class="form-control qty" name="bruto" value="{{ $weight_data->bruto }}" required>
                                     </td>
                                     <td>
-                                        <input type="number" min="1" class="form-control qty" name="netto" value="{{ $weight_data->netto }}" >
+                                        <input type="number" min="1" class="form-control qty" name="netto" value="{{ $weight_data->netto }}" required>
                                     </td>
                                 </tr>
                             </tbody>

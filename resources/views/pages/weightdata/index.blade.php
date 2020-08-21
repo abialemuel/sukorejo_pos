@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Data Timbangan - POS
+    Data Timbangan - Anugerah Cahaya
 @endsection
 
 

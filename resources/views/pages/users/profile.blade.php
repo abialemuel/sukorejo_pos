@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Users Profile - POS
+    Profil User - Anugerah Cahaya
 @endsection
 
 

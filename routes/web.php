@@ -37,7 +37,7 @@ Route::prefix('/')
         Route::resource('weightdata', 'WeightController');
 
         Route::resource('reports', 'ReportController');
-        Route::get('/reports/print-pdf/{id}', 'ReportController@print_pdf')->name('print');
+        Route::get('/reports/print-pdf/{id}', 'ReportController@printPdf')->name('pnl.printPdf');
 
 
     });

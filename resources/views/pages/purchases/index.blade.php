@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Pembelian - POS
+    Data Pembelian - Anugerah Cahaya
 @endsection
 
 
@@ -23,8 +23,10 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-2 text-gray-800">Pembelian</h1>
         </div>
-            
+        <?php $role = Auth::user()->roles; ?>
 
+            
+        @if($role == "USER")
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -97,6 +99,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
     </div>
 @endsection

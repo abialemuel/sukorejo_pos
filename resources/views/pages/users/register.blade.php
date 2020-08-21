@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Add New Users
+    Registrasi User Baru - Anugerah Cahaya
 @endsection
 
 

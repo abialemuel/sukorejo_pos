@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Users Profile - POS
+    Ubah Data Petani - Anugerah Cahaya
 @endsection
 
 
@@ -46,7 +46,7 @@
                             class="form-control" 
                             id="inputKodePetani" 
                             name="farmer_code"
-                            value="{{ $farmers->farmer_code }}">
+                            value="{{ $farmers->farmer_code }}" readonly required>
                 </div>
             </div>
             <div class="form-group">
@@ -56,7 +56,7 @@
                             class="form-control" 
                             id="inputNamaPetani" 
                             name="name"
-                            value="{{ $farmers->name }}">
+                            value="{{ $farmers->name }}" required>
                 </div>
             </div>
             <div class="form-group">
@@ -66,7 +66,7 @@
                             class="form-control" 
                             id="inputArea" 
                             name="area"
-                            value="{{ $farmers->area }}">
+                            value="{{ $farmers->area }}" required>
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +74,7 @@
                 <div class="col-sm-12">
                     <textarea class="form-control" 
                             id="inputAddress" 
-                            name="address">{{ $farmers->address }}
+                            name="address" required>{{ $farmers->address }}
                     </textarea>
                 </div>
             </div>

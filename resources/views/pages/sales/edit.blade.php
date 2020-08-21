@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Penjualan - POS
+    Ubah Data Penjualan - Anugerah Cahaya
 @endsection
 
 
@@ -67,12 +67,12 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" value="{{ $sale->warehouse_code }}"></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" value="{{ $sale->needle_code }}"></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" value="{{ $sale->warehouse_code }}" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" value="{{ $sale->needle_code }}" required></td>
                                     <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" value="{{ $sale->tiam }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" value="{{ $sale->bruto }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" value="{{ $sale->netto }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" value="{{ $sale->price }}"></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" value="{{ $sale->bruto }}" required></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" value="{{ $sale->netto }}" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" value="{{ $sale->price }}" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>

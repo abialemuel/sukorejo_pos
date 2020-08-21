@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Detail Data Timbangan - POS
+    Detail Petani - Anugerah Cahaya
 @endsection
 
 
@@ -34,7 +34,7 @@
                             <div class="col-sm-2">
                                 <p>Created At: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->created_at }}</p>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <div class="col-sm-2">
                                 <p>Updated At: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->updated_at }}</p>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="col-sm-2">
                                 <p>Kode Petani: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->farmer_code }}</p>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="col-sm-2">
                                 <p>Nama Petani: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->name }}</p>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             <div class="col-sm-2">
                                 <p>Area Petani: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->area }}</p>
                             </div>
                         </div>
@@ -77,16 +77,16 @@
                             <div class="col-sm-2">
                                 <p>Alamat Lengkap Petani: </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->address }}</p>
                             </div>
                         </div>
 
                         <div class="row mb-4 mt-4">
                             <div class="col-sm-2">
-                                <p>Didaftarkan Oleh: </p>
+                                <p><strong>Didaftarkan Oleh: </strong></p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p>{{ $farmers->user["email"] }}</p>
                             </div>
                         </div>

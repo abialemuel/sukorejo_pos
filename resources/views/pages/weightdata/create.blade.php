@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Input Timbangan - POS
+    Input Data Timbangan - Anugerah Cahaya
 @endsection
 
 
@@ -74,8 +74,8 @@
                             <tbody class="text-sm" style="text-align: center;">
                                 <tr>
                         
-                                    <td><input type="number" min="1" class="form-control qty" name="bruto" ></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="netto" ></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="bruto" required></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="netto" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove">

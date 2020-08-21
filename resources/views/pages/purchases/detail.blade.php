@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Detail Data Pembelian - POS
+    Detail Data Pembelian - Anugerah Cahaya
 @endsection
 
 
@@ -15,6 +15,7 @@
 @endpush
 
 @section('content')
+    <?php $role = Auth::user()->roles; ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -24,7 +25,7 @@
             <h1 class="h3 mb-2 text-gray-800">Data Pembelian</h1>
         </div>
             
-
+        @if($role == "USER")
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -55,7 +56,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                            <p><strong>Desa Petani: </strong></p>
+                            <p>Desa Petani: </p>
                         </div>
                         <div class="col-sm-3">
                             <p>{{ $purchase->user["email"] }}</p>
@@ -69,6 +70,13 @@
                             <p>{{ $purchase->farmer["name"] }}</p>
                         </div>
 
+                        <div class="col-sm-2">
+                            <p><strong>Dibuat Oleh: </strong></p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>{{ $purchase->user["email"] }}</p>
+                        </div>
+
                     </div>
 
 
@@ -76,11 +84,12 @@
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
                                 <th>ID</th>
-                                <th>Desa</th>
+                                <th>AC Code</th>
+                                <th>Tiam</th>
                                 <th>Brutto</th>
                                 <th>Netto</th>
                                 <th>Harga</th>
-                                <th>Tiam</th>
+                                
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
@@ -88,10 +97,10 @@
                                 <tr>
                                     <td>{{ $purchase->id }}</td>
                                     <td>{{ $purchase->ac_code }}</td>
+                                    <td>{{ $purchase->tiam }}</td>
                                     <td>{{ $purchase->bruto }}</td>
                                     <td>{{ $purchase->netto }}</td>
                                     <td>{{ $purchase->price }}</td>
-                                    <td>{{ $purchase->tiam }}</td>
                                 </tr>
 
                         </tbody>
@@ -101,6 +110,7 @@
                 </div>
             
         </div>
+        @endif
 
     </div>
     <!-- /.container-fluid -->

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Detail Data Timbangan - POS
+    Detail Data Timbangan - Anugerah Cahaya
 @endsection
 
 
@@ -66,7 +66,7 @@
 
                         <div class="row mb-4 mt-4">
                             <div class="col-sm-2">
-                                <p>Created By: </p>
+                                <p><strong>Dibuat Oleh: </strong></p>
                             </div>
                             <div class="col-sm-2">
                                 <p>{{ $weight_data->user["email"] }}</p>

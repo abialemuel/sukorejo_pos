@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Users Profile - POS
+    Daftarkan Petani - Anugerah Cahaya
 @endsection
 
 
@@ -45,7 +45,7 @@
                             class="form-control" 
                             id="inputKodePetani" 
                             name="farmer_code"
-                            placeholder="Kode Petani">
+                            placeholder="Kode Petani" required>
                 </div>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
                             class="form-control" 
                             id="inputNamaPetani" 
                             name="name"
-                            placeholder="Nama Petani">
+                            placeholder="Nama Petani" required>
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +65,7 @@
                             class="form-control" 
                             id="inputArea" 
                             name="area"
-                            placeholder="Area / Desa Petani">
+                            placeholder="Area / Desa Petani" required>
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +74,7 @@
                     <textarea class="form-control" 
                             id="inputAddress" 
                             name="address"
-                            placeholder="Alamat Lengkap Petani"></textarea>
+                            placeholder="Alamat Lengkap Petani" required></textarea>
                 </div>
             </div>
             <div class="form-group">

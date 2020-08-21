@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Laporan Laba / Rugi - POS
+    Laporan Laba / Rugi - Anugerah Cahaya
 @endsection
 
 
@@ -21,7 +21,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Laba Rugi</h1>
+            <h1 class="h3 mb-2 text-gray-800">Laporan Laba / Rugi</h1>
         </div>
             
 
@@ -35,7 +35,7 @@
                                 <th>Date</th>                                
                                 <th>Total Penjualan</th>
                                 <th>Total Pembelian</th>
-                                <th>Laba Rugi</th>
+                                <th>Laba / Rugi</th>
                                
                                 <th>Print</th>
                             </tr>
@@ -51,7 +51,7 @@
                                     <td>
                                     <!-- Dummy Report Laba / Rugi -->
                                         <center> 
-                                            <a href="{{  route('print', $report->tiam) }}" target="_blank" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('pnl.printPdf', $report->tiam) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
                                             </a>
                                         </center>

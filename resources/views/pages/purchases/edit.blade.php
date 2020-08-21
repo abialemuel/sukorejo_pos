@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Pembelian - POS
+    Ubah Data Pembelian - Anugerah Cahaya
 @endsection
 
 @push('additional-style')
@@ -19,6 +19,7 @@
 @endpush
 
 @section('content')
+<?php $role = Auth::user()->roles; ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -27,6 +28,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-2 text-gray-800">Edit Pembelian</h1>
         </div>
+
             
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -37,7 +39,7 @@
                 </ul>
             </div>
         @endif
-
+        @if($role == "USER")
         <!-- form start -->
         <form  id="purchase_form" action="{{ route('purchases.update', $purchases->id) }}" method="POST">
             @csrf
@@ -94,11 +96,11 @@
                                 
                                 <tr>
 
-                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' value="{{ $purchases->ac_code }}"></td>
-                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" value="{{ $purchases->tiam }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" value="{{ $purchases->bruto }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" value="{{ $purchases->netto }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" value="{{ $purchases->price }}"></td>
+                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' value="{{ $purchases->ac_code }}" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" value="{{ $purchases->tiam }}" required></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" value="{{ $purchases->bruto }}" required></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" value="{{ $purchases->netto }}" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" value="{{ $purchases->price }}" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -129,6 +131,7 @@
 
             
         </form>
+        @endif
 
     </div>
     <!-- /.container-fluid -->
@@ -161,11 +164,11 @@
             
             var html='';
             html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' ></td>`
-            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]"></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" ></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" ></td>`
+            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' required></td>`
+            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" required></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" required></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" required readonly></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" required></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1

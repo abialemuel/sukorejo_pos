@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Pembelian - POS
+    Input Data Pembelian - Anugerah Cahaya
 @endsection
 
 @push('additional-style')

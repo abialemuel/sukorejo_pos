@@ -50,14 +50,14 @@
 
                         <div class="row mb-5 mt-4">
                             <div class="col-sm-2">
-                                <p>Sold At: </p>
+                                <p>Tanggal Penjualan: </p>
                             </div>
                             <div class="col-sm-3">
                                 <p>{{ $sale->sold_at }}</p>
                             </div>
 
                             <div class="col-sm-2">
-                                <p><strong>Created By: </strong></p>
+                                <p><strong>Dibuat Oleh: </strong></p>
                             </div>
                             <div class="col-sm-3">
                                 <p>{{ $sale->user["email"] }}</p>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Penjualan - POS
+    Data Penjualan - Anugerah Cahaya
 @endsection
 
 
