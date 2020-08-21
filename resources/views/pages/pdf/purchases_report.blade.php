@@ -64,8 +64,8 @@
                 </tr>               
             </tbody>
         </table>
-        <h4 style="text-align: right">Anugerah Cahaya</h4>
-        <p style="text-align: right">Sukorejo, {{ substr($purchase_order->purchased_at,0,10) }}</p>
+        <h4 style="text-align: right">Anugerah C ahaya</h4>
+        <p style="text-align: right">Sukorejo, {{ $purchase_order->getStringDate() }}</p>
 
 
 

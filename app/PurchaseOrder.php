@@ -43,5 +43,9 @@ class PurchaseOrder extends Model
 
         return $dateformat . $farmer_code . '/' . $this['id'];
     }
+
+    public function getStringDate() {
+        return substr($this->purchased_at,0,10);
+    }
 }
 
