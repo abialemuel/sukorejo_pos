@@ -41,7 +41,7 @@ class PurchaseOrder extends Model
         $dateformat = str_replace('-','/', substr($this->purchased_at,0,8));
         $farmer_code = $this->farmer['farmer_code'];
 
-        return $dateformat . $farmer_code . '/' . $this['id'];
+        return 'PO/' . $dateformat . $farmer_code . '/' . $this['id'];
     }
 
     public function getStringDate() {
