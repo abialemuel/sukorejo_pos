@@ -109,7 +109,38 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>                    
+                    </div>  
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            
+                            <div class="form-group">
+                                <label>Terbayar</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value=0 required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
 
                     <hr class="sidebar-divider d-none d-md-block">
                     <div class="row col-sm-6 col-lg-6">
@@ -125,11 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-            
+            </div>            
         </form>
         @endif
 

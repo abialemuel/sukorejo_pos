@@ -26,7 +26,6 @@
         <?php $role = Auth::user()->roles; ?>
 
             
-        @if($role == "USER")
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -34,18 +33,19 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
-                                <th>ID</th>
+                                <th>ID Nota Pembelian</th>
                                 <th>Tanggal Pembayaran</th>
                                 <th>Kode Petani</th>
                                 <th>Nama Petani</th>
                                 <th>Desa</th>
                                 <th>Total</th>
                                 <th>Status</th>
-
                                 <th>Print</th>
                                 <th>Detail</th>
+                                @if($role == "USER")
                                 <th>Ubah</th>
                                 <th>Hapus</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
@@ -73,7 +73,8 @@
                                             </a>
                                         </center>
                                     </td>
-        
+
+                                    @if($role == "USER")
                                     <td>
                                         <center> 
                                             <a href="{{ route('purchases.edit', $purchase_order->id) }}" class="btn btn-info">
@@ -81,6 +82,9 @@
                                             </a>
                                         </center>
                                     </td>
+                                    @endif
+
+                                    @if($role == "USER")
                                     <td>
                                         <center>
                                             <form action="{{ route('purchases.destroy', $purchase_order->id) }}" method="POST" class="d-inline">
@@ -92,6 +96,7 @@
                                             </form>
                                         </center>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -99,7 +104,6 @@
                 </div>
             </div>
         </div>
-        @endif
 
     </div>
 @endsection

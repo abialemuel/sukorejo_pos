@@ -35,14 +35,14 @@
                             <p>Created At: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->created_at }}</p>
+                            <p>{{ $purchase_orders->created_at }}</p>
                         </div>
 
                         <div class="col-sm-2">
                             <p>Updated At: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->updated_at }}</p>
+                            <p>{{ $purchase_orders->updated_at }}</p>
                         </div>
                     </div>
                     
@@ -52,14 +52,14 @@
                             <p>Nama Petani: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->farmer["name"] }}</p>
+                            <p>{{ $purchase_orders->farmer["name"] }}</p>
                         </div>
 
                         <div class="col-sm-2">
                             <p>Desa Petani: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->user["email"] }}</p>
+                            <p>{{ $purchase_orders->farmer["area"] }}</p>
                         </div>
                     </div>
                     <div class="row mb-5 mt-4">
@@ -67,14 +67,14 @@
                             <p>Status Pembelian: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->farmer["name"] }}</p>
+                            <p></p>
                         </div>
 
                         <div class="col-sm-2">
                             <p><strong>Dibuat Oleh: </strong></p>
                         </div>
                         <div class="col-sm-3">
-                            <p>{{ $purchase->user["email"] }}</p>
+                            <p>{{ $purchase_orders->user["name"] }}</p>
                         </div>
 
                     </div>
@@ -93,7 +93,7 @@
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
-
+                            @foreach ($purchase_orders->purchases as $purchase)
                                 <tr>
                                     <td>{{ $purchase->id }}</td>
                                     <td>{{ $purchase->ac_code }}</td>
@@ -102,7 +102,7 @@
                                     <td>{{ $purchase->netto }}</td>
                                     <td>{{ $purchase->price }}</td>
                                 </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                     
