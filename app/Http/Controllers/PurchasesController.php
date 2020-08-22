@@ -53,9 +53,9 @@ class PurchasesController extends Controller
         ]);
         $purchase_order->payment_logs()->save($paymnet_log);
 
-        # create purchase items
+        # create purchased items
         foreach ($purchases as $purchase)
-            $created_data = Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
+            Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
         
         # additional action for print
         if ($submit_value == 'simpan_cetak') {

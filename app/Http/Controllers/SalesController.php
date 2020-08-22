@@ -28,11 +28,37 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         //
-        $sold_at = $request->except('sales','txttotal','txtpaid','txtdue');
+        $submit_value = $request->input('submit_value');
+        $warehouse_code = $request->input('warehouse_code');
+        $needle_code = $request->input('needle_code');
+        $amount = $request->input('txttotal');
+        $paid_amount = $request->input('txtpaid');
         $sales = $request->input('sales');
+        $sold_at = $request->input('sold_at');
 
+        # create sales_order
+        $sales_order = SalesOrder::create([
+            'warehouse_code' => $warehouse_code,
+            'needle_code' => $needle_code,
+            'sold_at' => $sold_at,
+            'amount' => $amount,
+        ]);
+
+        # create payment logs
+        $paymnet_log = new PaymentLog([
+            'amount' => $paid_amount,
+        ]);
+        $sales_order->payment_logs()->save($paymnet_log);
+
+        # create sold items
         foreach ($sales as $sale)
-            SalesOrder::create($sold_at + $sale);
+            Sale::create($sale + ['sales_order_id' => $sales_order->id]);
+
+        # additional action for print
+        if ($submit_value == 'simpan_cetak') {
+            return response()->json($sales_order);
+        }
+
         return redirect()->route('sales.index');
     }
 
