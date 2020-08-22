@@ -34,7 +34,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
-                                <th>No.Nota</th>
+                                <th>Nota Pembelian</th>
                                 <th>Tanggal Pembayaran</th>
                                 <th>Kode Petani</th>
                                 <th>Nama Petani</th>
