@@ -33,11 +33,10 @@
                         <thead style="font-size: 12px; text-align: center;">
                             <tr> 
 
-                                <th>ID Nota Penjualan</th>
+                                <th>Nota Penjualan</th>
                                 <th>Tanggal Penjualan</th>
                                 <th>Seri Gudang</th>
-                                
-                                <th>Harga</th>
+                                <th>Seri Jarum</th>
                                 <th>Total</th>
 
                                 <th>Print</th>
@@ -48,19 +47,16 @@
                         </thead>
 
                         <tbody style="font-size: 12px;">
-                            @foreach ($sales as $sale)
+                            @foreach ($sales_orders as $sales_order)
                                 <tr>
-                                    <td>{{ $sale->id }}</td>
-                                    <td>{{ $sale->created_at }}</td>
-                                    <td>{{ $sale->warehouse_code }}</td>
-                                    
-                                    <td>{{ $sale->price }}</td>
-                                    <td>{{ $sale->price }}</td>
-
-
+                                    <td>{{ $sales_order->getSOId() }}</td>
+                                    <td>{{ $sales_order->getStringDate() }}</td>
+                                    <td>{{ $sales_order->warehouse_code }}</td>
+                                    <td>{{ $sales_order->needle_code }}</td>
+                                    <td>{{ $sales_order->amount }}</td>
                                     <td>
                                         <center> 
-                                            <a href="{{  route('sales.printPdf', $sale->id) }}" target="_blank" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('sales.printPdf', $sales_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
                                             </a>
                                         </center>
@@ -68,7 +64,7 @@
         
                                     <td>
                                         <center> 
-                                            <a href="{{ route('sales.show', $sale->id) }}" class="btn btn-success btn-sm">
+                                            <a href="{{ route('sales.show', $sales_order->id) }}" class="btn btn-success btn-sm">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                         </center>
@@ -76,14 +72,14 @@
         
                                     <td>
                                         <center> 
-                                            <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-info">
+                                            <a href="{{ route('sales.edit', $sales_order->id) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </center>
                                     </td>
                                     <td>
                                         <center>
-                                            <form action="{{ route('sales.destroy', $sale->id) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('sales.destroy', $sales_order->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger">

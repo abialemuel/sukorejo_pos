@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use App\SalesOrder;
 use App\Weight;
 use PDF;
 
@@ -17,9 +18,8 @@ class SalesController extends Controller
     public function index()
     {
         //
-        $sales = Sale::all();
-        // $sales->total = $sales->price * $sales->netto;
-        return view('pages.sales.index', compact('sales'));
+        $sales_orders = SalesOrder::all();
+        return view('pages.sales.index', compact('sales_orders'));
     }
 
     /**
@@ -47,7 +47,7 @@ class SalesController extends Controller
         $sales = $request->input('sales');
 
         foreach ($sales as $sale)
-            Sale::create($sold_at + $sale);
+            SalesOrder::create($sold_at + $sale);
         return redirect()->route('sales.index');
     }
 
@@ -60,7 +60,7 @@ class SalesController extends Controller
     public function show($id)
     {
         //
-        $sale = Sale::findOrFail($id);
+        $sale = SalesOrder::findOrFail($id);
         return view('pages.sales.detail',[
             'sale' => $sale
         ]);
@@ -76,7 +76,7 @@ class SalesController extends Controller
     public function edit($id)
     {
         //
-        $sale = Sale::findOrFail($id);
+        $sale = SalesOrder::findOrFail($id);
 
         return view('pages.sales.edit', compact('sale'));        
     }
@@ -102,7 +102,7 @@ class SalesController extends Controller
     public function destroy($id)
     {
         //
-        $item = Sale::findorFail($id);
+        $item = SalesOrder::findorFail($id);
         $item->delete();
 
         return redirect()->route('sales.index');
@@ -111,8 +111,8 @@ class SalesController extends Controller
     public function printPdf($id)
     {
         //
-        $sales = Sale::findOrFail($id);
-    	$pdf = PDF::loadview('pages.pdf.sales_report', compact('sales'));
+        $sales_order = SalesOrder::findOrFail($id);
+    	$pdf = PDF::loadview('pages.pdf.sales_report', compact('sales_order'));
     	return $pdf->stream();
     }
 
