@@ -94,11 +94,8 @@
                     <td>{{ $purchase->getTotalAmount() }}</td>
                 </tr>
               @endforeach
-                
-                
             </tbody>
         </table>
-
     </div>
 </body>
 </html>
