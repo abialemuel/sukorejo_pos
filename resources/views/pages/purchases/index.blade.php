@@ -57,7 +57,7 @@
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
-                                    <td>{{ $purchase_order->payment_logs->sum('amount') }}</td>
+                                    <td>{{ $purchase_order->isPaid() }}</td>
                                     <td>
                                         <center> 
                                             <a href="{{  route('purchases.printPdf', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">

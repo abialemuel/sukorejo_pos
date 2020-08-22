@@ -47,5 +47,9 @@ class PurchaseOrder extends Model
     public function getStringDate() {
         return substr($this->purchased_at,0,10);
     }
+
+    public function isPaid() {
+        return ($this->amount == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum';
+    }
 }
 

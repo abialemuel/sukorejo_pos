@@ -75,7 +75,7 @@ class PurchasesController extends Controller
         
         # additional action for print
         if ($submit_value == 'simpan_cetak') {
-            return response()->json($created_data);
+            return response()->json($purchase_order);
         }
 
         return redirect()->route('purchases.index');

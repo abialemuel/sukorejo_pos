@@ -91,7 +91,7 @@
                     <td>{{ $purchase['bruto'] }}</td>
                     <td>{{ $purchase['netto'] }}</td>
                     <td>{{ $purchase['price'] }}</td>
-                    <td>{{ $purchase['netto'] * $purchase['price'] }}</td>
+                    <td>{{ $purchase->getTotalAmount() }}</td>
                 </tr>
               @endforeach
                 

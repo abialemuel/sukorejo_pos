@@ -33,5 +33,8 @@ class Purchase extends Model
         return $this->belongsTo(PurchaseOrder::class);
     }
 
+    public function getTotalAmount() {
+        return $this->price * $this->netto;
+    }
 }
 
