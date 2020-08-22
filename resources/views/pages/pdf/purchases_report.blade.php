@@ -64,7 +64,7 @@
                 </tr>               
             </tbody>
         </table>
-        <h4 style="text-align: right">Anugerah C ahaya</h4>
+        <h4 style="text-align: right">Anugerah Cahaya</h4>
         <p style="text-align: right">Sukorejo, {{ $purchase_order->getStringDate() }}</p>
 
 
@@ -94,11 +94,8 @@
                     <td>{{ $purchase->getTotalAmount() }}</td>
                 </tr>
               @endforeach
-                
-                
             </tbody>
         </table>
-
     </div>
 </body>
 </html>
