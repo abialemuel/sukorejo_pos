@@ -33,7 +33,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
-                                <th>ID Nota Pembelian</th>
+                                <th>No.Nota</th>
                                 <th>Tanggal Pembayaran</th>
                                 <th>Kode Petani</th>
                                 <th>Nama Petani</th>
@@ -51,13 +51,13 @@
                         <tbody style=" font-size: 12px;">
                             @foreach ($purchase_orders as $purchase_order)
                                 <tr>
-                                    <td>{{ $purchase_order->id }}</td>
+                                    <td>{{ $purchase_order->getPOId() }}</td>
                                     <td>{{ $purchase_order->getStringDate() }}</td>
                                     <td>{{ $purchase_order->farmer["farmer_code"] }}</td>
                                     <td>{{ $purchase_order->farmer["name"] }}</td>
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
-                                    <td>{{ $purchase_order->payment_logs->sum('amount') }}</td>
+                                    <td>{{ $purchase_order->isPaid() }}</td>
                                     <td>
                                         <center> 
                                             <a href="{{  route('purchases.printPdf', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
