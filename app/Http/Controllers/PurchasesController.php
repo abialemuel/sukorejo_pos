@@ -14,11 +14,6 @@ use Debugbar;
 
 class PurchasesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
@@ -27,11 +22,6 @@ class PurchasesController extends Controller
         return view('pages.purchases.index',compact('purchase_orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -40,12 +30,6 @@ class PurchasesController extends Controller
         return view('pages.purchases.create',compact('farmers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -81,12 +65,6 @@ class PurchasesController extends Controller
         return redirect()->route('purchases.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -97,12 +75,6 @@ class PurchasesController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -112,13 +84,6 @@ class PurchasesController extends Controller
         return view('pages.purchases.edit', compact('purchases','farmers'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -135,22 +100,15 @@ class PurchasesController extends Controller
         return redirect()->route('purchases.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $item = PurchaseOrder::findorFail($id);
         
-        // delete purchase items
+        // delete purchased items
         $item->purchases->each->delete();
 
         // delete purchase order
         $item->delete();
-
 
         return redirect()->route('purchases.index');
     }
