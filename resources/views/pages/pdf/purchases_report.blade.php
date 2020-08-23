@@ -96,6 +96,21 @@
               @endforeach
             </tbody>
         </table>
+
+        <table style="position: absolute; bottom: -260px; left: 150px; width: 120px; ">
+            <thead>
+                <tr>
+                    <th>Tgl. Pelunasan</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $purchase_order->getPaidDate() }}</td>
+                    <td>{{ $purchase_order->amount }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
