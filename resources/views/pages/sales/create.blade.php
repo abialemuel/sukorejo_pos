@@ -79,7 +79,7 @@
                                 <tr>
                                     <td><input type="text" min="1" class="form-control" name="sales[0][tiam]" id="sales[0][tiam]" required></td>
                                     <td><input type="number" min="1" class="form-control qty bruto" name="sales[0][bruto]" id="sales[0][bruto]" required></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[0][netto]" id="sales[0[netto]" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[0][netto]" id="sales[0][netto]" required readonly></td>
                                     <td><input type="number" min="1" class="form-control qty price" name="sales[0][price]" id="sales[0][price]" required></td>
                                     <td>
                                         <center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></center>
@@ -254,6 +254,8 @@
             while (stillExist) {
                 netto = document.getElementById(`sales[${i}][netto]`);
                 price = document.getElementById(`sales[${i}][price]`);
+                console.log(netto)
+                console.log(price)
                 if  (netto != null && price != null) {
                     sumRow = netto.value * price.value;
                     sumTotal += sumRow;
