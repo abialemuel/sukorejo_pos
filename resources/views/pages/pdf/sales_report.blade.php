@@ -54,9 +54,6 @@
         <h4 style="text-align: right">Anugerah Cahaya</h4>
         <p style="text-align: right">Sukorejo, {{ $sales_order->getStringDate() }}</p>
 
-
-
-
         <table style="position: absolute; left: -150px; width: 100px; ">
             <thead>
                 <tr>
@@ -94,7 +91,6 @@
                 @endforeach
             </tbody>
         </table>
-
     </div>
 </body>
 </html>

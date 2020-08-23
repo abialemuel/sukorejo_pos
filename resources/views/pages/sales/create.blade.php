@@ -129,7 +129,7 @@
                     <div class="row col-sm-6 col-lg-6">
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
-                                <input type="submit" value="Simpan & Cetak" class="btn btn-success">
+                                <input type="submit" id="simpan_cetak" value="Simpan & Cetak" class="btn btn-success">
 
                             </div>
                         </div>
@@ -238,7 +238,7 @@
                     createdData = response;
                     //--------------------------
             }});
-
+            console.log(createdData)
             var id = createdData['id'];
             var new_pdf_url = '{{ route("sales.printPdf", ":id") }}';
             new_pdf_url = new_pdf_url.replace(':id', id); 
