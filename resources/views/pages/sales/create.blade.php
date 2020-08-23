@@ -53,8 +53,6 @@
                         <table class="table table-bordered" width="100%" cellspacing="0" id="saletable">
                             <thead>
                                 <tr style="font-size: 11px; text-align: center;">
-                                    <th>Seri Gudang</th>
-                                    <th>Seri Jarum</th>
                                     <th>Tiam</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
@@ -66,8 +64,6 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[0][warehouse_code]" id="sales[0][warehouse_code]" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[0][needle_code]" id="sales[0][needle_code]" required></td>
                                     <td><input type="text" min="1" class="form-control" name="sales[0][tiam]" id="sales[0][tiam]" required></td>
                                     <td><input type="number" min="1" class="form-control qty bruto" name="sales[0][bruto]" id="sales[0][bruto]" required></td>
                                     <td><input type="number" min="1" class="form-control qty netto" name="sales[0][netto]" id="sales[0[netto]" required readonly></td>
