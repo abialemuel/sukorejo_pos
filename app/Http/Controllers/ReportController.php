@@ -13,18 +13,15 @@ class ReportController extends Controller
     //
     public function index()
     {
-        $reports = DB::table('sales AS s')
-            ->join('purchases AS p', function ($join) {
+        $reports = DB::table('sales_orders AS s')
+            ->join('purchase_orders AS p', function ($join) {
                 $join->on(DB::raw("DATE_FORMAT(s.created_at , '%Y-%m-%d')"), "=", DB::raw("DATE_FORMAT(p.created_at , '%Y-%m-%d')"));
             })
             ->select(DB::raw("DATE_FORMAT(s.created_at , '%Y-%m-%d') AS created_at"), 
-                             's.tiam', 's.bruto', 
-                             's.netto' , 's.warehouse_code', 
-                             's.needle_code', 
-                             DB::raw('SUM(s.price) as total_sales'), 
-                             DB::raw('SUM(p.price) as total_purchases'), 
-                             (DB::raw('SUM(s.price)-SUM(p.price) as total_laba_rugi')))
-            ->groupBy(DB::raw("DATE_FORMAT(s.created_at , '%Y-%m-%d')"), 's.tiam', 's.bruto', 's.netto', 's.warehouse_code', 's.needle_code')
+                             DB::raw('SUM(s.amount) as total_sales'), 
+                             DB::raw('SUM(p.amount) as total_purchases'), 
+                             (DB::raw('SUM(s.amount)-SUM(p.amount) as total_laba_rugi')))
+            ->groupBy(DB::raw("DATE_FORMAT(s.created_at , '%Y-%m-%d')"))
             ->get();
         return view('pages.reports.index', compact('reports'));
     }

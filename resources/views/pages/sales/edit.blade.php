@@ -77,10 +77,10 @@
                             <tbody style="font-size: 11px; text-align: center;">
                                 @foreach ($sale_orders->sales as $sale)
                                     <tr>
-                                        <td><input type="text" min="1" class="form-control" name="sale[{{ $loop->index }}][tiam]" value="{{ $sale->tiam }}"></td>
-                                        <td><input type="number" min="1" class="form-control qty bruto" name="sale[{{ $loop->index }}][bruto]" value="{{ $sale->bruto }}" required></td>
-                                        <td><input type="number" min="1" class="form-control qty netto" name="sale[{{ $loop->index }}][netto]" value="{{ $sale->netto }}" required readonly></td>
-                                        <td><input type="number" min="1" class="form-control qty price" name="sale[{{ $loop->index }}][price]" value="{{ $sale->price }}" required></td>
+                                        <td><input type="text" min="1" class="form-control" name="sale[{{ $loop->index }}][tiam]" id="sale[{{ $loop->index }}][tiam]" value="{{ $sale->tiam }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty bruto" name="sale[{{ $loop->index }}][bruto]" id="sale[{{ $loop->index }}][bruto]" value="{{ $sale->bruto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty netto" name="sale[{{ $loop->index }}][netto]" id="sale[{{ $loop->index }}][netto]" value="{{ $sale->netto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty price" name="sale[{{ $loop->index }}][price]" id="sale[{{ $loop->index }}][price]" value="{{ $sale->price }}" required readonly></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -96,8 +96,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly value="{{ $sale->price }}">
-                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
+                                    <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly value="{{ $sale_orders->amount }}">
                                 </div>
                             </div>
                         </div>
@@ -214,25 +213,6 @@
             window.location.reload();
         })
 
-        // count total amount
-        $("#hitung_total").click(function(e){
-            var stillExist = true;
-            var i = 0;
-            var sumTotal = 0
-            while (stillExist) {
-                netto = document.getElementById(`sales[${i}][netto]`);
-                price = document.getElementById(`sales[${i}][price]`);
-                if  (netto != null && price != null) {
-                    sumRow = netto.value * price.value;
-                    sumTotal += sumRow;
-                } else {
-                    stillExist = false;
-                }
-
-                i += 1;
-            }
-            document.getElementById('txttotal').value = sumTotal;
-        }) 
 
     });
 </script>

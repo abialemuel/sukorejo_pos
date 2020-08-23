@@ -38,6 +38,7 @@
                                 <th>Seri Gudang</th>
                                 <th>Seri Jarum</th>
                                 <th>Total</th>
+                                <th>Status</th>
 
                                 <th>Print</th>
                                 <th>Detail</th>
@@ -54,6 +55,7 @@
                                     <td>{{ $sales_order->warehouse_code }}</td>
                                     <td>{{ $sales_order->needle_code }}</td>
                                     <td>{{ $sales_order->amount }}</td>
+                                    <td>{{ $sales_order->isPaid() }}</td>
                                     <td>
                                         <center> 
                                             <a href="{{  route('sales.printPdf', $sales_order->id) }}" target="_blank" class="btn btn-warning btn-sm">

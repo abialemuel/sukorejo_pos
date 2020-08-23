@@ -111,7 +111,6 @@
                                     </div>
 
                                     <input type="number" class="form-control total" name="txttotal" id="txttotal" value="{{ $purchase_orders->amount }}" required readonly>
-                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
                                 </div>
                             </div>
                         </div>
@@ -226,26 +225,6 @@
             window.open(new_pdf_url);
             window.location.reload();
         })
-
-        // count total amount
-        $("#hitung_total").click(function(e){
-            var stillExist = true;
-            var i = 0;
-            var sumTotal = 0
-            while (stillExist) {
-                netto = document.getElementById(`purchases[${i}][netto]`);
-                price = document.getElementById(`purchases[${i}][price]`);
-                if  (netto != null && price != null) {
-                    sumRow = netto.value * price.value;
-                    sumTotal += sumRow;
-                } else {
-                    stillExist = false;
-                }
-
-                i += 1;
-            }
-            document.getElementById('txttotal').value = sumTotal;
-        }) 
 
 
 

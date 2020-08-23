@@ -37,7 +37,7 @@
                                 <th>Total Pembelian</th>
                                 <th>Laba / Rugi</th>
                                
-                                <th>Print</th>
+                                <!-- <th>Print</th> -->
                             </tr>
                         </thead>
                         <tbody style="font-size: 12px;">
@@ -48,14 +48,14 @@
                                     <td>{{ $report->total_purchases }}</td>
                                     <td>{{ $report->total_laba_rugi }}</td>
 
-                                    <td>
-                                    <!-- Dummy Report Laba / Rugi -->
+                                    <!-- <td>
+                                    
                                         <center> 
-                                            <a href="{{  route('pnl.printPdf', $report->tiam) }}" target="_blank" class="btn btn-warning btn-sm">
+                                            <a href="{{  route('pnl.printPdf', $report->created_at) }}" target="_blank" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-print" aria-hidden="true"></i>
                                             </a>
                                         </center>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             @endforeach
                         </tbody>
