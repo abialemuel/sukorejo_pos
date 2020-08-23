@@ -109,7 +109,7 @@
                                     </div>
 
                                     <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
-                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary">
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary" style="margin-left: 10px;">
                                 </div>
                             </div>
                         </div>

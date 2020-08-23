@@ -95,8 +95,8 @@
                                 <tr>
                                     <td>{{ $purchase->ac_code }}</td>
                                     <td>{{ $purchase->tiam }}</td>
-                                    <td>{{ $purchase->bruto }}</td>
-                                    <td>{{ $purchase->netto }}</td>
+                                    <td>{{ $purchase->bruto }} Kg</td>
+                                    <td>{{ $purchase->netto }} Kg</td>
                                     <td>{{ $purchase->price }}</td>
                                 </tr>
                             @endforeach

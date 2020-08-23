@@ -29,7 +29,7 @@
 
 
         <!-- form start -->
-        <form  action="{{ route('sales.update', $sale->id) }}" method="POST" name="">
+        <form  action="{{ route('sales.update', $sale_orders->id) }}" method="POST" name="">
             @csrf
             @method('PUT')
 
@@ -37,14 +37,27 @@
             <div class="card shadow">
                 <div class="card-body">
                     <div class="row mt-4 mb-5">
-                        <div class="col-sm-6">
-                        <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
-                            <div class="col-sm-12">
-                                <div class="input-group date">
-                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <p>{{ $sale->sold_at }}</p>
-                                </div>
-                            </div>
+                        <div class="col-sm-2">
+                            <p>Terjual Pada: </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>{{ $sale_orders->created_at }}</p>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <p>Seri Gudang: </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>{{ $sale_orders->warehouse_code }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-5">
+                        <div class="col-sm-2">
+                            <p>Seri Jarum: </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>{{ $sale_orders->needle_code }}</p>
                         </div>
                     </div>
 
@@ -54,34 +67,22 @@
                         <table class="table table-bordered" width="100%" cellspacing="0" id="saletable">
                             <thead>
                                 <tr style="font-size: 11px; text-align: center;">
-                                    <th>Seri Gudang</th>
-                                    <th>Seri Jarum</th>
                                     <th>Tiam</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga</th>
-                                    <th>
-                                        <button type="button" class="btn btn-success btn-sm btnadd" name="add">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][warehouse_code]" value="{{ $sale->warehouse_code }}" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][needle_code]" value="{{ $sale->needle_code }}" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][tiam]" value="{{ $sale->tiam }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[{{ $loop->index }}][bruto]" value="{{ $sale->bruto }}" required></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[{{ $loop->index }}][netto]" value="{{ $sale->netto }}" required readonly></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[{{ $loop->index }}][price]" value="{{ $sale->price }}" required></td>
-                                    <td>
-                                        <center>
-                                            <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
-                                        </center>
-                                    </td>
+                                   
                                 </tr>
                             </thead>
                             <tbody style="font-size: 11px; text-align: center;">
-                               
+                                @foreach ($sale_orders->sales as $sale)
+                                    <tr>
+                                        <td><input type="text" min="1" class="form-control" name="sale[{{ $loop->index }}][tiam]" value="{{ $sale->tiam }}"></td>
+                                        <td><input type="number" min="1" class="form-control qty bruto" name="sale[{{ $loop->index }}][bruto]" value="{{ $sale->bruto }}" required></td>
+                                        <td><input type="number" min="1" class="form-control qty netto" name="sale[{{ $loop->index }}][netto]" value="{{ $sale->netto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty price" name="sale[{{ $loop->index }}][price]" value="{{ $sale->price }}" required></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

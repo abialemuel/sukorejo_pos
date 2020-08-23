@@ -35,32 +35,46 @@
                                 <p>Created At: </p>
                             </div>
                             <div class="col-sm-3">
-                                <p>{{ $sale->created_at }}</p>
+                                <p>{{ $sale_orders->created_at }}</p>
                             </div>
 
                             <div class="col-sm-2">
                                 <p>Updated At: </p>
                             </div>
                             <div class="col-sm-3">
-                                <p>{{ $sale->updated_at }}</p>
+                                <p>{{ $sale_orders->updated_at }}</p>
                             </div>
                         </div>
-
-
 
                         <div class="row mb-5 mt-4">
                             <div class="col-sm-2">
                                 <p>Tanggal Penjualan: </p>
                             </div>
                             <div class="col-sm-3">
-                                <p>{{ $sale->sold_at }}</p>
+                                <p>{{ $sale_orders->sold_at }}</p>
                             </div>
 
                             <div class="col-sm-2">
                                 <p><strong>Dibuat Oleh: </strong></p>
                             </div>
                             <div class="col-sm-3">
-                                <p>{{ $sale->user["email"] }}</p>
+                                <p>{{ $sale_orders->user["email"] }}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5 mt-4">
+                            <div class="col-sm-2">
+                                <p>Seri Gudang: </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{ $sale_orders->warehouse_code }}</p>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <p><strong>Seri Jarum: </strong></p>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>{{ $sale_orders->needle_code }}</p>
                             </div>
                         </div>
 
@@ -68,9 +82,6 @@
                         <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
                             <thead style=" font-size: 12px; text-align: center;">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Seri Gudang</th>
-                                    <th>Seri Jarum</th>
                                     <th>Tiam</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
@@ -78,15 +89,14 @@
                                 </tr>
                             </thead>
                             <tbody style=" font-size: 12px;">
+                                @foreach ($sale_orders->sales as $sale)
                                     <tr>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
-                                        <td>e.g</td>
+                                        <td>{{ $sale->tiam }}</td>
+                                        <td>{{ $sale->bruto }}</td>
+                                        <td>{{ $sale->netto }}</td>
+                                        <td>{{ $sale->price }}</td>
                                     </tr>
+                                @endforeach
 
                             </tbody>
                         </table>

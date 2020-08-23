@@ -66,9 +66,9 @@ class SalesController extends Controller
     public function show($id)
     {
         //
-        $sale = SalesOrder::findOrFail($id);
+        $sale_orders = SalesOrder::findOrFail($id);
         return view('pages.sales.detail',[
-            'sale' => $sale
+            'sale_orders' => $sale_orders
         ]);
         
     }
@@ -76,9 +76,9 @@ class SalesController extends Controller
     public function edit($id)
     {
         //
-        $sale = SalesOrder::findOrFail($id);
+        $sale_orders = SalesOrder::findOrFail($id);
 
-        return view('pages.sales.edit', compact('sale'));        
+        return view('pages.sales.edit', compact('sale_orders'));        
     }
 
     public function update(Request $request, $id)
