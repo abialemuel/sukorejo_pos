@@ -175,8 +175,6 @@
             var html='';
                 html+='<tr>';
                         
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" id="sales[${i}][warehouse_code]" required></td>`
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" id="sales[${i}][needle_code]" required></td>`
                 html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" id="sales[${i}][tiam]" required ></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" id="sales[${i}][bruto]" required></td>`
                 html+=`<td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" id="sales[${i}][netto]" required readonly></td>`
