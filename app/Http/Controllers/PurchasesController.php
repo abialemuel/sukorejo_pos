@@ -48,10 +48,10 @@ class PurchasesController extends Controller
         ]);
 
         # create payment logs
-        $paymnet_log = new PaymentLog([
+        $payment_log = new PaymentLog([
             'amount' => $paid_amount,
         ]);
-        $purchase_order->payment_logs()->save($paymnet_log);
+        $purchase_order->payment_logs()->save($payment_log);
 
         # create purchased items
         foreach ($purchases as $purchase)
@@ -89,10 +89,10 @@ class PurchasesController extends Controller
         $paid_amount = $request->input('txtpaid');
         
         # create payment logs
-        $paymnet_log = new PaymentLog([
+        $payment_log = new PaymentLog([
             'amount' => $paid_amount,
         ]);
-        $purchase_order->payment_logs()->save($paymnet_log);
+        $purchase_order->payment_logs()->save($payment_log);
 
         return redirect()->route('purchases.index');
     }
