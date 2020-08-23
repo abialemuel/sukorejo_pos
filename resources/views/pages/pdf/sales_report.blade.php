@@ -49,38 +49,49 @@
     <div class="container">
         
         <caption style="position: absolute; text-align: left; display: block;">
-            Nota Penjualan #
+            {{ $sales_order->getSOId() }}
         </caption>
         <h4 style="text-align: right">Anugerah Cahaya</h4>
-        <p style="text-align: right">Sukorejo, Tanggal</p>
+        <p style="text-align: right">Sukorejo, {{ $sales_order->getStringDate() }}</p>
 
 
 
 
-        <table style="position: absolute; top: 40px; left: -3px; width: 445px; ">
+        <table style="position: absolute; left: -150px; width: 100px; ">
             <thead>
                 <tr>
                     <th>Seri Gudang</th>
                     <th>Seri Jarum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $sales_order['warehouse_code'] }}</td>
+                    <td>{{ $sales_order['needle_code'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="position: absolute; top: 80px; left: -3px; width: 445px; ">
+            <thead>
+                <tr>
+                    <th>Tiam</th>
                     <th>Brutto</th>
                     <th>Netto</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
                 </tr>
             </thead>
-
-            
             <tbody>
-                <tr>
-                    <td>Kode AC</td>
-                    <td>Tiam</td>
-                    <td>Brutto</td>
-                    <td>Netto</td>
-                    <td>Harga</td>
-                    <td>Jumlah</td>
-                </tr>
-                
-                
+                @foreach ($sales_order->sales as $sale)
+                    <tr>
+                        <td>{{ $sale['tiam'] }}</td>
+                        <td>{{ $sale['bruto'] }}</td>
+                        <td>{{ $sale['netto'] }}</td>
+                        <td>{{ $sale['price'] }}</td>
+                        <td>{{ $sale->getTotalAmount() }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 

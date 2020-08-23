@@ -22,4 +22,12 @@ class Sale extends Model
     public function user(){
         return $this->belongsTo( User::class, 'created_by', 'id' );
     }
+
+    public function getTotalAmount() {
+        return $this->price * $this->netto;
+    }
+
+    public function sales_order(){
+        return $this->belongsTo(SaleOrder::class);
+    }
 }
