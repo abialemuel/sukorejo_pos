@@ -254,8 +254,6 @@
             while (stillExist) {
                 netto = document.getElementById(`sales[${i}][netto]`);
                 price = document.getElementById(`sales[${i}][price]`);
-                console.log(netto)
-                console.log(price)
                 if  (netto != null && price != null) {
                     sumRow = netto.value * price.value;
                     sumTotal += sumRow;
