@@ -109,7 +109,7 @@
                                     </div>
 
                                     <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
-                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary">
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- tax dis. etc -->              
 
                     <hr class="sidebar-divider d-none d-md-block">
                     <div class="row col-sm-6 col-lg-6">
@@ -273,7 +273,7 @@
                 i += 1;
             }
             document.getElementById('txttotal').value = sumTotal;
-        }) 
+     }) 
 
 
 

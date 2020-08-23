@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <div class="row mt-4 mb-5">
                         <div class="col-sm-6">
-                        <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
+                            <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
@@ -47,8 +47,21 @@
                         </div>
                     </div>
 
-
-
+                    <div class="row mt-4 mb-5">
+                        <div class="col-sm-4">
+                            <label for="inputWarehouseCode" class="col-sm-4 control-label">Seri Gudang</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="warehouse_code" name="warehouse_code" placeholder="Seri Gudang" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="inputNeedleCode" class="col-sm-4 control-label">Seri Jarum</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="needle_code" name="needle_code" placeholder="Seri Jarum" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="table-responsive col-sm-12 mb-5">
                         <table class="table table-bordered" width="100%" cellspacing="0" id="saletable">
                             <thead>

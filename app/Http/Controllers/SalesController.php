@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PaymentLog;
 use App\Sale;
 use App\SalesOrder;
 use App\Weight;

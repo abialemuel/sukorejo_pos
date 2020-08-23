@@ -15,6 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('sales_order_id');
             $table->string('tiam');
             $table->double('bruto');
             $table->double('netto');
