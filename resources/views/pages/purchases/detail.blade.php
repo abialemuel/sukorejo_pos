@@ -67,7 +67,7 @@
                             <p>Status Pembelian: </p>
                         </div>
                         <div class="col-sm-3">
-                            <p></p>
+                            <p>{{ $purchase_orders->isPaid() }}</p>
                         </div>
 
                         <div class="col-sm-2">

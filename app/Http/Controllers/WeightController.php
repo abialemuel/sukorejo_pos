@@ -39,9 +39,11 @@ class WeightController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all();
+        $data = $request->input('weight');
+        foreach ($data as $weight_data)
+            $created_data = Weight::create($weight_data);
 
-        Weight::create($data);
+        // Weight::create($data);
         return redirect()->route('weightdata.index');
     }
 

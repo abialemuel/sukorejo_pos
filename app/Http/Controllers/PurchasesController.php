@@ -78,14 +78,16 @@ class PurchasesController extends Controller
     public function edit($id)
     {
         //
-        $purchases = Purchase::findOrFail($id);
-        $farmers = Farmer::all();
+        $purchase_orders = PurchaseOrder::findOrFail($id);
 
-        return view('pages.purchases.edit', compact('purchases','farmers'));
+        return view('pages.purchases.edit', compact('purchase_orders'));
     }
 
     public function update(Request $request, $id)
     {
+        
+
+
         //
         $submit_value = $request->input('submit_value');
         $farmer_data = $request->except('purchases', 'submit_value');

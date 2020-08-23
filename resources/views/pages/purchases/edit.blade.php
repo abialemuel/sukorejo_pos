@@ -41,7 +41,7 @@
         @endif
         @if($role == "USER")
         <!-- form start -->
-        <form  id="purchase_form" action="{{ route('purchases.update', $purchases->id) }}" method="POST">
+        <form  id="purchase_form" action="{{ route('purchases.update', $purchase_orders->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -57,9 +57,7 @@
                             <div class="col-sm-8">
                             
                                 <select class="kode-petani form-control" name="farmer_id">
-                                    @foreach ($farmers as $farmer)
-                                        <option value="{{ $farmer->id }}">{{ $farmer->name }}</option>
-                                    @endforeach
+                                        <option value="{{ $purchase_orders->farmer['id'] }}">{{ $purchase_orders->farmer['name'] }}</option>
                                 </select>    
                             </div>
                         </div>
@@ -69,7 +67,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="purchased_at" name="purchased_at" value="{{ date('d-m-Y', strtotime($purchases->created_at)) }}" data-date-format="yyyy-mm-dd" >
+                                    <input type="text" class="form-control datepicker" id="purchased_at" name="purchased_at" value="{{ date('d-m-Y', strtotime($purchase_orders->created_at)) }}" data-date-format="yyyy-mm-dd" >
                                 </div>
                             </div>
                         </div>
@@ -93,20 +91,21 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm" style="font-size: 11px; text-align: center;">
-                                
-                                <tr>
+                                @foreach ($purchase_orders->purchases as $purchase)
+                                    <tr>
 
-                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' value="{{ $purchases->ac_code }}" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" value="{{ $purchases->tiam }}" required></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" value="{{ $purchases->bruto }}" required></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" value="{{ $purchases->netto }}" required readonly></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="purchases[0][price]" value="{{ $purchases->price }}" required></td>
-                                    <td>
-                                        <center>
-                                            <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
-                                        </center>
-                                    </td>
-                                </tr>
+                                        <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' id='purchases[0][ac_code]' value="{{ $purchase->ac_code }}" required></td>
+                                        <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" id="purchases[0][tiam]" value="{{ $purchase->tiam }}" required></td>
+                                        <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]" value="{{ $purchase->bruto }}" required></td>
+                                        <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" value="{{ $purchase->netto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" value="{{ $purchase->price }}" required></td>
+                                        <td>
+                                            <center>
+                                                <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>  
@@ -120,7 +119,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="number" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="number" class="form-control total" name="txttotal" id="txttotal" value="{{ $purchase_orders->amount }}" required readonly>
                                     <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
                                 </div>
                             </div>
@@ -136,7 +135,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value=0 required>
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value="" required>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +178,6 @@
             todayHighlight: true,
         });
     });
-    
 
     $(document).ready(function(){
 
@@ -191,11 +189,11 @@
             
             var html='';
             html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' required></td>`
-            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" required></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" required></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" required readonly></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty" name="purchases[${i}][price]" required></td>`
+            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]' required></td>`
+            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" id='purchases[${i}][tiam]' required></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]" required></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]" required></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1
@@ -238,40 +236,56 @@
             
         }) 
 
-        // refresh after print pdf
-        // $('#simpan_cetak').click(function(e){
-        // e.preventDefault();
-        // /*Ajax Request Header setup*/
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+        // open new tab for print pdf & reload page
+        $("#simpan_cetak").click(function(e){
+            e.preventDefault();
+            const form = document.getElementById('purchase_form');
 
-        // $('#simpan_cetak').html('Sending..');
+            var params = $('#purchase_form').serialize() + "&submit_value=simpan_cetak";
+            
+            var createdData;
+
+            $.ajax({
+                url: "{{ route('purchases.store') }}",
+                method: 'post',
+                data: params,
+                async: false,
+                success: function(response){
+                    //------------------------
+                    createdData = response;
+                    //--------------------------
+            }});
+
+            var id = createdData['id'];
+            var new_pdf_url = '{{ route("purchases.printPdf", ":id") }}';
+            new_pdf_url = new_pdf_url.replace(':id', id); 
+            window.open(new_pdf_url);
+            window.location.reload();
+        })
+
+        // count total amount
+        $("#hitung_total").click(function(e){
+            var stillExist = true;
+            var i = 0;
+            var sumTotal = 0
+            while (stillExist) {
+                netto = document.getElementById(`purchases[${i}][netto]`);
+                price = document.getElementById(`purchases[${i}][price]`);
+                if  (netto != null && price != null) {
+                    sumRow = netto.value * price.value;
+                    sumTotal += sumRow;
+                } else {
+                    stillExist = false;
+                }
+
+                i += 1;
+            }
+            document.getElementById('txttotal').value = sumTotal;
+        }) 
+
+
+
         
-        // /* Submit form data using ajax*/
-        // $.ajax({
-        //     url: "{{ route('purchases.store') }}",
-        //     method: 'post',
-        //     data: $('#purchase_form').serialize(),
-        //     success: function(response){
-        //         //------------------------
-        //             $('#simpan_cetak').html('Submit');
-        //             $('#res_message').show();
-        //             $('#res_message').html(response.msg);
-        //             $('#msg_div').removeClass('d-none');
-
-        //             // document.getElementById("purchase_form").reset(); 
-        //             // setTimeout(function(){
-        //             // $('#res_message').hide();
-        //             // $('#msg_div').hide();
-        //             // },10000);
-        //         //--------------------------
-        //     }});
-        // });
-
-     }) 
-
+    });
 </script>
 @endpush

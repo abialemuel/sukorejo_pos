@@ -273,7 +273,7 @@
                 i += 1;
             }
             document.getElementById('txttotal').value = sumTotal;
-     }) 
+        }) 
 
 
 

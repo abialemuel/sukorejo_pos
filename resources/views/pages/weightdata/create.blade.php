@@ -74,8 +74,8 @@
                             <tbody class="text-sm" style="text-align: center;">
                                 <tr>
                         
-                                    <td><input type="number" min="1" class="form-control qty" name="bruto" required></td>
-                                    <td><input type="number" min="1" class="form-control qty" name="netto" required></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="weight[0][bruto]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty" name="weight[0][netto]" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove">
@@ -122,17 +122,19 @@
     });
 
     $(document).ready(function(){
-            
+
+        var i = 1 
         //Button Add
         $(document).on('click','.btnadd',function(){
             
             var html='';
             html+='<tr>';
                     
-            html+='<td><input type="number" min="1" class="form-control qty" name="bruto" ></td>'
-            html+='<td><input type="number" min="1" class="form-control qty" name="netto" ></td>';
-            html+='<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>'; 
-                    
+            html+=`<td><input type="number" min="1" class="form-control qty" name="weight[${i}][bruto]" id="weight[${i}][bruto]"></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty" name="weight[${i}][netto]" id="weight[${i}][netto]"></td>`;
+            html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
+            
+            i+=1
             $('#weightdatatable').append(html);        
         }) // btnadd end here 
 

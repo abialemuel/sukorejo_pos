@@ -42,7 +42,7 @@ class SalesOrder extends Model
     }
 
     public function isPaid() {
-        return ($this->amount == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum';
+        return ($this->amount == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum Lunas';
     }
 }
 

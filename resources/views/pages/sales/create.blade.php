@@ -29,7 +29,7 @@
 
 
         <!-- form start -->
-        <form  action="{{ route('sales.store') }}" method="POST" name="">
+        <form id="sale_form" action="{{ route('sales.store') }}" method="POST" name="">
             @csrf
 
             <!-- DataTales Example -->
@@ -66,12 +66,12 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" required></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" required></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" required readonly></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[0][warehouse_code]" id="sales[0][warehouse_code]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[0][needle_code]" id="sales[0][needle_code]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[0][tiam]" id="sales[0][tiam]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[0][bruto]" id="sales[0][bruto]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[0][netto]" id="sales[0[netto]" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[0][price]" id="sales[0][price]" required></td>
                                     <td>
                                         <center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></center>
                                     </td>
@@ -93,6 +93,7 @@
                                     </div>
 
                                     <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly>
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary" style="margin-left: 10px;">                                    
                                 </div>
                             </div>
                         </div>
@@ -165,12 +166,12 @@
             var html='';
                 html+='<tr>';
                         
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>`
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" id="sales[${i}][warehouse_code]" required></td>`
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" id="sales[${i}][needle_code]" required></td>`
+                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" id="sales[${i}][tiam]" required ></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" id="sales[${i}][bruto]" required></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" id="sales[${i}][netto]" required readonly></td>`
+                html+=`<td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" id="sales[${i}][price]" required></td>`
                 html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
                         
                 i+=1
@@ -182,8 +183,6 @@
         $(document).on('click','.btnremove',function(){
          
             $(this).closest('tr').remove(); 
-            // calculate(0,0);
-            // $("#txtpaid").val(0);
             
         }) // btnremove end here  
 
@@ -213,21 +212,52 @@
             });  
         }) //netto ends here
 
-        $(document).delegate(".price","keyup change" ,function(){
-            calculate();
-            
-        }) //total bayar ends here
+        // open new tab for print pdf & reload page
+        $("#simpan_cetak").click(function(e){
+            e.preventDefault();
+            const form = document.getElementById('sale_form');
 
-        function calculate(){  
-            var price=0;
-            var bruto=0;
-            var netto=0;
-            var total=0;         
-            $(".price").each(function(){
-                total = total+($(this).val()*1);     
-            })
-            $(".total").val(total.toFixed(2)); 
-        }// function calculate end here 
+            var params = $('#sale_form').serialize() + "&submit_value=simpan_cetak";
+            
+            var createdData;
+
+            $.ajax({
+                url: "{{ route('sales.store') }}",
+                method: 'post',
+                data: params,
+                async: false,
+                success: function(response){
+                    //------------------------
+                    createdData = response;
+                    //--------------------------
+            }});
+
+            var id = createdData['id'];
+            var new_pdf_url = '{{ route("sales.printPdf", ":id") }}';
+            new_pdf_url = new_pdf_url.replace(':id', id); 
+            window.open(new_pdf_url);
+            window.location.reload();
+        })
+
+        // count total amount
+        $("#hitung_total").click(function(e){
+            var stillExist = true;
+            var i = 0;
+            var sumTotal = 0
+            while (stillExist) {
+                netto = document.getElementById(`sales[${i}][netto]`);
+                price = document.getElementById(`sales[${i}][price]`);
+                if  (netto != null && price != null) {
+                    sumRow = netto.value * price.value;
+                    sumTotal += sumRow;
+                } else {
+                    stillExist = false;
+                }
+
+                i += 1;
+            }
+            document.getElementById('txttotal').value = sumTotal;
+        }) 
 
     });
 </script>
