@@ -4,29 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sale;
+use App\SalesOrder;
 use App\Weight;
 use PDF;
 
 class SalesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
-        $sales = Sale::all();
-        // $sales->total = $sales->price * $sales->netto;
-        return view('pages.sales.index', compact('sales'));
+        $sales_orders = SalesOrder::all();
+        return view('pages.sales.index', compact('sales_orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -34,75 +25,75 @@ class SalesController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
-        $sold_at = $request->except('sales','txttotal','txtpaid','txtdue');
+        $submit_value = $request->input('submit_value');
+        $warehouse_code = $request->input('warehouse_code');
+        $needle_code = $request->input('needle_code');
+        $amount = $request->input('txttotal');
+        $paid_amount = $request->input('txtpaid');
         $sales = $request->input('sales');
+        $sold_at = $request->input('sold_at');
 
+        # create sales_order
+        $sales_order = SalesOrder::create([
+            'warehouse_code' => $warehouse_code,
+            'needle_code' => $needle_code,
+            'sold_at' => $sold_at,
+            'amount' => $amount,
+        ]);
+
+        # create payment logs
+        $paymnet_log = new PaymentLog([
+            'amount' => $paid_amount,
+        ]);
+        $sales_order->payment_logs()->save($paymnet_log);
+
+        # create sold items
         foreach ($sales as $sale)
-            Sale::create($sold_at + $sale);
+            Sale::create($sale + ['sales_order_id' => $sales_order->id]);
+
+        # additional action for print
+        if ($submit_value == 'simpan_cetak') {
+            return response()->json($sales_order);
+        }
+
         return redirect()->route('sales.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
-        $sale = Sale::findOrFail($id);
+        $sale = SalesOrder::findOrFail($id);
         return view('pages.sales.detail',[
             'sale' => $sale
         ]);
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
-        $sale = Sale::findOrFail($id);
+        $sale = SalesOrder::findOrFail($id);
 
         return view('pages.sales.edit', compact('sale'));        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
-        $item = Sale::findorFail($id);
+        $item = SalesOrder::findorFail($id);
+
+        // delete sold items
+        $item->sales->each->delete();
+        
+        // delete sales order
         $item->delete();
 
         return redirect()->route('sales.index');
@@ -111,8 +102,8 @@ class SalesController extends Controller
     public function printPdf($id)
     {
         //
-        $sales = Sale::findOrFail($id);
-    	$pdf = PDF::loadview('pages.pdf.sales_report', compact('sales'));
+        $sales_order = SalesOrder::findOrFail($id);
+    	$pdf = PDF::loadview('pages.pdf.sales_report', compact('sales_order'));
     	return $pdf->stream();
     }
 

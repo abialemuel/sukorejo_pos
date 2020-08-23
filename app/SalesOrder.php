@@ -7,7 +7,7 @@ use App\Http\Traits\Blameable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class PurchaseOrder extends Model
+class SalesOrder extends Model
 {
     //
     use Blameable;
@@ -19,33 +19,26 @@ class PurchaseOrder extends Model
         
     ];
 
-
-    public function farmer()
-    {
-        return $this->belongsTo(Farmer::class);
-    }
-
     public function user(){
         return $this->belongsTo(User::class, 'created_by', 'id' );
     }
 
-    public function purchases(){
-        return $this->hasMany(Purchase::class);
+    public function sales(){
+        return $this->hasMany(Sale::class);
     }
 
     public function payment_logs(){
         return $this->morphMany(PaymentLog::class, 'paymentable');
     }
 
-    public function getPOId() {
-        $dateformat = str_replace('-','/', substr($this->purchased_at,0,8));
-        $farmer_code = $this->farmer['farmer_code'];
+    public function getSOId() {
+        $dateformat = str_replace('-','/', substr($this->sold_at,0,8));
 
-        return 'PO/' . $dateformat . $farmer_code . '/' . $this['id'];
+        return 'SO/' . $dateformat . $this['id'];
     }
 
     public function getStringDate() {
-        return substr($this->purchased_at,0,10);
+        return substr($this->sold_at,0,10);
     }
 
     public function isPaid() {
