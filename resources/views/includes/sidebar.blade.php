@@ -8,7 +8,7 @@
         <div class="sidebar-brand-icon ">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Sukorejo</div>
+        <div class="sidebar-brand-text mx-3">Anugerah Cahaya</div>
       </a>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">

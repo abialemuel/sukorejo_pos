@@ -42,7 +42,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="sold_at" name="sold_at" placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d', strtotime($sale->created_at)) }}" data-date-format="yyyy-mm-dd" >
+                                    <p>{{ $sale->sold_at }}</p>
                                 </div>
                             </div>
                         </div>
@@ -67,12 +67,12 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" value="{{ $sale->warehouse_code }}" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" value="{{ $sale->needle_code }}" required></td>
-                                    <td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" value="{{ $sale->tiam }}"></td>
-                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" value="{{ $sale->bruto }}" required></td>
-                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" value="{{ $sale->netto }}" required readonly></td>
-                                    <td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" value="{{ $sale->price }}" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][warehouse_code]" value="{{ $sale->warehouse_code }}" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][needle_code]" value="{{ $sale->needle_code }}" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="sales[{{ $loop->index }}][tiam]" value="{{ $sale->tiam }}"></td>
+                                    <td><input type="number" min="1" class="form-control qty bruto" name="sales[{{ $loop->index }}][bruto]" value="{{ $sale->bruto }}" required></td>
+                                    <td><input type="number" min="1" class="form-control qty netto" name="sales[{{ $loop->index }}][netto]" value="{{ $sale->netto }}" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty price" name="sales[{{ $loop->index }}][price]" value="{{ $sale->price }}" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -96,6 +96,7 @@
                                     </div>
 
                                     <input type="text" class="form-control total" name="txttotal" id="txttotal" required readonly value="{{ $sale->price }}">
+                                    <input type="button" id= "hitung_total" name="hitung_total" value="Hitung Total" class="btn btn-primary"  style="margin-left: 10px;">
                                 </div>
                             </div>
                         </div>
@@ -114,15 +115,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label>Sisa / Kembalian</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="txtdue" id="txtdue" required readonly>
-                                </div>
-                            </div>
                         </div>
                     </div><!-- tax dis. etc -->
                     
@@ -170,37 +162,6 @@
 
     $(document).ready(function(){
             
-        var i = 1;
-        //Button Add
-        $(document).on('click','.btnadd',function(){
-            
-            var html='';
-                html+='<tr>';
-                        
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][warehouse_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][needle_code]" ></td>`
-                html+=`<td><input type="text" min="1" class="form-control" name="sales[${i}][tiam]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty bruto" name="sales[${i}][bruto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty netto" name="sales[${i}][netto]" ></td>`
-                html+=`<td><input type="number" min="1" class="form-control qty price" name="sales[${i}][price]" ></td>`
-                html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
-                        
-                i+=1
-                $('#saletable').append(html);
-                        
-        }) // btnadd end here 
-
-        //Button Remove
-        $(document).on('click','.btnremove',function(){
-         
-            $(this).closest('tr').remove(); 
-            // calculate(0,0);
-            // $("#txtpaid").val(0);
-            
-        }) // btnremove end here  
-
-
-
         $(document).on('change','.bruto',function(){
          
             var bruto = $(this).closest('.bruto').val();
@@ -225,21 +186,52 @@
             });  
         }) //netto ends here
 
-        $(document).delegate(".price","keyup change" ,function(){
-            calculate();
-            
-        }) //total bayar ends here
+        // open new tab for print pdf & reload page
+        $("#simpan_cetak").click(function(e){
+            e.preventDefault();
+            const form = document.getElementById('sale_form');
 
-        function calculate(){  
-            var price=0;
-            var bruto=0;
-            var netto=0;
-            var total=0;         
-            $(".price").each(function(){
-                total = total+($(this).val()*1);     
-            })
-            $(".total").val(total.toFixed(2)); 
-        }// function calculate end here 
+            var params = $('#sale_form').serialize() + "&submit_value=simpan_cetak";
+            
+            var createdData;
+
+            $.ajax({
+                url: "{{ route('sales.store') }}",
+                method: 'post',
+                data: params,
+                async: false,
+                success: function(response){
+                    //------------------------
+                    createdData = response;
+                    //--------------------------
+            }});
+
+            var id = createdData['id'];
+            var new_pdf_url = '{{ route("sales.printPdf", ":id") }}';
+            new_pdf_url = new_pdf_url.replace(':id', id); 
+            window.open(new_pdf_url);
+            window.location.reload();
+        })
+
+        // count total amount
+        $("#hitung_total").click(function(e){
+            var stillExist = true;
+            var i = 0;
+            var sumTotal = 0
+            while (stillExist) {
+                netto = document.getElementById(`sales[${i}][netto]`);
+                price = document.getElementById(`sales[${i}][price]`);
+                if  (netto != null && price != null) {
+                    sumRow = netto.value * price.value;
+                    sumTotal += sumRow;
+                } else {
+                    stillExist = false;
+                }
+
+                i += 1;
+            }
+            document.getElementById('txttotal').value = sumTotal;
+        }) 
 
     });
 </script>

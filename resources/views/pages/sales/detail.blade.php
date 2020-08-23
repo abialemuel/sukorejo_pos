@@ -86,7 +86,6 @@
                                         <td>e.g</td>
                                         <td>e.g</td>
                                         <td>e.g</td>
-                                        
                                     </tr>
 
                             </tbody>

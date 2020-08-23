@@ -83,19 +83,16 @@
                     <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
-                                <th>ID</th>
                                 <th>AC Code</th>
                                 <th>Tiam</th>
                                 <th>Brutto</th>
                                 <th>Netto</th>
-                                <th>Harga</th>
-                                
+                                <th>Harga</th>  
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
                             @foreach ($purchase_orders->purchases as $purchase)
                                 <tr>
-                                    <td>{{ $purchase->id }}</td>
                                     <td>{{ $purchase->ac_code }}</td>
                                     <td>{{ $purchase->tiam }}</td>
                                     <td>{{ $purchase->bruto }}</td>

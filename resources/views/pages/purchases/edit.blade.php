@@ -67,7 +67,8 @@
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
-                                    <input type="text" class="form-control datepicker" id="purchased_at" name="purchased_at" value="{{ date('d-m-Y', strtotime($purchase_orders->created_at)) }}" data-date-format="yyyy-mm-dd" >
+                                    <p>{{ date('d-m-Y', strtotime($purchase_orders->created_at)) }}</p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -83,27 +84,17 @@
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
-                                    <th>
-                                        <button type="button" class="btn btn-success btn-sm btnadd" name="add">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="text-sm" style="font-size: 11px; text-align: center;">
                                 @foreach ($purchase_orders->purchases as $purchase)
                                     <tr>
 
-                                        <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' id='purchases[0][ac_code]' value="{{ $purchase->ac_code }}" required></td>
-                                        <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" id="purchases[0][tiam]" value="{{ $purchase->tiam }}" required></td>
-                                        <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]" value="{{ $purchase->bruto }}" required></td>
-                                        <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" value="{{ $purchase->netto }}" required readonly></td>
-                                        <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" value="{{ $purchase->price }}" required></td>
-                                        <td>
-                                            <center>
-                                                <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
-                                            </center>
-                                        </td>
+                                        <td><input type='text' min='1' class='form-control' name='purchases[{{ $loop->index }}][ac_code]' id='purchases[{{ $loop->index }}][ac_code]' value="{{ $purchase->ac_code }}" required readonly></td>
+                                        <td><input type="text" min="1" class="form-control" name="purchases[{{ $loop->index }}][tiam]" id="purchases[{{ $loop->index }}][tiam]" value="{{ $purchase->tiam }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty bruto" name="purchases[{{ $loop->index }}][bruto]" id="purchases[{{ $loop->index }}][bruto]" value="{{ $purchase->bruto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
+                                        <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -183,33 +174,6 @@
 
         $('.kode-petani').select2();
 
-        var i = 1;
-        //Button Add
-        $(document).on('click','.btnadd',function(){
-            
-            var html='';
-            html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]' required></td>`
-            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" id='purchases[${i}][tiam]' required></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]" required></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]" required></td>`
-            html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
-
-            i+=1
-            $('#purchasetable').append(html);                
-            
-        }); // btnadd end here 
-        
-
-        //Button Remove
-        $(document).on('click','.btnremove',function(){
-         
-            $(this).closest('tr').remove(); 
-            // calculate(0,0);
-            // $("#txtpaid").val(0);
-            
-        }) // btnremove end here  
 
         $(document).on('change','.bruto',function(){
          
