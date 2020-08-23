@@ -48,10 +48,10 @@ class PurchasesController extends Controller
         ]);
 
         # create payment logs
-        $paymnet_log = new PaymentLog([
+        $payment_log = new PaymentLog([
             'amount' => $paid_amount,
         ]);
-        $purchase_order->payment_logs()->save($paymnet_log);
+        $purchase_order->payment_logs()->save($payment_log);
 
         # create purchased items
         foreach ($purchases as $purchase)
@@ -85,20 +85,15 @@ class PurchasesController extends Controller
 
     public function update(Request $request, $id)
     {
+        $purchase_order = PurchaseOrder::findOrFail($id);
+        $paid_amount = $request->input('txtpaid');
         
+        # create payment logs
+        $payment_log = new PaymentLog([
+            'amount' => $paid_amount,
+        ]);
+        $purchase_order->payment_logs()->save($payment_log);
 
-
-        //
-        $submit_value = $request->input('submit_value');
-        $farmer_data = $request->except('purchases', 'submit_value');
-        $purchases = $request->input('purchases');
-
-        // foreach ($purchases as $purchase)
-        //     Purchase::update($farmer_data + $purchase);
-        
-        // $item = Purchase::findOrFail($id);
-
-        $item->update($data);
         return redirect()->route('purchases.index');
     }
 

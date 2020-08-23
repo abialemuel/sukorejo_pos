@@ -46,10 +46,10 @@ class SalesController extends Controller
         ]);
 
         # create payment logs
-        $paymnet_log = new PaymentLog([
+        $payment_log = new PaymentLog([
             'amount' => $paid_amount,
         ]);
-        $sales_order->payment_logs()->save($paymnet_log);
+        $sales_order->payment_logs()->save($payment_log);
 
         # create sold items
         foreach ($sales as $sale)
@@ -84,6 +84,16 @@ class SalesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $sales_order = SalesOrder::findOrFail($id);
+        $paid_amount = $request->input('txtpaid');
+        
+        # create payment logs
+        $payment_log = new PaymentLog([
+            'amount' => $paid_amount,
+        ]);
+        $sales_order->payment_logs()->save($payment_log);
+
+        return redirect()->route('sales.index');
     }
 
     public function destroy($id)
