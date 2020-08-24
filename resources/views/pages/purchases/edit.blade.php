@@ -80,7 +80,7 @@
                             <thead class="text-lg" style="text-align: center;">
                                 <tr>
                                     <th>Seri AC</th>
-                                    <th>Tiam</th>
+                                    <th>Seri Tani</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
@@ -91,7 +91,7 @@
                                     <tr>
 
                                         <td><input type='text' min='1' class='form-control' name='purchases[{{ $loop->index }}][ac_code]' id='purchases[{{ $loop->index }}][ac_code]' value="{{ $purchase->ac_code }}" required readonly></td>
-                                        <td><input type="text" min="1" class="form-control" name="purchases[{{ $loop->index }}][tiam]" id="purchases[{{ $loop->index }}][tiam]" value="{{ $purchase->tiam }}" required readonly></td>
+                                        <td><input type="text" min="1" class="form-control" name="purchases[{{ $loop->index }}][seri_tani]" id="purchases[{{ $loop->index }}][seri_tani]" value="{{ $purchase->seri_tani }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty bruto" name="purchases[{{ $loop->index }}][bruto]" id="purchases[{{ $loop->index }}][bruto]" value="{{ $purchase->bruto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>

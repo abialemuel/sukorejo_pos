@@ -70,7 +70,7 @@
                             <thead class="text-lg" style="text-align: center;">
                                 <tr>
                                     <th>Seri AC</th>
-                                    <th>Tiam</th>
+                                    <th>Seri Tani</th>
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
@@ -82,7 +82,7 @@
                                 </tr>
                                 <tr>
                                     <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' id='purchases[0][ac_code]' required></td>
-                                    <td><input type="text" min="1" class="form-control" name="purchases[0][tiam]" id="purchases[0][tiam]" required></td>
+                                    <td><input type="text" min="1" class="form-control" name="purchases[0][seri_tani]" id="purchases[0][seri_tani]" required></td>
                                     <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]" required></td>
                                     <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" required readonly></td>
                                     <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" required></td>
@@ -182,7 +182,7 @@
             var html='';
             html+=`<tr>`;
             html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]' required></td>`
-            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][tiam]" id='purchases[${i}][tiam]' required></td>`
+            html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][seri_tani]" id='purchases[${i}][seri_tani]' required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]" required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
             html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]" required></td>`

@@ -7,7 +7,7 @@
     <title>Laporan Pembelian - Anugerah Cahaya</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
-        @page { size: 10,5cm 14,8cm landscape; }
+        @page { size: 13,9cm 24,1cm landscape; }
         body{
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             color:#333;
@@ -35,7 +35,7 @@
         td, tr, th{
             padding:5px;
             border:1px solid #000;
-            width:60px;
+            width:80px;
         }
         th{
             background-color: #f3f3f3;
@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="container">
-        <table style="position: absolute; left: -150px; width: 100px; ">
+        <table style="position: absolute; left: -320px; width: 100px; ">
             <caption style="text-align: left; display: block;">
                   {{ $purchase_order->getPOId() }}
             </caption>
@@ -70,11 +70,11 @@
 
 
 
-        <table style="position: absolute; top: 80px; left: -3px; width: 445px; ">
+        <table style="position: absolute; top: 90px; left: -5px; width: 820px; ">
             <thead>
                 <tr>
                     <th>Kode AC</th>
-                    <th>Tiam</th>
+                    <th>Seri Tani</th>
                     <th>Brutto</th>
                     <th>Netto</th>
                     <th>Harga</th>
@@ -87,7 +87,7 @@
               @foreach ($purchase_order->purchases as $purchase)
                 <tr>
                     <td>{{ $purchase['ac_code'] }}</td>
-                    <td>{{ $purchase['tiam'] }}</td>
+                    <td>{{ $purchase['seri_tani'] }}</td>
                     <td>{{ $purchase['bruto'] }}</td>
                     <td>{{ $purchase['netto'] }}</td>
                     <td>{{ $purchase['price'] }}</td>
@@ -97,7 +97,7 @@
             </tbody>
         </table>
 
-        <table style="position: absolute; bottom: -260px; left: 150px; width: 120px; ">
+        <table style="position: absolute; bottom: -360px; left: 320px; width: 120px; ">
             <thead>
                 <tr>
                     <th>Tgl. Pelunasan</th>

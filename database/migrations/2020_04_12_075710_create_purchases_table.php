@@ -17,7 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('purchase_order_id');
             $table->string('ac_code');
-            $table->string('tiam');
+            $table->string('seri_tani');
             $table->double('bruto');
             $table->double('netto');
             $table->double('price');

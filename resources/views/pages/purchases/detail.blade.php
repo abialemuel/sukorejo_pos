@@ -84,7 +84,7 @@
                         <thead style=" font-size: 12px; text-align: center;">
                             <tr>
                                 <th>AC Code</th>
-                                <th>Tiam</th>
+                                <th>Seri Tani</th>
                                 <th>Brutto</th>
                                 <th>Netto</th>
                                 <th>Harga</th>  
@@ -94,7 +94,7 @@
                             @foreach ($purchase_orders->purchases as $purchase)
                                 <tr>
                                     <td>{{ $purchase->ac_code }}</td>
-                                    <td>{{ $purchase->tiam }}</td>
+                                    <td>{{ $purchase->seri_tani }}</td>
                                     <td>{{ $purchase->bruto }} Kg</td>
                                     <td>{{ $purchase->netto }} Kg</td>
                                     <td>{{ $purchase->price }}</td>
