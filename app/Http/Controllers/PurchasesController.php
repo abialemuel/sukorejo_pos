@@ -36,7 +36,6 @@ class PurchasesController extends Controller
         $submit_value = $request->input('submit_value');
         $farmer_id = $request->input('farmer_id');
         $amount = $request->input('txttotal');
-        $paid_amount = $request->input('txtpaid');
         $purchases = $request->input('purchases');
         $purchased_at = $request->input('purchased_at');
 
@@ -46,12 +45,6 @@ class PurchasesController extends Controller
             'purchased_at' => $purchased_at,
             'amount' => $amount,
         ]);
-
-        # create payment logs
-        $payment_log = new PaymentLog([
-            'amount' => $paid_amount,
-        ]);
-        $purchase_order->payment_logs()->save($payment_log);
 
         # create purchased items
         foreach ($purchases as $purchase) {
@@ -96,13 +89,18 @@ class PurchasesController extends Controller
     public function update(Request $request, $id)
     {
         $purchase_order = PurchaseOrder::findOrFail($id);
-        $paid_amount = $request->input('txtpaid');
-        
-        # create payment logs
-        $payment_log = new PaymentLog([
-            'amount' => $paid_amount,
-        ]);
-        $purchase_order->payment_logs()->save($payment_log);
+        $purchases = $request->input('purchases');
+
+        foreach ($purchase_order->purchases as $key=>$purchase) {
+            $paid_amount = $purchases[$key]['amount'];
+            if ($paid_amount != 0) {
+                # create payment log each purchased item
+                $payment_log = new PaymentLog([
+                    'amount' => $paid_amount,
+                ]);
+                $purchase->payment_logs()->save($payment_log);
+            }
+        }
 
         return redirect()->route('purchases.index');
     }

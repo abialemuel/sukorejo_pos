@@ -84,17 +84,22 @@
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Terbayar</th>
                                 </tr>
                             </thead>
                             <tbody class="text-sm" style="font-size: 11px; text-align: center;">
                                 @foreach ($purchase_orders->purchases as $purchase)
                                     <tr>
-
                                         <td><input type='text' min='1' class='form-control' name='purchases[{{ $loop->index }}][ac_code]' id='purchases[{{ $loop->index }}][ac_code]' value="{{ $purchase->ac_code }}" required readonly></td>
                                         <td><input type="text" min="1" class="form-control" name="purchases[{{ $loop->index }}][seri_tani]" id="purchases[{{ $loop->index }}][seri_tani]" value="{{ $purchase->seri_tani }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty bruto" name="purchases[{{ $loop->index }}][bruto]" id="purchases[{{ $loop->index }}][bruto]" value="{{ $purchase->bruto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>
+                                        <td><input type="text" class="form-control" value="{{ $purchase->isPaid() }}" required readonly></td>
+                                        <td><input type="number" class="form-control" value="{{ $purchase->getTotalAmount() }}" required readonly></td>
+                                        <td><input type="number" min="0" class="form-control qty amount" name="purchases[{{ $loop->index }}][amount]" id="purchases[{{ $loop->index }}][amount]" value="0" required></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -125,7 +130,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value="" required>
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value="{{ $purchase_orders->totalPaid() }}" required readonly>
                                 </div>
                             </div>
                         </div>

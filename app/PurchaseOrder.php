@@ -49,11 +49,19 @@ class PurchaseOrder extends Model
     }
 
     public function isPaid() {
-        return ($this->amount == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum Lunas';
+        return ($this->amount == $this->totalPaid()) ? 'Lunas' : 'Belum Lunas';
     }
 
     public function getPaidDate() {
         return ($this->isPaid() == 'Lunas') ? $this->getStringDate() : 'Belum Lunas';
+    }
+
+    public function totalPaid() {
+        $total = 0;
+        foreach ($this->purchases as $purchase) {
+            $total += $purchase->payment_logs->sum('amount');
+        }
+        return $total;
     }
 }
 

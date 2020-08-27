@@ -40,5 +40,9 @@ class Purchase extends Model
     public function payment_logs(){
         return $this->morphMany(PaymentLog::class, 'paymentable');
     }
+
+    public function isPaid() {
+        return ($this->getTotalAmount() == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum Lunas';
+    }
 }
 
