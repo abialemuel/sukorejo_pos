@@ -30,4 +30,8 @@ class Sale extends Model
     public function sales_order(){
         return $this->belongsTo(SaleOrder::class);
     }
+
+    public function payment_logs(){
+        return $this->morphMany(PaymentLog::class, 'paymentable');
+    }
 }

@@ -36,5 +36,9 @@ class Purchase extends Model
     public function getTotalAmount() {
         return $this->price * $this->netto;
     }
+
+    public function payment_logs(){
+        return $this->morphMany(PaymentLog::class, 'paymentable');
+    }
 }
 
