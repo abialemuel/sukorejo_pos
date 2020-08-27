@@ -54,9 +54,19 @@ class PurchasesController extends Controller
         $purchase_order->payment_logs()->save($payment_log);
 
         # create purchased items
-        foreach ($purchases as $purchase)
-            Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
-        
+        foreach ($purchases as $purchase) {
+            $paid_amount = $purchase['amount'];
+            unset($purchase['amount']);
+            unset($purchase['total']);
+            $purchased_item = Purchase::create($purchase + ['purchase_order_id' => $purchase_order->id]);
+
+            # create payment log each purchased item
+            $payment_log = new PaymentLog([
+                'amount' => $paid_amount,
+            ]);
+            $purchased_item->payment_logs()->save($payment_log);
+        }
+
         # additional action for print
         if ($submit_value == 'simpan_cetak') {
             return response()->json($purchase_order);

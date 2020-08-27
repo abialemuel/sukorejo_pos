@@ -74,6 +74,8 @@
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
+                                    <th>Total</th>
+                                    <th>Terbayar</th>
                                     <th>
                                         <button type="button" class="btn btn-success btn-sm btnadd" name="add">
                                             <i class="fa fa-plus"></i>
@@ -86,6 +88,8 @@
                                     <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]" required></td>
                                     <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" required readonly></td>
                                     <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" required></td>
+                                    <td><input type="number" min="1" class="form-control qty total" name="purchases[0][total]" id="purchases[0][total]" required readonly></td>
+                                    <td><input type="number" min="1" class="form-control qty amount" name="purchases[0][amount]" id="purchases[0][amount]" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -124,7 +128,7 @@
                                         <i class="fa fa-usd"></i>
                                     </div>
 
-                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value=0 required>
+                                    <input type="text" class="form-control" name="txtpaid"  id="txtpaid" value=0 required readonly>
                                 </div>
                             </div>
                         </div>
@@ -186,6 +190,8 @@
             html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]" required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
             html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]" required></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty total" name="purchases[${i}][total]" id="purchases[${i}][total]" required readonly></td>`
+            html+=`<td><input type="number" min="1" class="form-control qty amount" name="purchases[${i}][amount]" id="purchases[${i}][amount]" required></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1
@@ -260,12 +266,15 @@
             var stillExist = true;
             var i = 0;
             var sumTotal = 0
+            var sumPaid = 0
             while (stillExist) {
-                netto = document.getElementById(`purchases[${i}][netto]`);
-                price = document.getElementById(`purchases[${i}][price]`);
-                if  (netto != null && price != null) {
-                    sumRow = netto.value * price.value;
-                    sumTotal += sumRow;
+                amount = document.getElementById(`purchases[${i}][amount]`);
+                total = document.getElementById(`purchases[${i}][total]`);
+                console.log(amount)
+                console.log(total)
+                if  (total != null && amount != null) {
+                    sumTotal += parseInt(total.value);
+                    sumPaid += parseInt(amount.value);
                 } else {
                     stillExist = false;
                 }
@@ -273,11 +282,18 @@
                 i += 1;
             }
             document.getElementById('txttotal').value = sumTotal;
-     }) 
+            document.getElementById('txtpaid').value = sumPaid;
+         }) 
 
-
-
-        
+        $(document).on('change','.price',function(){
+         
+            var tr=$(this).parent().parent();
+            var netto = tr.find(".netto").val();
+            var price = $(this).closest('.price').val();
+            var total = price * netto;
+            
+            tr.find(".total").val(total);
+        }) 
     });
 </script>
 @endpush
