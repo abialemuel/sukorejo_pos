@@ -96,8 +96,9 @@
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
                                     <th>Total</th>
-                                    <th>Terbayar</th>
                                     <th>Status</th>
+                                    <th>Terbayar</th>
+                                    <th>Bayar</th>
 
                                 </tr>
                             </thead>
@@ -110,9 +111,9 @@
                                         <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>
                                         <td><input type="number" class="form-control" value="{{ $purchase->getTotalAmount() }}" required readonly></td>
-                                        <td><input type="number" min="0" class="form-control qty amount" name="purchases[{{ $loop->index }}][amount]" id="purchases[{{ $loop->index }}][amount]" value="{{ $purchase->payment_logs->sum('amount') }}" required></td>
                                         <td><input type="text" class="form-control" value="{{ $purchase->isPaid() }}" required readonly></td>
-
+                                        <td><input type="number" min="0" class="form-control qty amountpaid" name="purchases[{{ $loop->index }}][amount_paid]" id="purchases[{{ $loop->index }}][amount_paid]" value="{{ $purchase->payment_logs->sum('amount') }}" readonly></td>
+                                        <td><input type="number" min="0" class="form-control qty amount" name="purchases[{{ $loop->index }}][amount]" id="purchases[{{ $loop->index }}][amount]" value="0" required></td>
                                     </tr>
                                 @endforeach
                             </tbody>
