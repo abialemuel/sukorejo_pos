@@ -26,7 +26,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Edit Pembelian</h1>
+            <h1 class="h3 mb-2 text-gray-800">Edit Pembelian - {{$purchase_orders->getPOId()}}</h1>
         </div>
 
             
@@ -62,12 +62,23 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
+                        <div class="col-sm-3">
+                            <label for="inputTanggal" class="col-sm-12 control-label">Tanggal Nota</label>
                             <div class="col-sm-12">
                                 <div class="input-group date">
                                     <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
                                     <p>{{ date('d-m-Y', strtotime($purchase_orders->created_at)) }}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="inputTanggal" class="col-sm-12 control-label">Status Nota</label>
+                            <div class="col-sm-12">
+                                <div class="input-group date">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <p><strong>{{ $purchase_orders->isPaid() }}</strong></p>
                                     
                                 </div>
                             </div>
@@ -84,9 +95,10 @@
                                     <th>Brutto</th>
                                     <th>Netto</th>
                                     <th>Harga Beli</th>
-                                    <th>Status</th>
                                     <th>Total</th>
                                     <th>Terbayar</th>
+                                    <th>Status</th>
+
                                 </tr>
                             </thead>
                             <tbody class="text-sm" style="font-size: 11px; text-align: center;">
@@ -97,9 +109,10 @@
                                         <td><input type="number" min="1" class="form-control qty bruto" name="purchases[{{ $loop->index }}][bruto]" id="purchases[{{ $loop->index }}][bruto]" value="{{ $purchase->bruto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>
-                                        <td><input type="text" class="form-control" value="{{ $purchase->isPaid() }}" required readonly></td>
                                         <td><input type="number" class="form-control" value="{{ $purchase->getTotalAmount() }}" required readonly></td>
-                                        <td><input type="number" min="0" class="form-control qty amount" name="purchases[{{ $loop->index }}][amount]" id="purchases[{{ $loop->index }}][amount]" value="0" required></td>
+                                        <td><input type="number" min="0" class="form-control qty amount" name="purchases[{{ $loop->index }}][amount]" id="purchases[{{ $loop->index }}][amount]" value="{{ $purchase->payment_logs->sum('amount') }}" required></td>
+                                        <td><input type="text" class="form-control" value="{{ $purchase->isPaid() }}" required readonly></td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -123,7 +136,7 @@
 
                             
                             <div class="form-group">
-                                <label>Terbayar</label>
+                                <label>Nominal Sudah Terbayar</label>
 
                                 <div class="input-group">
                                     <div class="input-group-addon">

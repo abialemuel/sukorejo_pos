@@ -89,7 +89,7 @@
                                     <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" required readonly></td>
                                     <td><input type="number" min="1" class="form-control qty price" name="purchases[0][price]" id="purchases[0][price]" required></td>
                                     <td><input type="number" min="1" class="form-control qty total" name="purchases[0][total]" id="purchases[0][total]" required readonly></td>
-                                    <td><input type="number" min="1" class="form-control qty amount" name="purchases[0][amount]" id="purchases[0][amount]" required></td>
+                                    <td><input type="number" min="0" class="form-control qty amount" value=0 name="purchases[0][amount]" id="purchases[0][amount]" required></td>
                                     <td>
                                         <center>
                                             <button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button>
@@ -191,7 +191,7 @@
             html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
             html+=`<td><input type="number" min="1" class="form-control qty price" name="purchases[${i}][price]" id="purchases[${i}][price]" required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty total" name="purchases[${i}][total]" id="purchases[${i}][total]" required readonly></td>`
-            html+=`<td><input type="number" min="1" class="form-control qty amount" name="purchases[${i}][amount]" id="purchases[${i}][amount]" required></td>`
+            html+=`<td><input type="number" min="0" class="form-control qty amount" value=0 name="purchases[${i}][amount]" id="purchases[${i}][amount]" required></td>`
             html+=`<td><center><button type="button" name="remove" class="btn btn-danger btn-sm btnremove"><i class="fa fa-trash"></i></button></td></center></tr>`; 
 
             i+=1

@@ -79,6 +79,8 @@
                     <th>Netto</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
+                    <th>Status</th>
+
                 </tr>
             </thead>
 
@@ -92,6 +94,8 @@
                     <td>{{ $purchase['netto'] }}</td>
                     <td>{{ $purchase['price'] }}</td>
                     <td>{{ $purchase->getTotalAmount() }}</td>
+                    <td>{{ $purchase->isPaid() }}</td>
+
                 </tr>
               @endforeach
             </tbody>

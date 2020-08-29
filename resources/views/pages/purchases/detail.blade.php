@@ -88,6 +88,8 @@
                                 <th>Brutto</th>
                                 <th>Netto</th>
                                 <th>Harga</th>  
+                                <th>Total</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody style=" font-size: 12px;">
@@ -98,6 +100,9 @@
                                     <td>{{ $purchase->bruto }} Kg</td>
                                     <td>{{ $purchase->netto }} Kg</td>
                                     <td>{{ $purchase->price }}</td>
+
+                                    <td>{{ $purchase->getTotalAmount() }}</td>
+                                    <td>{{ $purchase->isPaid() }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
