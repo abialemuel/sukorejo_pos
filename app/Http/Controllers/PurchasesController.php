@@ -10,6 +10,9 @@ use App\Farmer;
 use App\Weight;
 use PDF;
 use Debugbar;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PurchaseOrderExport;
+
 
 
 class PurchasesController extends Controller
@@ -131,5 +134,10 @@ class PurchasesController extends Controller
         $purchase_order = PurchaseOrder::findOrFail($id);
     	$pdf = PDF::loadview('pages.pdf.purchases_report', compact('purchase_order'));
     	return $pdf->stream();
+    }
+
+    public function export() 
+    {
+        return Excel::download(new PurchaseOrderExport, 'test.xlsx');
     }
 }

@@ -40,6 +40,7 @@
                                 <th>Desa</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th>Export</th>
                                 <th>Print</th>
                                 <th>Detail</th>
                                 @if($role == "USER")
@@ -58,6 +59,15 @@
                                     <td>{{ $purchase_order->farmer["area"] }}</td>
                                     <td>{{ $purchase_order->amount }}</td>
                                     <td>{{ $purchase_order->isPaid() }}</td>
+                                    <td>
+                                        <center> 
+                                            <a href="{{  route('purchases.export', $purchase_order->id) }}" class="btn btn-warning btn-sm" 
+                                                style="border-color: #1D6F42; background-color: #1D6F42;">
+                                                <i class="fa fa-file-excel" aria-hidden="true"></i>
+                                            </a>
+                                        </center>
+                                    </td>
+
                                     <td>
                                         <center> 
                                             <a href="{{  route('purchases.printPdf', $purchase_order->id) }}" target="_blank" class="btn btn-warning btn-sm">
@@ -97,6 +107,7 @@
                                         </center>
                                     </td>
                                     @endif
+
                                 </tr>
                             @endforeach
                         </tbody>

@@ -31,6 +31,7 @@ Route::prefix('/')
         Route::resource('purchases', 'PurchasesController');
         Route::get('/purchases/getNetto/{id}', 'PurchasesController@getNetto')->name('purchases.getNetto');
         Route::get('/purchases/print-pdf/{id}', 'PurchasesController@printPdf')->name('purchases.printPdf');
+        Route::get('/purchases/export/{id}', 'PurchasesController@export')->name('purchases.export');
 
         Route::resource('farmers', 'FarmerController');
         Route::resource('users', 'UserController');
