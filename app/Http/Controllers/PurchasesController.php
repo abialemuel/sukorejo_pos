@@ -12,7 +12,7 @@ use PDF;
 use Debugbar;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PurchaseOrderExport;
-
+use App\Exports\PurchaseOrderDailyExport;
 
 
 class PurchasesController extends Controller
@@ -104,6 +104,10 @@ class PurchasesController extends Controller
                 $purchase->payment_logs()->save($payment_log);
             }
         }
+        // # additional action for print
+        // if ($submit_value == 'simpan_cetak') {
+        //     return response()->json($purchase_order);
+        // }
 
         return redirect()->route('purchases.index');
     }
@@ -138,6 +142,11 @@ class PurchasesController extends Controller
 
     public function export() 
     {
-        return Excel::download(new PurchaseOrderExport, 'test.xlsx');
+        return Excel::download(new PurchaseOrderExport, 'Nota Pembelian.xlsx');
+    }
+
+    public function exportharian() 
+    {
+        return Excel::download(new PurchaseOrderDailyExport, 'Laporan Harian - Pembelian.xlsx');
     }
 }

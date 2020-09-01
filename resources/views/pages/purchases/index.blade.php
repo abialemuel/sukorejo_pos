@@ -24,10 +24,45 @@
             <h1 class="h3 mb-2 text-gray-800">Pembelian</h1>
         </div>
         <?php $role = Auth::user()->roles; ?>
+        <form  id="export_form" action="{{ route('purchases.exportharian', 1) }}" method="GET">
+            @csrf
+            <!-- DataTales Example -->
+            <div class="card shadow">
+            
+                <div class="card-body">
+                    <div class="row mt-1 mb-1">
+                        <div class="col-sm-8">
+                            <label for="inputTanggal" class="col-sm-2 control-label">Pilih Tanggal</label>
+                            <div class="col-sm-4">
+                                <div class="input-group date">
+                                    <!-- <input placeholder="{{ date('Y-m-d') }}"  class="form-control datepicker" name="tanggal"> -->
+                                    <input type="text" class="form-control datepicker" id="purchased_at" name="purchased_at" value="{{ date('Y-m-d') }}" data-date-format="yyyy-mm-dd" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="inputTanggal" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-4">
+                                <input type="submit" 
+                                    name="export_excel" 
+                                    value="Export ke Excel&nbsp;" class="btn btn-info"
+                                    style="border-color: #1D6F42; background-color: #1D6F42; margin-left: -525px; margin-top: 7px;">
+                                    
+
+                                <!-- <a href="{{  route('purchases.exportharian', 1) }}" class="btn btn-warning btn-sm" 
+                                    style="border-color: #1D6F42; background-color: #1D6F42; margin-left: -525px; margin-top: 10px;">
+                                    Export ke Excel&nbsp;<i class="fa fa-file-excel" aria-hidden="true"></i> 
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
             
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-4 mt-5">
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

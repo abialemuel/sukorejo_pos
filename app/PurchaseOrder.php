@@ -49,7 +49,7 @@ class PurchaseOrder extends Model
     }
 
     public function isPaid() {
-        return ($this->amount == $this->totalPaid()) ? 'Lunas' : 'Belum Lunas';
+        return ($this->amount <= $this->totalPaid()) ? 'Lunas' : 'Belum Lunas';
     }
 
     public function getPaidDate() {

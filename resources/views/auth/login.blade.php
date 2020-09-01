@@ -26,26 +26,12 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <div class="custom-control custom-checkbox small">
-                <input class="form-check-input custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <!-- input class custom-control-input -->
-                <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
-            </div>
-        </div>
         <button type="submit" class="btn btn-primary btn-user btn-block">
             {{ __('Login') }}
         </button>
     </form>
     <hr>
 
-    <div class="text-center">
-        @if (Route::has('password.request'))
-            <a class="small" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-        @endif
-    </div>
     <div class="text-center">
         <a class="small" href="{{ route('register') }}">Create an Account!</a>
     </div>

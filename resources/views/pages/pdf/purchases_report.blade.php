@@ -101,17 +101,23 @@
             </tbody>
         </table>
 
-        <table style="position: absolute; bottom: -360px; left: 320px; width: 120px; ">
+        <table style="position: absolute; bottom: -360px; left: 270px; width: 120px; ">
             <thead>
                 <tr>
+                    <th>Total Tagihan</th>
+                    <th>Total Terbayar</th>
                     <th>Tgl. Pelunasan</th>
-                    <th>Total</th>
+
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $purchase_order->getPaidDate() }}</td>
                     <td>{{ $purchase_order->amount }}</td>
+                    <td>{{ $purchase_order->totalPaid() }}</td>
+                    <td>{{ $purchase_order->getPaidDate() }}</td>
+
+
                 </tr>
             </tbody>
         </table>

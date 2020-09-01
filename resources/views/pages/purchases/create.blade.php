@@ -40,18 +40,6 @@
 
 
                     <div class="row mt-4 mb-5">
-                        <div class="col-sm-6">
-                            <label for="inputFarmerCode" class="col-sm-6 control-label">Nama Petani</label>
-
-                            <div class="col-sm-8">
-                            
-                                <select class="kode-petani form-control" name="farmer_id">
-                                    @foreach ($farmers as $farmer)
-                                        <option value="{{ $farmer->id }}">{{ $farmer->name }}</option>
-                                    @endforeach
-                                </select>    
-                            </div>
-                        </div>
 
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>
@@ -82,8 +70,10 @@
                                         </button>
                                     </th>
                                 </tr>
+                            </thead>
+                            <tbody class="text-sm" style="font-size: 11px; text-align: center;">
                                 <tr>
-                                    <td><input type='text' min='1' class='form-control' name='purchases[0][ac_code]' id='purchases[0][ac_code]' required></td>
+                                    <td><input type='text' min='1' class='form-control ac_code' name='purchases[0][ac_code]' id='purchases[0][ac_code]' required></td>
                                     <td><input type="text" min="1" class="form-control" name="purchases[0][seri_tani]" id="purchases[0][seri_tani]" required></td>
                                     <td><input type="number" min="1" class="form-control qty bruto" name="purchases[0][bruto]" id="purchases[0][bruto]" required></td>
                                     <td><input type="number" min="1" class="form-control qty netto" name="purchases[0][netto]" id="purchases[0][netto]" required readonly></td>
@@ -96,9 +86,6 @@
                                         </center>
                                     </td>
                                 </tr>
-                            </thead>
-                            <tbody class="text-sm" style="font-size: 11px; text-align: center;">
-                                
                             </tbody>
                         </table>
                     </div>      
@@ -185,7 +172,7 @@
             
             var html='';
             html+=`<tr>`;
-            html+=`<td><input type='text' min='1' class='form-control' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]' required></td>`
+            html+=`<td><input type='text' min='1' class='form-control ac_code' name='purchases[${i}][ac_code]' id='purchases[${i}][ac_code]' required></td>`
             html+=`<td><input type="text" min="1" class="form-control" name="purchases[${i}][seri_tani]" id='purchases[${i}][seri_tani]' required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty bruto" name="purchases[${i}][bruto]" id="purchases[${i}][bruto]" required></td>`
             html+=`<td><input type="number" min="1" class="form-control qty netto" name="purchases[${i}][netto]" id="purchases[${i}][netto]" required readonly></td>`
@@ -233,6 +220,27 @@
             });  
             
         }) 
+
+        // $(document).on('change','.ac_code',function(){
+         
+        //     var ac_code = $(this).closest('.ac_code').val();
+        //     var contents = {},
+        //     duplicates = false;
+        //     $("#purchase_form tr").each(function() {
+        //         var tdContent = $(this).text();
+        //         if (contents[tdContent]) {
+        //             duplicates = true;
+        //             return false;
+        //         }
+        //         contents[tdContent] = true;
+        //     });    
+        //     if (duplicates)
+        //     alert("There were duplicates.");
+            
+            
+        // }) 
+
+
 
         // open new tab for print pdf & reload page
         $("#simpan_cetak").click(function(e){

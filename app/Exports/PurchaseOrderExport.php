@@ -18,7 +18,6 @@ class PurchaseOrderExport implements FromView
         $id = request()->route('id');
         $purchase_order = PurchaseOrder::findOrFail($id);
         return view('pages.excel.purchases_report', compact('purchase_order'));
-    }
-
-    
+    }   
 }
+

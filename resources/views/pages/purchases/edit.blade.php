@@ -152,11 +152,11 @@
 
                     <hr class="sidebar-divider d-none d-md-block">
                     <div class="row col-sm-6 col-lg-6">
-                        <div class="col-sm-6 col-lg-6">
+                        <!-- <div class="col-sm-6 col-lg-6">
                             <div align="center">
                             <input type="submit" id= "simpan_cetak" name="submit_value" value="Simpan & Cetak" class="btn btn-success" formtarget="_blank">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-sm-6 col-lg-6">
                             <div align="center">
                                 <input type="submit" name="submit_value" value="Simpan Data Pembelian" class="btn btn-info">

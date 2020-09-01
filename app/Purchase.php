@@ -42,7 +42,7 @@ class Purchase extends Model
     }
 
     public function isPaid() {
-        return ($this->getTotalAmount() == $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum Lunas';
+        return ($this->getTotalAmount() <= $this->payment_logs->sum('amount')) ? 'Lunas' : 'Belum Lunas';
     }
 }
 
