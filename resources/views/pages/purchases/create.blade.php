@@ -40,6 +40,18 @@
 
 
                     <div class="row mt-4 mb-5">
+                        <div class="col-sm-6">
+                            <label for="inputFarmerCode" class="col-sm-6 control-label">Nama Petani</label>
+
+                            <div class="col-sm-8">
+                            
+                                <select class="kode-petani form-control" name="farmer_id">
+                                    @foreach ($farmers as $farmer)
+                                        <option value="{{ $farmer->id }}">{{ $farmer->name }}</option>
+                                    @endforeach
+                                </select>    
+                            </div>
+                        </div>
 
                         <div class="col-sm-6">
                             <label for="inputTanggal" class="col-sm-2 control-label">Tanggal</label>

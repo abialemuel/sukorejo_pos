@@ -12,6 +12,7 @@
                     <th>Netto</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
+                    <th>Terbayar</th>
                     <th>Status</th>
 
                 </tr>
@@ -21,7 +22,7 @@
             <tbody>
                 @foreach ($purchase_order as $po)
                 <tr>
-                    <td>{{ $po->created_at }}</td>
+                    <td>{{ $po->nomor_nota }}</td>
                     <td>{{ $po->farmer_code }}</td>
                     <td>{{ $po->farmer_name }}</td>
                     <td>{{ $po->ac_code }}</td>
@@ -30,6 +31,7 @@
                     <td>{{ $po->netto }}</td>
                     <td>{{ $po->price }}</td>
                     <td>{{ $po->jumlah }}</td>
+                    <td>{{ $po->total_paid }}</td>
                     <td>{{ $po->status }}</td>
                 </tr>
                 @endforeach

@@ -8,10 +8,14 @@
 @push('additional-style')
     <!-- Custom styles for this page -->
     <link href="{{ url('startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ url('startbootstrap/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
 @endpush
 
 @push('additional-script')
     @include('includes.table-script')
+    <script src="{{ url('startbootstrap/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>       
+
 @endpush
 
 @section('content')
@@ -153,3 +157,19 @@
 
     </div>
 @endsection
+
+@push('add-item')
+
+
+
+<script>
+    //Date picker
+    $(function(){
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+    });
+</script>
+@endpush
