@@ -71,7 +71,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="text-sm" style="font-size: 11px; text-align: center;">
+                            <tbody id="tbodyPurchases" class="text-sm" style="font-size: 11px; text-align: center;">
                                 <tr>
                                     <td><input type='text' min='1' class='form-control ac_code' name='purchases[0][ac_code]' id='purchases[0][ac_code]' required></td>
                                     <td><input type="text" min="1" class="form-control" name="purchases[0][seri_tani]" id="purchases[0][seri_tani]" required></td>
@@ -278,8 +278,6 @@
             while (stillExist) {
                 amount = document.getElementById(`purchases[${i}][amount]`);
                 total = document.getElementById(`purchases[${i}][total]`);
-                console.log(amount)
-                console.log(total)
                 if  (total != null && amount != null) {
                     sumTotal += parseInt(total.value);
                     sumPaid += parseInt(amount.value);
@@ -301,6 +299,29 @@
             var total = price * netto;
             
             tr.find(".total").val(total);
+        }) 
+
+        $(document).on('input','.ac_code',function(){
+         
+            var ac_code = $(this).closest('.ac_code').val();
+            var className = $(this).attr('name').toString();
+            var index = className.match(/\d+/g)[0];
+            var rowCount = $('#tbodyPurchases').children('tr').length;
+            var duplicate = false;
+            
+            for (let i = 0; i < rowCount; i++) {
+                if (i == index) { continue; }
+                old_ac_code = document.getElementById(`purchases[${i}][ac_code]`).value;
+                if (old_ac_code == ac_code) {
+                    duplicate = true;
+                    break;
+                }
+            }
+            
+           if (duplicate == true) { 
+               alert("Seri AC sudah digunakan");
+               $(this).closest('.ac_code').val(null);
+            }
         }) 
     });
 </script>
