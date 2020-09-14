@@ -36,12 +36,14 @@
           <i class="fas fa-cart-arrow-down"></i>
           <span>Pembelian</span>
         </a>
-        <div id="purchasescollapsePages" class="collapse {{ Request::is('purchases') || Request::is('purchases/create')  ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
+        <div id="purchasescollapsePages" class="collapse {{ Request::is('purchases') || Request::is('purchases/create')  || Request::is('purchases/payment/pembelian')  ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ Request::is('purchases/create') ? 'active' : '' }}" href="{{ route('purchases.create') }}">Input Data Pembelian</a>
             @if($role == "USER")
               <div class="dropdown-divider"></div>
               <a class="collapse-item {{ Request::is('purchases') ? 'active' : '' }}" href="{{ route('purchases.index') }}">Data Pembelian</a>
+              <div class="dropdown-divider"></div>
+              <a class="collapse-item {{ Request::is('purchases/payment/pembelian') ? 'active' : '' }}" href="{{ route('purchases.payment', 'pembelian') }}">Pembayaran Pembelian</a>
             @endif
           </div>
         </div>

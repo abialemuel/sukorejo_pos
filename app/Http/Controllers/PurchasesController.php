@@ -149,4 +149,20 @@ class PurchasesController extends Controller
     {
         return Excel::download(new PurchaseOrderDailyExport, 'Laporan Harian - Pembelian.xlsx');
     }
+
+    public function payment($additionalvar)
+    {
+        //
+        $purchase_orders = PurchaseOrder::all();
+
+        return view('pages.purchases.payment', compact('purchase_orders'));
+    }
+
+    public function editpayment($id)
+    {
+        //
+        $purchase_orders = PurchaseOrder::findOrFail($id);
+
+        return view('pages.purchases.editpayment', compact('purchase_orders'));
+    }
 }
