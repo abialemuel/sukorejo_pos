@@ -41,7 +41,7 @@
         @endif
         @if($role == "USER")
         <!-- form start -->
-        <form  id="purchase_form" action="{{ route('purchases.update', $purchase_orders->id) }}" method="POST">
+        <form  id="purchase_form" action="{{ route('purchases.updatepayment', $purchase_orders->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -107,8 +107,8 @@
                                         <td><input type="number" min="1" class="form-control qty bruto" name="purchases[{{ $loop->index }}][bruto]" id="purchases[{{ $loop->index }}][bruto]" value="{{ $purchase->bruto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty netto" name="purchases[{{ $loop->index }}][netto]" id="purchases[{{ $loop->index }}][netto]" value="{{ $purchase->netto }}" required readonly></td>
                                         <td><input type="number" min="1" class="form-control qty price" name="purchases[{{ $loop->index }}][price]" id="purchases[{{ $loop->index }}][price]" value="{{ $purchase->price }}" required readonly></td>
-                                        <td><input type="number" class="form-control" value="{{ $purchase->getTotalAmount() }}" required readonly></td>
-                                        <td><input type="checkbox" class="form-control" required @if($purchase->isPaid()!='Lunas') checked @endif></td>
+                                        <td><input type="number" class="form-control" name="purchases[{{ $loop->index }}][totalAmount]" value="{{ $purchase->getTotalAmount() }}" required readonly></td>
+                                        <td><input type="checkbox" class="form-control" name="purchases[{{ $loop->index }}][paid]" @if($purchase->isPaid()=='Lunas') checked disabled @endif></td>
                                     </tr>
                                 @endforeach
                             </tbody>

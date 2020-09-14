@@ -101,7 +101,7 @@
             </tbody>
         </table>
 
-        <table style="position: absolute; bottom: -360px; left: 270px; width: 120px; ">
+        <table style="position: absolute; bottom: -300px; left: 270px; width: 120px; ">
             <thead>
                 <tr>
                     <th>Total Tagihan</th>
@@ -118,6 +118,20 @@
                     <td>{{ $purchase_order->getPaidDate() }}</td>
 
 
+                </tr>
+            </tbody>
+        </table>
+        <table style="position: absolute; bottom: -360px; left: 270px; width: 270px; ">
+            <thead>
+                <tr>
+                    <td style="border-left: 1px solid transparent;border-right: 1px solid transparent; padding: 8px 0;"></td>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-left: 1px solid transparent;border-right: 1px solid transparent; padding: 8px 0;"></td>     
                 </tr>
             </tbody>
         </table>

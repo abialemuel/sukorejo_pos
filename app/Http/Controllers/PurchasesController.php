@@ -112,6 +112,25 @@ class PurchasesController extends Controller
         return redirect()->route('purchases.index');
     }
 
+    public function updatepayment(Request $request, $id)
+    {
+        $purchase_order = PurchaseOrder::findOrFail($id);
+        $purchases = $request->input('purchases');
+
+        foreach ($purchase_order->purchases as $key=>$purchase) {
+            $paid = $purchases[$key]['paid'];
+            # maksudnya adalah ketika checked maka kasih value sesuai dengan tagihannya
+            if ($paid == 'checked') {
+                # create payment log each purchased item
+                $payment_log = new PaymentLog([
+                    'amount' => $paid_amount,
+                ]);
+                $purchase->payment_logs()->save($payment_log);
+            }
+        }
+        return redirect()->route('purchases.index');
+    }
+
     public function destroy($id)
     {
         $item = PurchaseOrder::findorFail($id);
