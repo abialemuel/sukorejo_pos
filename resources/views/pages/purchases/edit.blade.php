@@ -217,37 +217,6 @@
             });  
             
         }) 
-
-        // open new tab for print pdf & reload page
-        $("#simpan_cetak").click(function(e){
-            e.preventDefault();
-            const form = document.getElementById('purchase_form');
-
-            var params = $('#purchase_form').serialize() + "&submit_value=simpan_cetak";
-            
-            var createdData;
-
-            $.ajax({
-                url: "{{ route('purchases.store') }}",
-                method: 'post',
-                data: params,
-                async: false,
-                success: function(response){
-                    //------------------------
-                    createdData = response;
-                    //--------------------------
-            }});
-
-            var id = createdData['id'];
-            var new_pdf_url = '{{ route("purchases.printPdf", ":id") }}';
-            new_pdf_url = new_pdf_url.replace(':id', id); 
-            window.open(new_pdf_url);
-            window.location.reload();
-        })
-
-
-
-        
     });
 </script>
 @endpush

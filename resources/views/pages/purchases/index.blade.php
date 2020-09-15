@@ -126,7 +126,7 @@
                                     @if($role == "USER")
                                     <td>
                                         <center> 
-                                            <a href="{{ route('purchases.edit', $purchase_order->id) }}" class="btn btn-info">
+                                            <a href="{{ route('purchases.editpayment', $purchase_order->id) }}" class="btn btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </center>

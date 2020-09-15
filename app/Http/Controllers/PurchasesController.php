@@ -93,41 +93,19 @@ class PurchasesController extends Controller
     {
         $purchase_order = PurchaseOrder::findOrFail($id);
         $purchases = $request->input('purchases');
-
-        foreach ($purchase_order->purchases as $key=>$purchase) {
-            $paid_amount = $purchases[$key]['amount'];
-            if ($paid_amount != 0) {
+        
+        foreach ($purchase_order->purchases as $index=>$purchase) {
+            Debugbar::info(json_encode($purchases));
+            $paid_checkbox = isset($purchases[$index]['paid']);
+            if ($paid_checkbox) {
                 # create payment log each purchased item
                 $payment_log = new PaymentLog([
-                    'amount' => $paid_amount,
+                    'amount' => $purchase->getTotalAmount(),
                 ]);
                 $purchase->payment_logs()->save($payment_log);
             }
         }
-        // # additional action for print
-        // if ($submit_value == 'simpan_cetak') {
-        //     return response()->json($purchase_order);
-        // }
 
-        return redirect()->route('purchases.index');
-    }
-
-    public function updatepayment(Request $request, $id)
-    {
-        $purchase_order = PurchaseOrder::findOrFail($id);
-        $purchases = $request->input('purchases');
-
-        foreach ($purchase_order->purchases as $key=>$purchase) {
-            $paid = $purchases[$key]['paid'];
-            # maksudnya adalah ketika checked maka kasih value sesuai dengan tagihannya
-            if ($paid == 'checked') {
-                # create payment log each purchased item
-                $payment_log = new PaymentLog([
-                    'amount' => $paid_amount,
-                ]);
-                $purchase->payment_logs()->save($payment_log);
-            }
-        }
         return redirect()->route('purchases.index');
     }
 
